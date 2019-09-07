@@ -24,7 +24,7 @@ aCsvToWx = do
     putStrLn "Choosen functions: myFunctions"
   --- Extraordinary function chooses which AND howmany functions of the list above will be put in output
   -- l: [Int] ~ oder auch welche kombination von funktionen   
-     let accesFuncWX l  = let aw1 n = (takenN n outPutMaxima3)
+    let accesFuncWX l  = let aw1 n = (takenN n outPutMaxima3)
                        in let wielanGg  = [1..l]
                        in let aw2 = map aw1 wielanGg
                        in let enExp a b sqale1 sqale2 = (aCompleteWX a b xX sqale1 sqale2) -- diese display nach compiliren  vs aCompleteWX2 schreibt display in file     
