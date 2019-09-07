@@ -14,6 +14,7 @@ xX = "3" -- howMany lines to process
 ---------------------------------------
 main :: IO ()
 main = do 
+  aCsvToWx
   print "Done"
 -----------------------------------------------------
 
@@ -57,7 +58,7 @@ aCsvToWxRaw  foWxmName = do
    -- insert in the the Main WX writing function imported from module 'WriteWXmaximaFile'
 -----------------------------------------------------
 -----------------------------------------------------
-
+ 
  
  
  
