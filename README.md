@@ -1,4 +1,4 @@
-# cvsToWx
+# csvToWx
 
 Reads a CSV file e.g: "durble.csv"
 Writes a a file with Format (val,days,month,year) a 'Patternfile.txt'
