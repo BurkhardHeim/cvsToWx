@@ -1,7 +1,7 @@
 # csvToWx
 
 Reads a CSV file e.g: "durble.csv"
-Writes a a file with Format (val,days,month,year) a 'Patternfile.txt'
+Writes a a file with Format (day,month,year,val) a 'Patternfile.txt'
 
 Reads 'Patternfile.txt'
 Turns it into a String will plot some statistic about the given DATA Set.
