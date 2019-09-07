@@ -30,7 +30,11 @@ outPutMaxima3 x = [Df.differenzwerte x, Df.differenzwerte3 x,Df.differenzwerte4 
 -----------------------------------------------------
 -----------------------------------------------------
 -- write a WX-Maxima file ----------------------------------------************* MAIN WX-WRITING PIPE
-aCsvToWx = do 
+aCsvToWx = aCsvToWxRaw "diff_blindSpot5.wxm" 
+
+-- foWxmName:String ; e.g "fileToWrite.wxm"
+--
+aCsvToWxRaw  foWxmName = do 
     let functionsToPlot = myFunctions
     putStrLn "Choosen functions: myFunctions"
   --- Extraordinary function chooses which AND howmany functions of the list above will be put in output
@@ -44,12 +48,16 @@ aCsvToWx = do
                        in let aw5 = "0.0" 
                        in let aw6 = mymax
               
-                       in enExp (concat aw2) (concat aw4) aw5 mymax --enExp 
+                       in enExp (concat aw2) (concat aw4) aw5 "1" --mymax --enExp 
+    putStrLn (accesFuncWX 3 3)
+    writeFile foWxmName ((accesFuncWX 3 3))
+    putStrLn ("Wrote "++ foWxmName ++"\n")
     putStrLn "getting there" 
-      
-   -- insert in the the Main WX wring fnction imported from wir
+         
+   -- insert in the the Main WX writing function imported from module 'WriteWXmaximaFile'
 -----------------------------------------------------
 -----------------------------------------------------
+
  
  
  
