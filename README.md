@@ -13,3 +13,5 @@ e.g: let thisList x = [x,x+x,x^2]
      ->               [1,2,3]
  
  aCompleteWX writes the WX-Maximafile
+ 
+ aCompleteWX 
