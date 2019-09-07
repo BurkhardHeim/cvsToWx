@@ -7,7 +7,7 @@ import Diff_Functions1
 
 -----------------------------------------------------
 -- yourFunctions = []  ---------------------------------************************ CHOOSE FUNCTIONS TO PLOT
-fomyFunctions t = ("differenzwerte*++(show t)++".txt")
+fomyFunctions t = ("differenzwerte"++(show t)++".txt")
 myFunctions = let ste1 = [1..solong]
                -- choose the functions to plot in this case taken from
                -- the module 'Diff_Functions1'
