@@ -1,6 +1,8 @@
-module Main
+
+ module Main
    where
 
+import qualified Patternfile as P
 import qualified UsefulFunctions  as Us   
 import qualified WriteWXmaximaFile as WX
 import qualified Diff_Functions1 as Df
@@ -13,7 +15,14 @@ dipfade2 = ["0.45","0.56","45"]
 xX = "3" -- howMany lines to process
 ---------------------------------------
 main :: IO ()
-main = do 
+main = do
+  putStrLn "Enter csv file to read"
+  theCsv <- getLine
+  putStrLn "Enter file to write e.g:\"seniot.txt\""
+  theWriteTxt <- getLine
+   
+  P.writePatternFile theCsv "seniot2.txt"
+  P.aMemory "seniot2.txt" theWriteTxt
   aCsvToWx
   print "Done"
 -----------------------------------------------------
@@ -43,7 +52,7 @@ aCsvToWxRaw  foWxmName = do
     let accesFuncWX l df = let aw1 n = (Us.takerleiN n (show (outPutMaxima3 df) ) )
                        in let wielanGg  = [1..l]
                        in let aw2 = map aw1 wielanGg
-                       in let enExp a b sqale1 sqale2 = (WX.aCompleteWX a b xX sqale1 sqale2) -- diese display nach compiliren  vs aCompleteWX2 schreibt display in file     
+                       in let enExp a b sqale1 sqale2 = (WX.aCompleteWX a b xX sqale1 sqale2) -- aCompleteWX  vs aCompleteWX2 writes display into the file     
                      --  in let aw3 =  ceiling (l/2)	
                        in let aw4 = ([wielanGg ,[(l+1)..(l*2) ]])
                        in let aw5 = "0.0" 
@@ -58,7 +67,5 @@ aCsvToWxRaw  foWxmName = do
    -- insert in the the Main WX writing function imported from module 'WriteWXmaximaFile'
 -----------------------------------------------------
 -----------------------------------------------------
- 
- 
  
  
