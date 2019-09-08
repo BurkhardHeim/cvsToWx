@@ -1,6 +1,11 @@
-
- module Main
+module Main
    where
+import System.Random
+import System.Environment
+import System.IO
+import Data.Char
+import Data.List
+import Control.Monad 
 
 import qualified Patternfile as P
 import qualified UsefulFunctions  as Us   
@@ -14,6 +19,9 @@ criterium = "0.67"
 dipfade2 = ["0.45","0.56","45"]
 xX = "3" -- howMany lines to process
 ---------------------------------------
+-- Level 0                     | GUI-Mode vs RAW-Mode  |
+-- Level 1                     | print outpt yes or no | 
+-- Level 2        |  GUI yes | GUI no  | RAW yes  | RAW no | 
 main :: IO ()
 main = do
   putStrLn "Enter csv file to read"
@@ -21,9 +29,11 @@ main = do
   putStrLn "Enter file to write e.g:\"seniot.txt\""
   theWriteTxt <- getLine
    
-  P.writePatternFile theCsv "seniot2.txt"
-  P.aMemory "seniot2.txt" theWriteTxt
-  aCsvToWx
+  P.writePatternFile theCsv "senio1.txt"
+  -- will just succed for shorter list aprx 300 
+  P.aMemory "senio1.txt" (theWriteTxt)
+
+ -- aCsvToWx
   print "Done"
 -----------------------------------------------------
 
@@ -35,8 +45,7 @@ myFunctions solong= let ste1 = [1..solong]
                -- the module 'Diff_Functions1'
               in let chooseFuncs = map fomyFunctions ste1
               in chooseFuncs
-
-outPutMaxima3 x = [Df.differenzwerte x, Df.differenzwerte3 x,Df.differenzwerte4 x,Df.differenzwerte5 x,Df.differenzwerte6 x,Df.differenzwerte7 x]
+{-
 -----------------------------------------------------
 -----------------------------------------------------
 -- write a WX-Maxima file ----------------------------------------************* MAIN WX-WRITING PIPE
@@ -63,9 +72,8 @@ aCsvToWxRaw  foWxmName = do
     writeFile foWxmName ((accesFuncWX 3 3))
     putStrLn ("Wrote "++ foWxmName ++"\n")
     putStrLn "getting there" 
-         
+   -}      
    -- insert in the the Main WX writing function imported from module 'WriteWXmaximaFile'
 -----------------------------------------------------
 -----------------------------------------------------
- 
  
