@@ -22,7 +22,12 @@ import Control.Monad
 root = "c:/stack/..." 
 token = 4 -- how many buttons to insert
 bild1 = "c:/stack/forGlade/src/Many3.html" -- a storage file conected to 'Colored_2_3_5_Counter.hs'
-writeHTAorHTML = 1 -- if == 1 then write HTA 
+writeHTAorHTML = 1 -- if == 1 then write HTA
+fostartLine = "1" -- startline pattermfile-reader in 'aMemory'
+foendline = "990"-- endline patternfile-reader in 'aMemory'
+fomuster = "1" -- set to val
+fohans = "1" -- Enter a value that does not occure and see its propability , set to fixed value  
+ 
 -----------------------------------------------------
 --SelectorFunctions
 ausw w fa = drop (w-1) (take w fa)
@@ -41,7 +46,7 @@ searchCrit = "0.56"
 searchCritAdvance fi = do
     anyWalk <- readFile fi
 
-    let bobbo2 =  ([(read startLine)..(read endline)])
+    let bobbo2 =  ([(read fostartLine)..(read foendline)])
     dipfade2 <- forM (bobbo2) (\ a -> do
           let auswahl      = let an =takerlein a (lines anyWalk)
                              in an
@@ -75,28 +80,24 @@ searchCritAdvance fi = do
 
     putStrLn (" the data is (ohne die extra Leerzeile) : " ++ maxO)
 
---------------
-startLine = "1" 
-endline = "990"
-fomuster = "1" -- set to val
-fohans = "1" -- Enter a value that does not occure and see its propability , set to fixed value  
---------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
 -- Write an simple csv reader
 ----------------------------------------------------------
 -- enter x , the name of the Patternfile 
 -- entername of the returned File, NF 
--- enter Begin und End Lines as (Int)
--- enter Criterium as an Int !!! BEARBEITET AB/einschlieslich ERSTES KRITERIUM!!!!
+-- enter Begin und End Lines as "Int" ( a String representing an Int)
+-- enter Criterium as a String !!! BEARBEITET AB/einschlieslich ERSTES KRITERIUM!!!!
 -- returns Max und Min Val 
--- returns Spot of Max vals int othe words with regards to the criteria
+-- returns Spot of Max vals with regards to the criterium
 -- returns based on dipfade4 (Ocourance of the Groups a values ordered by their value  
 -- returns  given values of the Spektrums of 0.56(min)...max, and its propability of ocourance
 -- returns  missing values of the Spektrum  
 aMemory x nF = do
    --  putStrLn$ "Enter starting Line:"
-     let anfang = startLine -- anfang <- getLine
+     let anfang = fostartLine -- anfang <- getLine
    --  putStrLn$ "How many Lines to change?:"
-     let xX = endline -- xX <- getLine     
+     let xX = foendline -- xX <- getLine     
    --  database <- readFile "milch.txt"
      --let machAdd f = add [ nF, f]
      anyWalk <- readFile x -- z.b. "mageWalAllPath.txt"--durble.csv
@@ -419,12 +420,11 @@ writePatternFile x nF= do
    --  database <- readFile "milch.txt"
      --let machAdd f = add [ nF, f]
      anyWalk <- readFile x -- z.b. "mageWalAllPath.txt"--durble.csv
-     let leane = length anyWalk
-     putStrLn ("File : "++ x++ "has: "++ (show leane) ++ " Lines\n"++" Which lines do you want to change enter start line:")
-
-     startline <- getLine
-     putStrLn ("Enter end line:") 
-     endline <- getLine
+     let leane = length (lines anyWalk)
+     
+     let startline = "2" -- startLine <- getLine
+   --  putStrLn ("Enter end line:") 
+     let endline = foendline -- endline <- getLine
    --  machAdd dataTyp 
      --let bilderno = length anyWalk  
      let bobbo =  ([(read startline)..(read endline)])
@@ -441,15 +441,15 @@ writePatternFile x nF= do
 
           let year  = let an = show findYear
                       in let b = map ord an
-                      in let c = filter (>45) b --schmeisst kommas raus
-                      in let d = filter (<65) c -- laesst nur Zahlen ueber 
-                      in map chr d -- bleiben nur Jahreszahlen
+                      in let c = filter (>45) b --get rid of the commas
+                      in let d = filter (<65) c -- just leave number digits  
+                      in map chr d -- only the year number remains
      
           let monat = let an = show findYear
                       in let b = map ord an
-                      in let c = filter (>45) b --
-                      in let d = filter (>64) c -- laesst nur Buchstaben ueber 
-                      in map chr d -- bleiben nur Jahreszahlen
+                      in let c = filter (>45) b --get rid of the commas
+                      in let d = filter (>64) c -- just leave letter digits  
+                      in map chr d -- only the month letters remains
              
  
           let findval =  let an =  (cvsZeilenBreak3 (process))
@@ -462,18 +462,24 @@ writePatternFile x nF= do
 
           let dataTyp =  ""++"("++val++","++year++","++monat++","++tag++")\n"
           return (dataTyp) ) --a also nur zahlen
-     putStrLn " the data is without empty spaces : "
+     putStrLn ("File : "++ x++ "has: "++ (show leane) ++ " Lines\n")
+
      mapM putStrLn (dipfade)
      writeFile nF (concat dipfade)
+     putStrLn ("read : "++ x ++" -> wrote: "++nF++"  with: "++(foendline)++" of "++(show leane)++" lines selected") 
 
---Beispiel Random Function
+----------------------------------------------------
+
+
+----------------------------------------------------
+--Example Random Function
 -- a :: Int 
-zufallsGen a x = (take a  (randomRs (1,6) (mkStdGen x)))::[Int] -- Random zwischen 1 und 6, der laenge a immer 6 Startwert
+zufallsGen a x = (take a  (randomRs (1,6) (mkStdGen x)))::[Int] -- Random between 1 and 6, of length a always 6 as values
 zufallsGen2 a = (take a  (randomRs (1,a) (mkStdGen 10)))::[Int] -- Ran. 1 bis a laenge a 
 zufallsGen3 a = (take a  (randomRs (1,(12*a)) (mkStdGen a)))::[Int] -- Ran
 zufallsGen4 t a x = (take t  (randomRs (1,a) (mkStdGen x)))::[Int]
 
-
+-- more random number generator functions
 tre = random (mkStdGen 12) :: (Int, StdGen)
 tre1 = random (mkStdGen 13) :: (Int, StdGen)
 tre2 = random (mkStdGen 14) :: (Int, StdGen)
@@ -494,7 +500,12 @@ forRandom x val
                   in let weiter =  (concat((map (:val) [(length nameanders)])))
                  
                   in head weiter --[weiter,weiter2,val,day,month]
-              
+----------------------------------------------------
+
+
+
+--CSV-related selection and thieving functions for main pipes 'aMemory' and 'writePatternFile'
+----------------------------------------------------              
 weiter2 x = (sum (map ord x))
 takeval val = val
 takedate day = day
@@ -514,8 +525,8 @@ jahr findY  = let an = show findY
 month findda = let an = show findda
                in let b = map ord an
                in let c = filter (>45) b --
-               in let d = filter (>64) c -- laesst nur Buchstaben ueber 
-               in map chr d -- bleiben nur Jahreszahlen
+               in let d = filter (>64) c -- just leaves letters 
+               in map chr d -- the month letters remain
 
 day dindda = let an = show dindda
              in let b = map ord an
@@ -563,12 +574,12 @@ bougaer2 x= let gaga =(read x)
                          
             in step2
 -- 
--- Der Datentyp fuer die 2er,3er,5er listen
---  2er: type: 2 -> [1,2,] [3,4]... der Farbcode
+-- The Datatype suited the 2er,3er,5er listes
+--  2er: type: 2 -> [1,2,] [3,4]... with colorcode
 --  3er : type: 3 -> [1,2,3] [4,5,6]...   "
 --  5er. type 5 -> [1,2,3,4,5] [6,7,8,9,10] ...
---  wird in Farbgeber (baugaer) eingep
---  y = choose modus 2,3,5
+--  is inserted into color giver 'baugaer'
+--  y = choose mode 2,3,5
 --  x = input
 arc t f = (t/f)
 
@@ -602,7 +613,7 @@ plugit2 input chosemodus =   let a x = map bougaer2 (map show x)
 --------------------------------------------------------------
 --------------------------------------------------------------
 --------------------------------------------------------------
--- SPUREN 2ER 3ER 5ER
+-- TRACKS 2ER 3ER 5ER
 -- -----------------------------------------------------------
 stelle2er f = let a = concat (take f (repeat [1,2]))
               in let listel  = last (take f a)
@@ -681,4 +692,4 @@ zweierDiagram  = let twos = Punkt "Gorden" Nothing Nothing Nothing Nothing Nothi
                  in let two = Punkt "father"   (Just twos) Nothing Nothing Nothing Nothing       
                  in two
 
-
+:
