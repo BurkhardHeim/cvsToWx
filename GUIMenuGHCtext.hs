@@ -48,8 +48,8 @@ view [fileName] = do
 -- BELOW a collection of: many [String] -> [ [string]] -> Patternfile
 --  -> aOsZilloskop1 -> writes various WX-maxima or txt files
 -- used as DISPLAYS and TEXTS
-guiReturnFunctiontext =  avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+guiReturnFunctiontext =  avanti [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " GO BACK: STATISTICAL ANALYSIS \n"++
            "----------------------------\n"++ 
@@ -58,8 +58,8 @@ guiReturnFunctiontext =  avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0.
            "                    3. MAIN MENU\n\n"++
            "ENTER a NUMBER: 1 or 2 .. or 3"++a2)]
 
-statisticalWarschtext1 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisticalWarschtext1 = avanti [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " WAHRSCHEINLICHKEITEN \n"++
            "----------------------------\n"++ 
@@ -73,8 +73,8 @@ statisticalWarschtext1 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0.
            "                    5. CLOSE\n\n"++
            "ENTER a NUMBER: 1 or 2 .. or 5\n\n"++a2)]
 
-statisticalWarschtext2 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisticalWarschtext2 = avanti [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " WAHRSCH. Tag  \n"++
            "----------------------------\n"++ 
@@ -93,10 +93,10 @@ statisticalWarschtext2 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0.
            "                   12. NEXT STEP      \n "++
            "                   13. BACK\n\n\n"++
            "                   14. MAINMENU\n"++
-           "ENTER a NUMBER: 1 or 2 .. or 7\n\n"++a2)]
+           "ENTER a NUMBER: 1 or 2 .. or 7\n\n")]
 
-statisticalWarschtext3 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisticalWarschtext3 = avanti [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " DISPLAY  \n"++
            "----------------------------\n"++ 
@@ -113,11 +113,11 @@ statisticalWarschtext3 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0.
            "                   12. MQ6 MQ5 MQ3      \n "++
            "                   13. Simulated Vals\n\n\n"++
            "                   14. Real Vals\n"++
-           "ENTER a NUMBER: 1 or 2 .. or 7\n\n"++a2)]
+           "ENTER a NUMBER: 1 or 2 .. or 7\n\n")]
 
 
-statisticalWarschtext4 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisticalWarschtext4 = avanti [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " DISPLAY  \n"++
            "----------------------------\n"++ 
@@ -134,11 +134,11 @@ statisticalWarschtext4 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0.
            "                   12. NEXT STEP      \n "++
            "                   13. BACK\n\n\n"++
            "                   14. MAINMENU\n"++
-           "ENTER a NUMBER: 1 or 2 .. or 7\n\n"++a2)]
+           "ENTER a NUMBER: 1 or 2 .. or 7\n\n")]
 
 
-simulateStreamtext11  = avanti [("      SIMULATE   +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+simulateStreamtext11  = avanti [("      SIMULATE   +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " SIMULATE: DATA STREAM \n"++
            "----------------------------\n"++ 
@@ -151,8 +151,8 @@ simulateStreamtext11  = avanti [("      SIMULATE   +++++  Logini 1.0. ++++++    
            "                  8. BACK\n\n\n"++
            "ENTER a NUMBER: 1 or 2 .. or 7\n\n"++a2)]
 
-statisticalAnalysistext1 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisticalAnalysistext1 = avanti [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " MAIN: STATISTICAL ANALYSIS \n"++
            "----------------------------\n"++ 
@@ -166,8 +166,8 @@ statisticalAnalysistext1 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.
            "ENTER a NUMBER: 1 or 2 .. or 7"++a2)]
 
 -- Jahresauswahl 
-statisicalAnalysistext2 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisicalAnalysistext2 = avanti [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.0. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " JAHRESAUSWAHL \n"++
            "----------------------------\n"++ 
@@ -179,8 +179,8 @@ statisicalAnalysistext2 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0
            "                    e. plug -- Not sure ???\n")]
 
 
-statisicalAnalysistext21 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisicalAnalysistext21 = avanti [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " ZEILENAUSWAHL "++a2++"\n"++
            "----------------------------\n"++
@@ -212,8 +212,8 @@ statisicalAnalysistext24 h f = avanti [("  Options:          a.  -- alle Lines d
            "                    e. SETEIN -- einzelne Zeile MONTH X s.o.\n")]
 
 
-statisticalAnalysisMonatAuswahl1 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisticalAnalysisMonatAuswahl1 = avanti [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " MONATSAUSWAHL \n"++
            "----------------------------\n"++ 
@@ -232,15 +232,15 @@ statisticalAnalysisMonatAuswahl1 = avanti [("      STATISTICAL ANALYSIS +++++  L
            "ENTER a NUMBER: 1 or 2 .. or 9\n\n")]
 
 --preselect IO for Monatauswahl
-statisticalAnalysisMonatAuswahl2 = avanti  [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisticalAnalysisMonatAuswahl2 = avanti  [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " PRE SELECT IO: MONATS AUSWAHL\n"++
            "----------------------------\n"++ 
            "  Enter: Jahr\n"++a2)]
 
-statisticalAnalysisWriteWxMaxima1 = avanti  [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisticalAnalysisWriteWxMaxima1 = avanti  [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " WRITE WXMAXIMA FILE: MONATS AUSWAHL\n"++
            "----------------------------\n"++ 
@@ -249,8 +249,8 @@ statisticalAnalysisWriteWxMaxima1 = avanti  [("      STATISTICAL ANALYSIS +++++ 
 
 statisticalAnalysisWriteWxMaxima2 = avanti  [ ("  Enter: Monat\n"++a2)]
 
-statisticalAnalysisWriteWxMaxima3 = avanti  [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisticalAnalysisWriteWxMaxima3 = avanti  [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " WRITE WXMAXIMA FILE: MONATS AUSWAHL\n"++
            "----------------------------\n"++ 
@@ -266,8 +266,8 @@ statisticalAnalysisWriteWxMaxima3 = avanti  [("      STATISTICAL ANALYSIS +++++ 
            "                   7. BACK\n\n"++
            "ENTER a NUMBER: 1 or 2 .. or 7\n\n")]
 
-statisticalAnalysisWriteWxMaxima4 = avanti  [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisticalAnalysisWriteWxMaxima4 = avanti  [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " WRITE WXMAXIMA FILE: SET UP WX\n"++
            "----------------------------\n"++ 
@@ -338,7 +338,6 @@ funktionOszilloskop =
                       "|         |  type:     | aOsZilloskop1 x nF crit          |      \n"++
                       "|         |            |                                  |   \n" ++                           
                       "                                                          |\n" )]
-
 
 
 
