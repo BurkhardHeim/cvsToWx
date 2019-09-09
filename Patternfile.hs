@@ -5,8 +5,14 @@
 --
 module Patternfile (
     writePatternFile -- Patternfile-Writer
-  , aMemory  -- Patternfile-Reader
-  , ausw
+  , aMemoryRAW  -- Patternfile-Reader
+  , aOsZilloskop1  -- less options write Display in wxm
+  , aOsZilloskop1RAW -- write Display in wxm
+  , foOutput -- select between yes-output vs no-output
+  , ausw -- get sth from a list
+  , aCrunchList1 -- get overview and most rudamentary plotter that even works in HTA
+  , timeRNDInts 
+  , avanti
  -- , originalTxt
     ) where
 
@@ -17,12 +23,22 @@ import System.IO
 import Data.Char
 import Data.List
 import Control.Monad
+import Data.Time as T
+import System.Locale
+
 
 -- my modules
 import Diff_Functions1 as Df
 import Fourier_Functions1
 import WriteWXmaximaFile
 import GUIMenuGHCtext	 
+--import UsefulFunctions
+--rnd gnerator and time
+zufallsBasic1 t a x = (take t  (randomRs (1,a) (mkStdGen x)))::[Int]
+
+timeRNDInts foTime soMany digits = let prepStringtoInt = (map chr (filter (<58)(filter (>47)(map ord (show foTime)))))
+                               in let plugRandom wieviele = zufallsBasic1 wieviele (read prepStringtoInt) digits
+                               in (show (plugRandom soMany)) 
 
 -----------------------------------------------------
 --Global Variables
@@ -35,7 +51,11 @@ foendline = "3000"-- endline patternfile-reader in 'aMemory'
 rnd = "\"100\"" -- for random number generator
 fomuster = "1" -- set to val
 fohans = "77" -- Enter a value that does not occure and see its propability , set to fixed value  
- 
+
+--fostatiswa g =  g
+--fostatiswa = do
+  --   asd <- getLine
+    -- unwords (lines(ffostatiswa (read asd) ))
 -----------------------------------------------------
 --SelectorFunctions
 ausw w fa = drop (w-1) (take w fa)
@@ -91,11 +111,11 @@ searchCritAdvance fi = do
 
     putStrLn (" the data is (ohne die extra Leerzeile) : " ++ maxO)
 
---------------
 --------------------------------------------
 -- Write an simple csv reader
 ----------------------------------------------------------
--- enter x , the name of the Patternfile 
+-- enter output:String, if outPut==1 then print else not
+-- enter xRaw , the name of the Patternfile 
 -- entername of the returned File, NF 
 -- enter Begin und End Lines as "Int" ( a String representing an Int)
 -- enter Criterium as a String !!! BEARBEITET AB/einschlieslich ERSTES KRITERIUM!!!!
@@ -104,14 +124,21 @@ searchCritAdvance fi = do
 -- returns based on dipfade4 (Ocourance of the Groups a values ordered by their value  
 -- returns  given values of the Spektrums of 0.56(min)...max, and its propability of ocourance
 -- returns  missing values of the Spektrum  
-aMemory x nF = do
+-- xRaw:String, patternfilet.txt to read
+-- [xRaw,
+foOutput output paks = if output=="1" 
+                       then do
+                          paks
+                       else do
+                          putStrLn ""
+aMemoryRAW output xRaw nF  = do
    --  putStrLn$ "Enter starting Line:"
      let anfang = "1" --fostartLine -- anfang <- getLine
    --  putStrLn$ "How many Lines to change?:"
      let xX = "365" --foendline -- xX <- getLine     
    --  database <- readFile "milch.txt"
      --let machAdd f = add [ nF, f]
-     anyWalk <- readFile x -- z.b. "mageWalAllPath.txt"--durble.csv
+     anyWalk <- readFile xRaw -- z.b. "mageWalAllPath.txt"--durble.csv
 
    --  machAdd dataTyp 
      --let bilderno = length anyWalk  
@@ -143,8 +170,8 @@ aMemory x nF = do
 
           let procIntern = head spuren 
           return (dataTyp) ) --a also nur zahlen
-     putStrLn " the data (without empty spaces) : "
-     mapM print(dipfade)
+     foOutput output (putStrLn " the data (without empty spaces) : ")
+     foOutput output (avanti (dipfade))
    --  add [nF, (concat dipfade)]
    --  writeFile nF (concat dipfade)
   --   putStrLn "enter what to edit val:1 ; year:2 ; month:3 ; tag:4 einfach Int eingeben"
@@ -219,7 +246,7 @@ aMemory x nF = do
           let apunkt2 = apunkt
           let dataTyp3 =  (apunkt)
           return (dataTyp3) ) --a also nur zahlen
-     putStrLn " die Letzte der Ausgaben wo die Zeilen eine Refernezliste bekommen : "
+     foOutput output (putStrLn " die Letzte der Ausgaben wo die Zeilen eine Refernezliste bekommen : ")
   --   putStrLn (show dipfade)     
      
      let more = ((dropWhile (\(val) -> val < criterium ) ( dipfade2)))
@@ -234,11 +261,11 @@ aMemory x nF = do
                            in hochundtiefPunkt
 
    --  mapM print (dipfade2)
-     putStrLn ("just red set of length:"++ (show laengeSet) ++ " where is the criterium in the Sets")
-     putStrLn ((show maxO) ++" maximum value of the Sets" )
-     putStrLn ((show minO) ++ " minimm value of the Sets")
-     putStrLn ((show wievieleMx)++ "how many maxima")
-     putStrLn ((show wostehenMx)++ " where are the maxima\n\n")
+     foOutput output (avanti [("just red set of length:"++ (show laengeSet) ++ " where is the criterium in the Sets\n")++
+                              ((show maxO) ++" maximum value of the Sets\n" )++
+                              ((show minO) ++ " minimm value of the Sets\n")++
+                              ((show wievieleMx)++ "how many maxima\n")++
+                              ((show wostehenMx)++ " where are the maxima\n\n")])
  
     -- let mowork = filter 
     -- comparePosition 
@@ -288,9 +315,6 @@ aMemory x nF = do
           return (dataTyp3) ) 
          -- return (spuren) ) 
     
-   --  putStrLn (show(dipfade2))
-   --  putStrLn (show more) 
-     putStrLn (show (lister2)++" the 'spectrum' including max und min in 0.1 steps\n\n")
      let zui = map length (group (concat (sort (concat dipfade4))))
      let zui11 = (map head (concat dipfade4))
     
@@ -298,12 +322,15 @@ aMemory x nF = do
      let zuu2 =  sort (nub ((concat((concat dipfade4)))))
      let zuu22 d =  map round (map (*100) d)
      let zuu3 =  (lister2 \\ (zuu22 (map read zuu2)) )
-     putStrLn ((show dipfade4)++ "    Data of computation (run) 'dipfade4' needed for propability calculation\n")
-     putStrLn ((show zui1)++ "  the occouring groups of numbers ordered in TIME ")
-     putStrLn ((show zui11)++"  The values of the groups of numbers (see above)") 
-     putStrLn ((show zui)++ "  The ocourance of values in spectrum min to Max")
-     putStrLn ((show zuu2)++"  Occuring values connected with th line above(s.a)") 
-     putStrLn ((show zuu3)++"  Not occuring values of the Set  x 100"   ) 
+      --  putStrLn (show(dipfade2))
+   --  putStrLn (show more) 
+     foOutput output (( avanti [(show (lister2)++" the 'spectrum' including max und min in 0.1 steps\n\n")++
+                             ((show dipfade4)++ "    Data of computation (run) 'dipfade4' needed for propability calculation\n\n")++
+                             ((show zui1)++ "  the occouring groups of numbers ordered in TIME\n\n ")++
+                             ((show zui11)++"  The values of the groups of numbers (see above)\n\n")++ 
+                             ((show zui)++ "  The ocourance of values in spectrum min to Max\n\n")++
+                             ((show zuu2)++"  Occuring values connected with th line above(s.a)\n\n")++ 
+                             ((show zuu3)++"  Not occuring values of the Set  x 100\n"   ) ]  ))
      let normWahrsch = let spektrum = lister2 --schliesst das ansolute min und max ein
 
 ---                  0    -> nuller Set um dem Computer Raum zu geben Werte zu 
@@ -593,9 +620,6 @@ aMemory x nF = do
      let goghijst = let wer k = (snd(snd (ghijst k)))
                     in (map wer bobbo)
      --let gerri =  (map ghijst bobbo)
-     putStrLn ((show zui)++ "  Ist das Vorkommen der Zahlen im Spektrum von min nach Max")
-     putStrLn ((show zuu2)++"  Die Zahlen die Vorkmmen in Verbindung mit s.o.") 
-    
      let addIA d gz = let theOther = d : (fert gz)
                       in theOther
 
@@ -625,35 +649,34 @@ aMemory x nF = do
   -- 
      -- putStrLn (show normWahrsch)
     -- putStrLn (show normWahrsch1)
-     putStrLn (( formelNormWahr (read hans))++"% Es gibt auch eine Chance auf nicht verwirklichte Werte")
-     putStrLn (show ( gogos)++"% Dies ist die Liste mit Formel 1 wahrscheinlichkeiten ; function: gogos")
+     foOutput output (avanti [((show zui)++ "  Ist das Vorkommen der Zahlen im Spektrum von min nach Max\n\n")++
+                              ((show zuu2)++"  Die Zahlen die Vorkmmen in Verbindung mit s.o.\n\n")++ 
+                              (( formelNormWahr (read hans))++"% Es gibt auch eine Chance auf nicht verwirklichte Werte\n\n")++
+                              (show ( gogos)++"% Dies ist die Liste mit Formel 1 wahrscheinlichkeiten ; function: gogos\n\n")++
     -- putStrLn (show ( heet)++"% gesamt  wahrscheinlichkeiten ")
    --  putStrLn (show ( zurWahr gogos )++"zurwahrliste schafft PICKER fuer % ; function: zurWahr gogos ")
     -- putStrLn (show (gorch )++"Ahenlichkeit wahrscheinlichkeit ")
      --putStrLn (show (gorchH )++" ")
    --  putStrLn (show ( humfrey )++"BSp bereinigtes Format string aus monade; function: humfrey ")
-     putStrLn (show (prego  1)++ " BSP Prozentrechener als Int leider nur fuer ganze zahlen; function: prego 1 " )
-     putStrLn (show (fert prego  )++ " Die Additive Liste zum Abzaehlen und einfuegen von Wahrscheinlichkeitsaenderung\n"++ "; function: fert prego"  )
+                              (show (prego  1)++ " BSP Prozentrechener als Int leider nur fuer ganze zahlen; function: prego 1\n\n" )++
+                              (show (fert prego  )++ " The additve list for a counter und vizualising change propabilities "++ "; function: fert prego\n\n"  )++
     -- putStrLn (show (bro 1 ) ++ " vergleich von Zaehler und Zufallsgenerator")
     -- putStrLn (show (preAI 2 2 ) ++ " vergleich fuer Zufallsgenerator einzelne zahl")
     -- putStrLn (show (eindelijkGo ) ++ " vergleich fuer Zufallsgenerator liste gogos")
-     putStrLn (show (addIA 1729 prego ) ++ " fuegt prozent der additiven liste zu; function: addIA 1729 prego")
+                              (show (addIA 1729 prego ) ++ " fuegt prozent der additiven liste zu; function: addIA 1729 prego\n\n")++
     -- putStrLn (show (ghijst 1 ) ++ " test fuer map additive Liste mit zufall ")
     -- putStrLn (show (goghijst  ) ++ " s.o. Liste " )
-
-
-     ----------------------------------------------------------------------------------------------------------------------------
-     putStrLn (show normWahrsch)
-     putStrLn (show normWahrsch1)
-     putStrLn (( formelNormWahr (read hans))++"% The propability to unrealized values in percent")
-     putStrLn (show ( gogos)++"% The List of Formula-1 propabilities ")
-     putStrLn (show ( heet)++"% total of all propabilities ")
-     putStrLn (show (head( zurWahr gogos ))++"a Counter ")
+                              ((show normWahrsch)++"\n\n")++
+                              ((show normWahrsch1)++"\n\n")++
+                              (( formelNormWahr (read hans))++"% The propability to unrealized values in percent\n\n")++
+                              (show ( gogos)++"% The List of Formula-1 propabilities\n\n ")++
+                              (show ( heet)++"% total of all propabilities\n\n ")++
+                              (show (head( zurWahr gogos ))++"a Counter \n\n")++
       -- putStrLn (show (gorch )++"Ahenlichkeit wahrscheinlichkeit ")
      --putStrLn (show (gorchH )++" ")
     -- putStrLn (show ( humfrey )++"BSp bereinigtes Format string aus monade; function: humfrey ")
      --putStrLn (show ( (prego  1))++ " BSP Prozentrechener als Int leider nur fuer ganze zahlen; function: prego 1 " )
-     putStrLn (show ((fert prego ) )++ " Die Additive Liste zum Abzaehlen und einfuegen von Wahrscheinlichkeitsaenderung\n"++ "; function: fert prego"  )
+                              (show ((fert prego ) )++ " Die Additive Liste zum Abzaehlen und einfuegen von Wahrscheinlichkeitsaenderung\n"++ "; function: fert prego\n\n")] )
     -- putStrLn (show (bro 1 ) ++ " vergleich von Zaehler und Zufallsgenerator")
     -- putStrLn (show (preAI 2 2 ) ++ " vergleich fuer Zufallsgenerator einzelne zahl")
     -- putStrLn (show (eindelijkGo ) ++ " vergleich fuer Zufallsgenerator liste gogos")
@@ -696,7 +719,6 @@ aMemory x nF = do
                    -}
      putStrLn ""
 
------------------------------------------------------------------------
 
 
 --------------------------------------------------------------------------------------------------------------------------------
@@ -1084,17 +1106,25 @@ zweierDiagram  = let twos = Punkt "Gorden" Nothing Nothing Nothing Nothing Nothi
                  in let two = Punkt "father"   (Just twos) Nothing Nothing Nothing Nothing       
                  in two
 
-aOsZilloskop1 x nF crit rnd= do
+--x:string; file 2 read
+--nF:String file to write
+--crit:String e.g "0.56" search criterium
+--rnd:String add a number for random generator
+--xXRaw:String How many lines to change
+--fostatiswa:String ; which main selctor "2" propabilities; "3" plotter  
+aOsZilloskop1 x nF crit rnd = aOsZilloskop1RAW "1" x nF crit rnd "1" 
+
+aOsZilloskop1RAW output x nF crit rnd xXRaw fohans = do
   --   putStrLn$ "Enter starting Line:"
      let anfang = ("1")
-     putStrLn$ "How many Lines to change?:"
-     xX <- getLine
+   --  putStrLn$ "How many Lines to change?:"
+     let xX = xXRaw
      
    --  database <- readFile "milch.txt"
      --let machAdd f = add [ nF, f]
      anyWalk <- readFile x -- z.b. "mageWalAllPath.txt"--durble.csv
      let outRead = length anyWalk
-     putStrLn$ (""++ (show outRead))
+     foOutput output (putStrLn$ (""++ (show outRead)))
    --  machAdd dataTyp 
      --let bilderno = length anyWalk  
      let bobbo =  ([(read anfang)..(read xX)])
@@ -1125,7 +1155,7 @@ aOsZilloskop1 x nF crit rnd= do
 
           let procIntern = head spuren 
           return (dataTyp) ) --a also nur zahlen
-     putStrLn " the data is (ohne die extra Leerzeile) : "
+     foOutput output (putStrLn " the data is (ohne die extra Leerzeile) : ")
   --   mapM print(dipfade)
    --  add [nF, (concat dipfade)]
     -- writeFile nF (concat dipfade)
@@ -1160,7 +1190,7 @@ aOsZilloskop1 x nF crit rnd= do
 
           let dataTyp =  (modus)
           return (dataTyp) ) --a also nur zahlen
-     putStrLn " the data is (ohne die extra Leerzeile) : "
+     foOutput output (putStrLn " the data is (ohne die extra Leerzeile) : ")
   --   putStrLn (show dipfade)
    --   let bobbo2 =  ([(read anfang)..(read xX)])
      let wievieleMx = length(snd (partition (>criterium) (dropWhile (\(val) -> val < criterium ) ( dipfade2))))
@@ -1199,7 +1229,7 @@ aOsZilloskop1 x nF crit rnd= do
           let apunkt2 = apunkt
           let dataTyp3 =  (apunkt)
           return (dataTyp3) ) --a also nur zahlen
-     putStrLn " die Letzte der Ausgaben wo die Zeilen eine Refernezliste bekommen : "
+     foOutput output (putStrLn " die Letzte der Ausgaben wo die Zeilen eine Refernezliste bekommen : ")
   --   putStrLn (show dipfade)     
      
      let more = ((dropWhile (\(val) -> val < criterium ) ( dipfade2)))
@@ -1209,20 +1239,18 @@ aOsZilloskop1 x nF crit rnd= do
      let wievieleMx = length(snd (partition (>criterium) (dropWhile (\(val) -> val < criterium ) ( dipfade2))))
      let wostehenMx = criterium `elemIndices` (dropWhile (\(val) -> val < criterium ) ( dipfade2))
      
-     let comparePosition = let hochundtiefPunkt = if ""++(show laengeSet) == (criterium) then putStrLn "Found Hoch/Tiefpunkt"
-                                                  else putStrLn "\n\n\nkein hoch oder tiefPunkt"
+     let comparePosition = let hochundtiefPunkt = if ""++(show laengeSet) == (criterium) then "Found Hoch/Tiefpunkt"
+                                                  else "\n\n\nkein hoch oder tiefPunkt"
                            in hochundtiefPunkt
 
     -- mapM print (dipfade2)
-     putStrLn ((show laengeSet) ++ "an WELCHER Stelle des Sets steht criterium")
-     putStrLn ((show max) ++" max Wert des Sets" )
-     putStrLn ((show min) ++ " min Wert des Sets")
-     putStrLn ((show wievieleMx)++ "wieviele Critria")
-     putStrLn ((show wostehenMx)++ " wo stehen die Critria\n\n")
- 
-    -- let mowork = filter 
-     comparePosition 
--- Funktion wandelt "0.24" format in "24" um 
+     foOutput output (avanti [ ((show laengeSet) ++ "an WELCHER Stelle des Sets steht criterium\n\n")++
+                               ((show max) ++" max Wert des Sets\n\n" ) ++
+                               ((show min) ++ " min Wert des Sets\n\n") ++
+                               ((show wievieleMx)++ "wieviele Critria\n\n") ++
+                               ((show wostehenMx)++ " wo stehen die Critria\n\n")++
+                               ( comparePosition ) ] )
+     -- Funktion wandelt "0.24" format in "24" um 
 -- damit str -> int erfolgen kann 
 -- benoetigt fuer berechnung von Wahrscheinlichkeiten 
      let lister2  = let a=  max
@@ -1234,54 +1262,40 @@ aOsZilloskop1 x nF crit rnd= do
                     in let f = map round (map (*100) d)
                     in f
    
-       
-    -- let neen er = let b = map er lister2
-      --             in b
-     
-     
      let wos =  group more
                  
-
-    -- let numliste = let a =  
-       
      let spuren g h= (einTyp3 (getRid (g h)))
      dipfade4 <- forM (bobbo2) (\ a -> do
           
-          
           let auswahl      = let an = drop (a-1) (take a (wos))
                              in   ( an)
- 
-       --   let bosi = let a = map ord ((show auswahl))
-         --            in let b = break (==44) a 
-           --          in map chr (fst b )
-
 
           let rosi =  ( take 1 (map length (concat auswahl)))
-
-         -- putStrLn (show bosi)
        --   putStrLn (show rosi) 
-
 
           let dataTyp3 =  (auswahl)
           return (dataTyp3) ) 
-         -- return (spuren) ) 
-    
     -- putStrLn (show(dipfade2))
-     putStrLn (show more) 
-     putStrLn (show (lister2)++" Ist das Spektrum zwischen max und min in 0.1 Schritten\n\n")
      let zui = map length (group (concat (sort (concat dipfade4))))
      let zui11 = (map head (concat dipfade4))
-    
      let zui1 = map length (group (concat (concat dipfade4)))-- die val in Zeitgruppen eines Intervalls  
      let zuu2 =  sort (nub ((concat((concat dipfade4)))))
      let zuu22 d =  map round (map (*100) d)
      let zuu3 =  (lister2 \\ (zuu22 (map read zuu2)) )
+ 
+     foOutput output (( avanti [(show (lister2)++" the 'spectrum' including max und min in 0.1 steps\n\n")++
+                             ((show dipfade4)++ "    Data of computation (run) 'dipfade4' needed for propability calculation\n\n")++
+                             --((show zui1)++ "  the occouring groups of numbers ordered in TIME\n\n ")++
+                             ((show zui11)++"  The values of the groups of numbers (see above)\n\n")++ 
+                             ((show zui)++ "  The ocourance of values in spectrum min to Max\n\n")++
+                             ((show zuu2)++"  Occuring values connected with th line above(s.a)\n\n")++ 
+                             ((show zuu3)++"  Not occuring values of the Set  x 100\n"   ) ]  ))
 --     putStrLn ((show dipfade4)++ "    Daten aus dipfade4 fuer Wahrscheinlichkeits-Rechnung benoetigt\n")
 --     putStrLn ((show zui1)++ "  Das Vorkommen der Zahlengruppen in ZEITLICHER Abfolge")
 --     putStrLn ((show zui11)++"  Die Werte der Zahlengruppen s.o.") 
-     putStrLn ((show zui)++ "  Ist das Vorkommen der Zahlen im Spektrum von min nach Max")
-     putStrLn ((show zuu2)++"  Die Zahlen die Vorkmmen in Verbindung mit s.o.") 
-     putStrLn ((show zuu3)++"  Die Zahlen des Spektrums die nicht vrommen  x 100"   ) 
+--     putStrLn ((show zui)++ "  Ist das Vorkommen der Zahlen im Spektrum von min nach Max")
+  --   putStrLn ((show zuu2)++"  Die Zahlen die Vorkmmen in Verbindung mit s.o.") 
+    -- putStrLn ((show zuu3)++"  Die Zahlen des Spektrums die nicht vrommen  x 100"   ) 
      let normWahrsch = let spektrum = lister2 --schliesst das ansolute min und max ein
 
 ---                  0    -> nuller Set um dem Computer Raum zu geben Werte zu 
@@ -1304,12 +1318,12 @@ aOsZilloskop1 x nF crit rnd= do
                         in [[dieZeut], zui]
 
 ------------------------------------------------------------
---Funktionen Sammlung ueber Wahrscheinlichkeitsrechnung
--- und Zufallsgenrator 
--- a) vals -> Wahrscheinlickeit
--- b) sum (val,year,month,day) -> Zufallsgenerator
---    erzeugt individuelle id ?? jedes tages und vals
---    jedenfalls in dem ersten set
+--A Collection of propability functions
+-- and a random number generator
+-- a) vals -> propabilities
+-- b) sum (val,year,month,day) -> Int -> random (Int) -> Double 
+--    creaties an individual  id for every day and val
+--    guranteed in the first Set
 -- ---------------------------------------------------------
 -- Formel zur bBerechnung der proz Wahrscheinlichkeit
 -- laesst Raum fuer offene Proznte, d,h, die liste der 
@@ -1344,8 +1358,9 @@ aOsZilloskop1 x nF crit rnd= do
                              in b1 (read a1) (read a2) dr --[[a1],[a2],a3] 
    
 
-     
-     hans <- getLine
+     -- related to ? , does not play mayor role
+     let hans = fohans -- hans <- getLine-----------------------------******************* VARIABLE HANS
+ 
 -------------------------------------------------------------- 
 -- LINK ZWISCHEN Input UND SIMULIERTEN VALS
    -- formel entscheidet WELCHE Lister weite prozessiert wird
@@ -1445,7 +1460,7 @@ aOsZilloskop1 x nF crit rnd= do
                          in (nutzeAlle ) --mehr) --(nutzeAlle) --(hohlRando 1) ---b11 a)-- (meinA 2) --ungenutzte -- nutzeAlle --(meinA (4)) --nutzeAlle --( ungenutzte)
 
           return (chooser) ) --a also nur zahlen
-     putStrLn ((head  diade)) -- 36,31,62
+     foOutput output (putStrLn((head  diade))) -- 36,31,62
 
 -- : ende grosse Klammer 6254
     -- putStrLn (show (diade)++"\n")
@@ -1505,22 +1520,16 @@ aOsZilloskop1 x nF crit rnd= do
                                   else let zuuu = b33 --a2a--(a4/10)
                                        in (take 1 b22)  --zuuu --a2aa
                                   
-                --   in let picker = let a111 = drop (3) (take 4 foPick)
-                  --                 in let b = if (a111 == [True]) then [b33]
-                    --                          else  [b3] --(take 1 a1)
-                      --             in b 
-                                            
-                  -- in let bchoose = if x == 1 then 
                    in a5 -- (take 7 a2) --picker --(a2,b11,b22,b3,picker)
 
 ----------------------------------------------------------------------------
---  ALTERNATIVER ANSATZ Formeln: prego,
--- hier Wird versucht die Umwandlung von zufallsgen
--- in simuliete Zahlen einfacher zu prgrammieren
+--  ALTERNATIVE APPROACH Formelas: prego
+--  compute random to simulated Val,
+--  tries to simplify
 --
--- ALTERNATIVER ANSATZ ZU PREGO s.o.
--- Function um Formel1Wahrscheinlichkeitsliste zu
--- vervielfaeltigen um Genauigkeit zu erhoehen
+-- ALTERNATIVE APPROACH TO PREGO s.a
+-- Function for Formela-1.propabilities in order to improve
+-- the simulated vals
 -- z.B. prego: ["65.3454...3","24,6775..4"]
 -- IO: Line 3566
      let chgeWahr2Prego   = let --a1 d = prego d                              
@@ -1553,8 +1562,6 @@ aOsZilloskop1 x nF crit rnd= do
                 in let valuees n= nehmer n zuu2
                 in let giver1 = last (map zufall1 a1)
                 in let giver2 = last (map zufall2 a1) 
-               
- 
                 in let gurt n = let zfg = (length (concat(drop (n-1) (take n giver2)))) 
                                 in zfg
                 in let picker = map gurt a1                  
@@ -1617,119 +1624,34 @@ aOsZilloskop1 x nF crit rnd= do
                      in let gthe2  = length (fst gthe)
                      in let gthe3 = art3 gthe2
                      in ((art n , gthe), (gthe2, gthe3))
-{-             
-                     in if ((art n) >= (art2 n) && (art n) <= (art (n+1))) then (art3 (2))
-                        vorkommnis 
-                        else if ((art n) >= (art2 n) && (art n) <= (art2 (n+2)))  then (art3 (3))
-                        else if ((art n) <= (art2 n) && (art n) <= (art (n+1))) then (art3 (1)) 
-                        else (art3 3)
- -}
      let goghijst = let wer k = (snd(snd (ghijst k)))
                     in (map wer bobbo)
-     --let gerri =  (map ghijst bobbo)
-     putStrLn ((show zui)++ "  Ist das Vorkommen der Zahlen im Spektrum von min nach Max")
-     putStrLn ((show zuu2)++"  Die Zahlen die Vorkmmen in Verbindung mit s.o.") 
     
      let addIA d gz = let theOther = d : (fert gz)
                       in theOther
 
---How to make an Interval
--- Der erste durchschnittliche Wert vor einem Hochpunkt 
---  "   "         "              " nach   "     "      
---  Wir brauchen einen Gruppen-Paarungs Durchschnitt
---  d.h. jedes Jahr hat einen individuellen zeitliche Gruppen
---  vorkommensliste die Anhand von Zeitintervallpunkten
---                 ___
---      /\     ___/   \
---     /  \___/        \___/
---     _____________________________
---      | |   |   |   ||   |  zeitintervallpunkte
---
---      die ueber n Jahre miteinander verglichen werden
---      daraus ergibt sich zu welcher zeit bestimmte Punkte
---      in einer wahrscheinlichkeit vorkommen koennten
--- wir brauchen einen mehrjaehrigen Ueberblick. D.H die einzugebende Liste muss 
--- am besten so viele jahre wie moeglich beinhalten. Diese werden statistisch
--- mit den zeitintervallpunkten  berechnet. 
-    -- let jahresAnlys = let zu3 = concat goghijst
-      --                 in let zu32 = length zu3
-        --               in let zu33 = take 20 zu3
-          --             in let zu34 = zu3 \\ zu33 
-            --           in  (reverse (sort zu33))
-  -- aufbauen
-  -- d aud die more funktion wird ein stringlaenge test auf die einezelnen
-  -- listenwerte gegeben
---     let moreTag = let are = more--die tageszahl ist dem string des datenwertes begefuegt
-  --                 in let are2 n m = take n m
- --
-   --                in let are3 = map are2 more
-     --              in let  messen = 
-       --            in if   
-{-                 
-     let pregoM =let a1 v =  map prego v
-                 in let b11 =  let ans =  (map ord gogo)
-                               in let bns = filter (>46) ans
-   
-                               in let bnf = filter (<91) bns
-                               in  ( map chr bnf) -- map digitToInt ( map chr bnf)
-                             --  in map 
-                             --
-                  --WWWWWWWWWWWWWIIIIICCCHHHTIIIIIIIIGGGGG   
-                 in let b22 = let am = map digitToInt b11 -- schafft Int fuer prozess
-                              in let am2 =  am --prozentrechnung
-                              in  am2
-                 in let b3  = let a2 = (take 1 b22)
-                              in  a2
-                 in let b33  = let a2 = (take 2 b22) 
-                               in sum (zipWith (*) [10,1] a2)
-                 in let picker = let a111 = drop (1) (take 2 foPick)
-                                 in let b = if (a111 == [False]) then [b33]
-                                            else   b3 --(take 1 a1)
-                                 in b
-  -}  
-
-   
-                
     -- putStrLn (show normWahrsch)
     -- putStrLn (show normWahrsch1)
-     putStrLn (( formelNormWahr (read hans))++"% Es gibt auch eine Chance auf nicht verwirklichte Werte")
-     putStrLn (show ( gogos)++"% Dies ist die Liste mit Formel 1 wahrscheinlichkeiten ; function: gogos")
-    -- putStrLn (show ( heet)++"% gesamt  wahrscheinlichkeiten ")
-     putStrLn (show ( zurWahr gogos )++"zurwahrliste schafft PICKER fuer % ; function: zurWahr gogos ")
-    -- putStrLn (show (gorch )++"Ahenlichkeit wahrscheinlichkeit ")
+     foOutput output (avanti [(( formelNormWahr (read hans))++"% Es gibt auch eine Chance auf nicht verwirklichte Werte\n")++
+                              (show ( gogos)++"% Dies ist die Liste mit Formel 1 wahrscheinlichkeiten ; function: gogos")++
+    -- putStrLn (show ( heet)++"% gesamt  wahrscheinlichkeiten ")++
+                              (show ( zurWahr gogos )++"zurwahrliste schafft PICKER fuer % ; function: zurWahr gogos ")++
+    -- putStrLn (show (gorch )++"Ahenlichkeit wahrscheinlichkeit ")++
      --putStrLn (show (gorchH )++" ")
-     putStrLn (show ( humfrey )++"BSp bereinigtes Format string aus monade; function: humfrey ")
-     putStrLn (show (prego  1)++ " BSP Prozentrechener als Int leider nur fuer ganze zahlen; function: prego 1 " )
-     putStrLn (show (fert prego  )++ " Die Additive Liste zum Abzaehlen und einfuegen von Wahrscheinlichkeitsaenderung\n"++ "; function: fert prego"  )
+                              (show ( humfrey )++"BSp bereinigtes Format string aus monade; function: humfrey ")++
+                              (show (prego  1)++ " BSP Prozentrechener als Int leider nur fuer ganze zahlen; function: prego 1 " )++
+                              (show (fert prego  )++ " Die Additive Liste zum Abzaehlen und einfuegen von Wahrscheinlichkeitsaenderung\n"++ "; function: fert prego"  )++
     -- putStrLn (show (bro 1 ) ++ " vergleich von Zaehler und Zufallsgenerator")
     -- putStrLn (show (preAI 2 2 ) ++ " vergleich fuer Zufallsgenerator einzelne zahl")
     -- putStrLn (show (eindelijkGo ) ++ " vergleich fuer Zufallsgenerator liste gogos")
-     putStrLn (show (addIA 1729 prego ) ++ " fuegt prozent der additiven liste zu; function: addIA 1729 prego")
-     putStrLn (show (ghijst 1 ) ++ " test fuer map additive Liste mit zufall ")
+                              (show (addIA 1729 prego ) ++ " fuegt prozent der additiven liste zu; function: addIA 1729 prego")++
+                              (show (ghijst 1 ) ++ " test fuer map additive Liste mit zufall ")])
     -- putStrLn (show (goghijst  ) ++ " s.o. Liste " )
     -----------------------------------------------------------------------------------------------------------------------------------------------SCHNITTSTELLE: WX AND MQ 3  6
        ----------------------------------------------------------------------------------------------------------------------------------------
     ----------------------------------------------------------------------------------------------------------------------------------------------
     ----------------------------------------------------------------------------------------------------------------------------------------------------MQ_Section 
-     --x nF 
-     -- "Enter starting Line:"
-     --anfang  
-     -- "How many Lines to change?:"
-    -- xX <- getLine
-     
-   --  database <- readFile "milch.txt"
-     --let machAdd f = add [ nF, f]
-   --  anyWalk <- readFile x -- z.b. "mageWalAllPath.txt"--durble.csv
-
-   --  machAdd dataTyp 
-     --let bilderno = length anyWalk  
-   --  let bobbo =  ([(read anfang)..(read xX)])
-    -- putStrLn "enter what to edit val:1 ; year:2 ; month:3 ; tag:4 einfach Int eingeben"
-     --muster <- getLine
-     --putStrLn " enter criterium: that is a value (nur Int eingeben)"
-     --criterium <- getLine
- 
-
+    
      let mixWithMQ3 --x nF crit --openB file to open ; -openA file to write ; forD criterium
                                                ------------------------------------------------------------------------------------OSZILLOSKOP SHOS INPUT AND RANDOM
                                               =  let ay1= aOsZilloskop1 x nF criterium (read rnd) -- nF crit
@@ -1776,7 +1698,8 @@ aOsZilloskop1 x nF crit rnd= do
                                                  in fofoThis --intoConsider
 
 
-     putStrLn$ ("The NEW STUFF 18 .10 .17"++ (show mixWithMQ3))
+
+     foOutput output (putStrLn$ ("The NEW STUFF 18 .10 .17"++ (show mixWithMQ3)))
      let intoConsider =   let inpU1 = (show mixWithMQ3)
                           in let inpU2 =  (concat goghijst) -- quelle simulierte vals
                           in let inpU3 = (map show bobbo) -- laenge val liste 
@@ -1796,31 +1719,15 @@ aOsZilloskop1 x nF crit rnd= do
                                                                                                       
                           in [inpU5,inpU6,in1MQ4,in2MQ4,inpU7,inpU8,inpU9,in1MQ6,in2MQ6,inMQ6MQ3,inMQ5MQ6,inMQ6MQ5MQ3,(map read inpU2),(map read inpU4)] --(filtern inpU1 (show (concat inpU4)))
                         --in map step1 humfrey
-     putStrLn$ ("The NEW STUFF 18 .10 .17"++ (show intoConsider))
+     foOutput output (putStrLn$ ("The NEW STUFF 18 .10 .17"++ (show intoConsider)))
 
   ------------------------------------------------------------------------------------------------------------------
   -- The Connection  between goghijst and WxMAxime via intoConsider
      --Enter Spuren
-     putStrLn$ ("Enter Wieviele Spurensollen angezeigt werden?")
--- Das Spektrum: alle Vals die Vorkommen von min nach max
+     foOutput output (putStrLn$ ("Enter Wieviele Spurensollen angezeigt werden?"))
 -- Output for #Maxima
 -- function changes simulated numbers !!!!
 -- of goghijst to string in pair form for maxima 
---
--- let more = ((dropWhile (\(val) -> val < criterium ) ( dipfade2)))
---     let laengeSet = length (dropWhile (\(val) -> val < criterium ) ( dipfade2)) --wie lang ist set
---     let max = (maximum (dropWhile (\(val) -> val < criterium ) ( dipfade2)))
---     let min = (minimum (dropWhile (\(val) -> val < criterium ) ( dipfade2)))
---     let wievieleMx = length(snd (partition (>criterium) (dropWhile (\(val) -> val < criterium ) ( dipfade2))))
---     let wostehenMx = criterium `elemIndices` (dropWhile (\(val) -> val < criterium ) ( dipfade2))
-     
---     let comparePosition = let hochundtiefPunkt = if ""++(show laengeSet) == (criterium) then putStrLn "Found Hoch/Tiefpunkt"
-      --                                            else putStrLn "\n\n\nkein hoch oder tiefPunkt"
-  --                         in hochundtiefPunkt
-
---
---
---
 --
      let outPutMaxima1 = let a =  (concat goghijst) -- quelle simulierte vals
                              b = (map show bobbo) -- laenge val liste 
@@ -1850,13 +1757,13 @@ aOsZilloskop1 x nF crit rnd= do
     -- x:Int ; n:[Int]
      let takenN x n = concat (drop  (x-1) ( take x n))
 ---------------------------------------------------------------------------------------bein used imports MQ Functions 
-     let outPutMaxima3 = let a =  (concat goghijst) -- quelle simulierte vals
-                             b = (map show bobbo) -- laenge val liste 
+     let outPutMaxima3 = let a =  (concat goghijst) -- source simulated vals
+                             b = (map show bobbo) -- length val list 
                              c = concat (concat dipfade4)
                              e = (map show zui) --das Vorkommen der Vals von min nach Max
                              f =  (map show wostehenMx) 
-                             g = (show (fert prego  ) )-- " Die Additive Liste zum Abzaehlen und einfuegen von Wahrscheinlichkeitsaenderung\n"++ "; function: fert prego"
-                             h =  (map show (head intoConsider)) -- MQ3 and InputVal Kurve
+                             g = (show (fert prego  ) )-- " the Additive List counting and pasting changes of propabilities \n"++ "; function: fert prego"
+                             h =  (map show (head intoConsider)) -- MQ3 and InputVal Graph
                              mq3H = (map show ( takenN 2 intoConsider)) -- MQ3 Humfrey
                              j =  (map show ( takenN 3 intoConsider)) --MQ5 inp4U
                              mq5H  = (map show ( takenN 4 intoConsider))-- MQ5 Humfrey
@@ -1877,38 +1784,6 @@ aOsZilloskop1 x nF crit rnd= do
                                                 tss2 = filter (/=34) tussenstap
                                             in map chr (tss2)
                           in [(filtern b h),(filtern b mq3H),(filtern b j),(filtern b mq5H),(filtern b l),(filtern b mq6H),(filtern b n),(filtern b o),(filtern b p),(filtern b q),(filtern b r),(filtern b mq4H),(filtern b t),(filtern b c),(filtern b v ) ]
-{-
-     let outPutMaxima4 = let a =  (concat goghijst) -- quelle simulierte vals
-                             b = (map show bobbo) -- laenge val liste 
-                             c = concat (concat dipfade4)
-                             e = (map show zui) --das Vorkommen der Vals von min nach Max
-                             f =  (map show wostehenMx) 
-                             g = (show (fert prego  ) )-- " Die Additive Liste zum Abzaehlen und einfuegen von Wahrscheinlichkeitsaenderung\n"++ "; function: fert prego"
-                             h =  (map show (head intoConsider)) -- MQ3 and InputVal Kurve
-                             mq3H = (map show ( takenN 2 intoConsider)) -- MQ3 Humfrey
-                             j =  (map show ( takenN 3 intoConsider)) --MQ5 inp4U
-                             mq5H  = (map show ( takenN 4 intoConsider))-- MQ5 Humfrey
-                             l = (map show ( takenN 5 intoConsider))
-                             mq6H = (map show ( takenN 6 intoConsider)) -- MQ6 Humfrey
-                             n = (map show ( takenN 7 intoConsider))-- MQ6 Inp4U
-                             o = (map show ( takenN 8 intoConsider))
-                             p= (map show ( takenN 9 intoConsider)) 
-                             q = (map show ( takenN 10 intoConsider))
-                             r= (map show ( takenN 11 intoConsider))
-                             mq4H = (map show ( takenN 12 intoConsider)) -- MQ4 Humfrey
-                             t= (map show ( takenN 13 intoConsider))
-                             u = (map show (takenN 14 intoConsider))
-                             v = (map show (takenN 11 intoConsider)) 
-                         in let  tunKate =  map read 
-                           --  kerry x y = zipWith (\x y -> [x,y]) x y -- a-- (zip a b)
-               
-                           --  fofiltern x y= show (kerry x y)
-                           --  filtern  x y = let tussenstap  = map ord (fofiltern x y)
-                           --                     tss2 = filter (/=34) tussenstap
-                            --                in map chr (tss2)
-                          in [(filtern b h),(filtern b mq3H),(filtern b j),(filtern b mq5H),(filtern b l),(filtern b mq6H),(filtern b n),(filtern b o),(filtern b p),(filtern b q),(filtern b r),(filtern b mq4H),(filtern b t),(filtern b c),(filtern b v ) ]
-
--}
 --- Extraordinary function chooses which AND howmany functions of the list above will be put in output
 -- l: [Int] ~ oder auch welche kombination von funktionen
      let accesFuncWX l  = let aw1 n = (takenN n outPutMaxima3)
@@ -1921,18 +1796,12 @@ aOsZilloskop1 x nF crit rnd= do
                        in let aw6 = max              
                        in enExp aw2 aw4 aw5 max --enExp            
 
-
-
-
-
-
- 
     -- writeFile ("fomxima2.txt") ((fst outPutMaxima)++"\n\n"++(snd outPutMaxima))
      let moant = ("1")
      let foWxlist1 x y = show ((read x) + y)
      let foWxlist2 x y = show ((read x) + y)
 
--- SPUREN DES OsZilloskops
+-- TRACK BANDS OF THE OsZilloskops
 --   
      let writerOszillos n = 
            let foTake xyz = (takenN xyz outPutMaxima3)
@@ -1944,77 +1813,17 @@ aOsZilloskop1 x nF crit rnd= do
            in let write5erWXFile = (aCompleteWX [((takenN 14 outPutMaxima3) ),((takenN 1 outPutMaxima3)),((takenN 3 outPutMaxima3)),((takenN 7 outPutMaxima3)),( ( takenN 15 outPutMaxima3))] [[1,2,3,4,5],[6,7,8,9,10]] xX "0.0" "10")
            in let write7erWXFile = (aCompleteWX [((takenN 14 outPutMaxima3) ),((takenN 1 outPutMaxima3)),((takenN 3 outPutMaxima3)),  ((takenN 7 outPutMaxima3) ),((takenN 5 outPutMaxima3) ), ((takenN 6 outPutMaxima3) ), ((takenN 7 outPutMaxima3) )] [[1,2,3,4,5,6,7],[8,9,10,11,12,13,14]] xX "0.0" "10")
            in let write7bWXFile = (aCompleteWX [((foTake 1) ),((foTake 2)),((foTake 4)),  ((foTake 6) ),((foTake 12) ), ((foTake 14) ), ((takenN 7 outPutMaxima3) )] [[1,2,3,4,5,6],[7,8,9,10,11,12]] xX "0.0" "10")
---     let write7erWXFile = (aCompleteWX [((outPutMaxima1) ),(( outPutMaxima2)),((outPutMaxima3))] [[1,2,3],[4,5,6]] xX "0.0" "10")
-  --   let write8erWXFile = (aCompleteWX [((outPutMaxima1) ),(( outPutMaxima2)),((outPutMaxima3))] [[1,2,3],[4,5,6]] xX "0.0" "10")
---     let write9erWXFile = (aCompleteWX [((outPutMaxima1) ),(( outPutMaxima2)),((outPutMaxima3))] [[1,2,3],[4,5,6]] xX "0.0" "10")
-    -- let write10erWXFile = (aCompleteWX [((outPutMaxima1) ),(( outPutMaxima2)),((outPutMaxima3))] [[1,2,3],[4,5,6]] xX "0.0" "10")
-  --   let write11erWXFile = (aCompleteWX [((outPutMaxima1) ),(( outPutMaxima2)),((outPutMaxima3))] [[1,2,3],[4,5,6]] xX "0.0" "10")
---     let write12erWXFile = (aCompleteWX [((outPutMaxima1) ),(( outPutMaxima2)),((outPutMaxima3))] [[1,2,3],[4,5,6]] xX "0.0" "10")
-    -- let write13erWXFile = (aCompleteWX [((outPutMaxima1) ),(( outPutMaxima2)),((outPutMaxima3))] [[1,2,3],[4,5,6]] xX "0.0" "10")
-  --   let write14erWXFile = (aCompleteWX [((outPutMaxima1) ),(( outPutMaxima2)),((outPutMaxima3))] [[1,2,3],[4,5,6]] xX "0.0" "10")
---     let write15erWXFile = (aCompleteWX [((outPutMaxima1) ),(( outPutMaxima2)),((outPutMaxima3))] [[1,2,3],[4,5,6]] xX "0.0" "10")
-    -- let write16erWXFile = (aCompleteWX [((outPutMaxima1) ),(( outPutMaxima2)),((outPutMaxima3))] [[1,2,3],[4,5,6]] xX "0.0" "10")
-  --   let write17erWXFile = (aCompleteWX [((outPutMaxima1) ),(( outPutMaxima2)),((outPutMaxima3))] [[1,2,3],[4,5,6]] xX "0.0" "10")
---     let write18erWXFile = (aCompleteWX [((outPutMaxima1) ),(( outPutMaxima2)),((outPutMaxima3))] [[1,2,3],[4,5,6]] xX "0.0" "10")
-    --- let write19erWXFile = (aCompleteWX [((outPutMaxima1) ),(( outPutMaxima2)),((outPutMaxima3))] [[1,2,3],[4,5,6]] xX "0.0" "10")
-  --   let write20erWXFile = (aCompleteWX [((outPutMaxima1) ),(( outPutMaxima2)),((outPutMaxima3))] [[1,2,3],[4,5,6]] xX "0.0" "10")
---     let write21erWXFile = (aCompleteWX [((outPutMaxima1) ),(( outPutMaxima2)),((outPutMaxima3))] [[1,2,3],[4,5,6]] xX "0.0" "10")
-     --let write22erWXFile = (aCompleteWX [((outPutMaxima1) ),(( outPutMaxima2)),((outPutMaxima3))] [[1,2,3],[4,5,6]] xX "0.0" "10")
-    -- let write23erWXFile = (aCompleteWX [((outPutMaxima1) ),(( outPutMaxima2)),((outPutMaxima3))] [[1,2,3],[4,5,6]] xX "0.0" "10")
-  --   let write24erWXFile = (aCompleteWX [((outPutMaxima1) ),(( outPutMaxima2)),((outPutMaxima3))] [[1,2,3],[4,5,6]] xX "0.0" "10")
---     let write25erWXFile = (aCompleteWX [((outPutMaxima1) ),(( outPutMaxima2)),((outPutMaxima3))] [[1,2,3],[4,5,6]] xX "0.0" "10")
              in let allWX n = takenN n [write4erWXFile,write7erWXFile]
              in allWX n
-     --writerOszillos
---[write1erWXFile,write2erWXFile,write3erWXFile,write4erWXFile,write5erWXFile,write6erWXFile,write7erWXFile,write8erWXFile,write9erWXFile,write10erWXFile,write11erWXFile,write11erWXFile,write12erWXFile,writer13erWXFile,write14erWXFile,write15erWXFile,write16erWXFile,write17erWXFile,write18erWXFile,write19erWXFile,write20erWXFile,write21erWXFile,write22erWXFile,write23erWXFile,write24erWXFile,write25erWXFile]
-
- 
-  --   let writeWXFile2 = (aCompleteWX [(concat jahresWxTrend)] [[1,2,3],[4,5,6]] "5" "0.0" "30.0")
--- inserts useless double list in IO for display
-    -- let foAutoWrite = [[1,2,3],[4,5,6]]
-    -- putStrLn ((show( snbs "3" moant)) ++ "snbs: Stellen min Values jahr3 ") 
-    -- putStrLn (show(triggerHappy moant) ++ "triggerHappy:  Stellen 'Min Values', Jahr "++intfoPlug++", monat: "++moant) 
-    -- putStrLn (( outPutMaxima moant)++ "outPutMaxima: Check check\n\n")
-     putStrLn (show more) 
-     putStrLn (show (lister2)++" Ist das Spektrum zwischen max und min in 0.1 Schritten\n\n")
-    -- let zui = map length (group (concat (sort (concat dipfade4))))
-    -- let zui11 = (map head (concat dipfade4))
-    
-   --  let zui1 = map length (group (concat (concat dipfade4)))-- die val in Zeitgruppen eines Intervalls  
-    -- let zuu2 =  sort (nub ((concat((concat dipfade4)))))
-    -- let zuu22 d =  map round (map (*100) d)
-     --let zuu3 =  (lister2 \\ (zuu22 (map read zuu2)) )
---     putStrLn ((show dipfade4)++ "    Daten aus dipfade4 fuer Wahrscheinlichkeits-Rechnung benoetigt\n")
---     putStrLn ((show zui1)++ "  Das Vorkommen der Zahlengruppen in ZEITLICHER Abfolge")
---     putStrLn ((show zui11)++"  Die Werte der Zahlengruppen s.o.") 
-     putStrLn ((show zui)++ "  Ist das Vorkommen der Zahlen im Spektrum von min nach Max")
-     putStrLn ((show zuu2)++"  Die Zahlen die Vorkmmen in Verbindung mit s.o.") 
-     putStrLn ((show zuu3)++"  Die Zahlen des Spektrums die nicht vrommen  x 100")   
-    -- writeFile ("anMaximaFile2.wxm") (write5erWXFile)
-     
---C:\Users\Watson\Documents\DynamicSystems\Experimente\FractionalLearning\stream-crypt\test
-          --(buildDisplay  5)
-
-  -- makes squares and passes values
-            
---     putStrLn$ ((show autoW2)++"")
-   --  let autoW3 = [1..(autoW2)] 
-    -- putStrLn$ (write7erWXFile++"\n\nwrote maximaFile: anMaximaFile.wxm" )
-
-
-    -- fowMaximQ <- readFile "fomxima.txt"
-    --
-    -- :2369
-     putStrLn ("Enter line for Prego function") 
+         
+   --  putStrLn ("Enter line for Prego function") 
      --fopregos <- getLine
-     putStrLn (show(chgeWahr2Prego))
-     putStrLn ( addder) 
+     foOutput output (avanti [ ((show(chgeWahr2Prego)++"\n\n"))++
+                              (( addder++"\n\n"))++ 
    --  writeFile ("anMaximaFile2.wxm") (write4erWXFile)
    --  putStrLn (show  (diade)) 
-     putStrLn "end" --(show (fst outPutMaxima ) ++ "simulated InputVal ")
+                              ("end")] ) --(show (fst outPutMaxima ) ++ "simulated InputVal ")
     -- putStrLn (show (snd outPutMaxima  ) ++ " Real InputVal wrote file : fomaximA.txt ")
-
-
 
 -----------grosse Klammer ende
 --------------------------------------------------------------------------
@@ -2031,10 +1840,11 @@ aOsZilloskop1 x nF crit rnd= do
 
      -- funktion verbindet : die monaliche Preisentwicklung: 
 -- snbs "2" monat 
--- triggerHappy moant  , mappt moonat moant n vile jahre 
--- mit : den originalenWerten Dipfade2 und 
+-- triggerHappy moant  , mappt moonat moant n many years 
+-- with : real values Dipfade2 annd.. 
    --  let makeWEAVEkaAnsatz1 =  
- 
+     let inputgui1 = "1"
+  --   let statiswa1 = fostatiswa  --"3" -- course of action set to 'plot 2d , val files , patternfiles' see below
 ---------------------------------------------------------
      let guiReturnfunction back1step backAllsteps= 
                      let ans x1 = if x1=="1" 
@@ -2043,20 +1853,21 @@ aOsZilloskop1 x nF crit rnd= do
                                   else
                                     backAllsteps
                      in do  -- with do ghi sees line1 ...guiReturn, line2 ..input1... 
-                        guiReturnFunctiontext
-                        inputgui1 <- getLine
+                        foOutput output guiReturnFunctiontext
+                        foOutput output (putStrLn inputgui1) --(inputgui1 <- getLine)
                         ans inputgui1
 
      ------------------------------------------------------------------------
      let statisticalWahrsch = do   -- Stistis analys Wahrscheinlichkeiten  IO :2434
-                  statisticalWarschtext1
-                  statiswa1 <- getLine 
-                  let chartWa1 = if statiswa1=="1" -------- add/write simulated Random Werte
+                  foOutput output (statisticalWarschtext1)   
+                  statiswa1 <- getLine ---------------- determine course of action see below 
+                 -- (statiswa1= fostatiswa)  ----------------------- ****************************VARIABLE Write or ADD or both
+                  let chartWa1 = if statiswa1==(show 1) -------- add/write simulated Random Werte
                                  then do
                                    avanti [("Write or ADD; 1==write")] 
                                    wriAdd0 <- getLine
  
-                                   avanti [("Write/Add to: Vals==1,  Patterfile==2 or Both 3")]
+                                   avanti [("Write/Add to: Vals==1,  Patterfile==2 or Both 3")] -- *********VARIABLE VAL or PATTERNFILE or both
                                    foyeMo <- getLine
 
                                    let accesFuncTXT2 =  goghijst -- or (takenN n intoConsider)
@@ -2070,12 +1881,9 @@ aOsZilloskop1 x nF crit rnd= do
                                                  else do -- normal val and  pattern 
                                                   (eYeMoDa e)
                                                   (writeFile "exportDATA.txt" (show accesFuncTXT2))
-                                                 
-                                                   
- 
   
-                                   putStrLn ("View the first 10 Randoms")    
-                                   putStrLn (show (take 10 accesFuncTXT2))
+                                   foOutput output (avanti [ ("View the first 10 Randoms\n\n")++    
+                                                            (show (take 10 accesFuncTXT2)++"\n\n") ] )
                                   -- run yearMontDay to get ready to use  
 
                                    let writeOrAdd0 = if wriAdd0== "1" 
@@ -2087,13 +1895,12 @@ aOsZilloskop1 x nF crit rnd= do
                                                                --  else if writAdd1=="1" && outFill == "2" then (writeFile "aaKA/Osilloskop.wxm" (unlines accesFuncWX))
                                                      else do add (["exportDATA.txt", (show accesFuncTXT2) ])  
                                                              (deCid "2")     --     add ([ "sot.txt", ((lines  yeMoDa)) ]) -- export "SetoStyle"
-
-                                  -- let qwik = (ghijst 3)      
                                    writeOrAdd0
                                                                                 
-                                   putStrLn ("A a new Random Run has been generated ! Name:"++(nF)++ " Length : " ++ (xX)) -- set to only one random Run, same length as input file
+                                   foOutput output (putStrLn ("A a new Random Run has been generated ! Name:"++(nF)++ " Length : " ++ (xX))) -- set to only one random Run, same length as input file
                                    
-                                 else if statiswa1=="2" ----------------------------------------------------------------------------------------MONATS AUSWAHL
+                                 else if statiswa1==(show 2) ----------------------------------------------------------------------------------------MONTH SELECTION
+                                -- module not exported to RAW no-output
                                                then do 
                                                  statisicalAnalysistext21 --welche zeile
                                                  input91 <- getLine
@@ -2215,8 +2022,8 @@ aOsZilloskop1 x nF crit rnd= do
                                                                  -- chartWa1 
                                                                 else if selLECTOR=="3"
                                                                 then do 
-                                                                  avanti [("zurwahrliste schafft PICKER fuer \n"++
-                                                                           " aus , line"++input91++" year: "++ input92)]
+                                                                  avanti [("zurwahrliste a Selector for propabilities \n"++
+                                                                           " with , line"++input91++" year: "++ input92)]
                                                                   putStrLn$ (show ( zurWahr gogos) )                                                              -- avanti [("\n"++writeAddIndi++" Wrote File\n"++ openB ++ "\n"++
                                                                  --          " aus , line"++input91++" year: "++ input92)]
                                                                   writeOrAdd
@@ -2319,24 +2126,26 @@ aOsZilloskop1 x nF crit rnd= do
                                                                   avanti [("  test fuer map additive Liste mit zufall , Alle vals mapped\n"++
                                                                            "  eintrag: nummer (zeile): "++ input91)] 
                                                  chart10Mo
-                                 else if statiswa1=="4"
+                                 else if statiswa1==(show 4)
                                  then do
                                    avanti [("UNDER CONSTRUCTION")] 
                             
                                    (statisticalWahrsch)  
-                                 else if statiswa1=="3"--------------------------------------------------------------------DISPLAY AND WRITE WXMAXIMA
+                                 else if statiswa1==(show 3)--------------------------------------------------------------------DISPLAY AND WRITE WXMAXIMA
                                  then do
-                                   avanti [("Write or ADD; 1==write")] 
-                                   wriAdd1 <- getLine
-                                   avanti [("outifil vs custom fill  ; outfill==1")] -- outmaxima vs selectfunctions 
-                                   outFill <- getLine
-                                   
-                                   let accesFuncTXT2 =  goghijst -- or (takenN n intoConsider)
- 
+                                   let wriAdd1 = "1" -- set too ******************************************VARIABLE set to only write
+                                   let outFill = "2" -- set too                                        ***VARIABLE set to manual fill -> e.g [2,4,6,7]
+                                   foOutput output (avanti [("Write or ADD; 1==write")++ 
+                                                            (wriAdd1++"\n\n")++ --wriAdd1 <- getLine
+                                                            ("outifil vs custom fill  ; outfill==1\n\n")++ -- outmaxima vs selectfunctions 
+                                                            (outFill++"\n\n")] )  -- outFill <- getLine
+                                   foOutput output (statisticalWarschtext3) --------------------------------------Display All MQ-Functions
 
-                                   statisticalWarschtext3 -----------------------------------------------------------------------------Display All MQ-Functions
-                                   -- manage writing of WX-Files  
+                                   let accesFuncTXT2 =  goghijst -- or (takenN n intoConsider)
                                   -- export various formats of of files
+                                  -- -----------------------------------------------------------------------------------------------------------------
+                                  --------------------------------------------------------------------------------------------------------------------
+                                  -- Gui with-output; not exported to Gui no-output
                                    let finA = if outFill == "1" -----------------------autofil
                                               then do
                                                 avanti [("Write/Add to: WxmFile==1 , Vals==2,  Patterfile==3, Wx-Addable==4 or Both 5 (wxm,Vals)")]
@@ -2375,11 +2184,13 @@ aOsZilloskop1 x nF crit rnd= do
                                                              else do 
                                                                 (deCid "3" "aOutfill.wxm" autofil) --exports txt as well see above (s.ab.)
                                                 meProg
+                                              ----------------------------------------------------------------------------------------------------
 
-                                                                
+                                              -----------------------------------------------------------------------------------------------------                  
                                               else do  -------------------------------custom Datafil - only exports 2 formats, 
-                                                avanti [("Enter Funktionsliste e.g [7,6,2,8]")]
-                                                ala <- getLine
+                                                let ala = "[1,2,4,5,8,10]" -- list of functions taken from 'yourFunctionList' ************VARIABLE SELCTS FUNCTIONS FOR DISPLAY
+                                                foOutput output ( avanti [("Enter list of functions e.g [7,6,2,8]\n\n") ++
+                                                                          ((ala)++"\n\n")  ] )  -- ala <- getLine
                                               --  avanti [("Wieviele Spuren anzeigen? (kann momentan nur 2 , wenn 2 dann 7funktion")]
                                                 let fospur = ( lines ala)
                                                 let spurn = show (length fospur)     
@@ -2409,7 +2220,7 @@ aOsZilloskop1 x nF crit rnd= do
 
 
                                                 let progs = ( (ala))
-                                                putStrLn (show progs) 
+                                                foOutput output (putStrLn (show progs)) 
                                              -- settings WX maxima file 
                                                 let accesFuncWX2 =  let aw1 n = (takenN n outPutMaxima3)
                                                                     in let wielanGg  = [1..(read spurn)]
@@ -2437,9 +2248,8 @@ aOsZilloskop1 x nF crit rnd= do
 
                                                 -}
                                               
-                                                (avanti (lines accesFuncWX2))
-                                                  
-                                                (avanti (lines (show accesFuncTXT)))
+                                                foOutput output (avanti [(accesFuncWX2++"\n\n")++
+                                                                         ((show accesFuncTXT)++"\n\n")] )
                       -- tasK: eyemoda decides write or add
                       --       
 
@@ -2450,37 +2260,29 @@ aOsZilloskop1 x nF crit rnd= do
                                                                        (writeFile "aOutfill.wxm" (accesFuncWX2))
                                                                        (writeFile "exportDATA.txt" (foConsider2))
                                                                      --  let nees = takenN 2 intoConsider 
-                                                                       (eYeMoDa "1") -- ((snd (ghijst 1 ))) )--( nees) )
-                                                                       putStrLn "Wat"
+                                                                       foOutput output (eYeMoDa "1") -- ((snd (ghijst 1 ))) )--( nees) )
                                                                   else do 
                                                                        add ([nF, (accesFuncWX2) ]) -- add a complete wx file to nf file 
                                                                        add (["exportDATA.txt", (show accesFuncTXT) ]) -- add cust. val unprocessed yet!!
                                                                        add (["exportDATA.txt", ((foConsider2)) ])
                                                                        (eYeMoDa "2")
  
-                                                writeOrAddd
-                                                putStrLn ( "Wrote :  \""++nF++"\"  AND  \"exportDATA.txt\"")
+                                                foOutput output writeOrAddd
+                                                foOutput output (putStrLn ( "Wrote :  \""++nF++"\"  AND  \"exportDATA.txt\""))
                                            --   else do
                                             --    let custom = (accesFuncWX  (read spurn) )
                                               --  (avanti (lines custom))
  
                                                   
                                  --  let soViFunk =   [1..(read spurn)] 
-                                   finA
-                                   putStrLn "4" -- (getFun)
-                  --                 -- add [(openA, aWriterOne)]
+                                   foOutput output finA
                                    let writeAddIndi = if wriAdd1 =="1" then putStrLn$ ("WRITE MODE")--indicates if write or add mode
                                                       else putStrLn$ ("ADD MODE")
-                                   writeAddIndi
-                        --           writeOrAdd 
+                                   writeAddIndi -- basic info will remain therefore no 'foOutput writeAddIndi'
 
-                                   statisticalWahrsch 
-                                 else if statiswa1=="4"
-                                 then do 
-                                   avanti [("under construction")]
-                                   (statisticalWahrsch ) 
-
-                                 else if statiswa1=="5"
+                                   statisticalWahrsch
+                                 --let inputS ek1 ak2 = (\ ek1 ak2 ->   
+                                 else if statiswa1==(show 5)
                                  then do 
                                    putStrLn ("closing aOsZilloskop1 ..." ) --writeFile nF (show goghijst ) --avanti [("way out")]    --guiReturnfunction (statisticalWahrsch) (chartWa1) 
                                  else 
@@ -2930,4 +2732,3 @@ aCrunchList1  x nF howMany crit= do
      (buildDisplay  5)
 
      crunch
-
