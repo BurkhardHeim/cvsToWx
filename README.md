@@ -1,5 +1,5 @@
 # csvToWx
-![alt text](https://raw.githubusercontent.com/CBroemse/cvsToWx/branch/path/to/img.png)
+![alt text](https://raw.githubusercontent.com/CBroemse/cvsToWx/branch/master/Manual1.png)
 
 Patternfile.hs
 'writePatternFile "fileToRead.csv" "fileToWrite.txt"'
