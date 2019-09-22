@@ -1,0 +1,31 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 17.10.1 ] */
+/* [wxMaxima: input   start ] */
+pts:points([[1,2,3],[2,2,3],[3,2,3],[7,7,7]]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+[v1,v2,v3,v4]:[vector([0,0,1],[0.7,0,0]),vector([0,0,1],[0,0.7,0]),vector([0,0,1],[-0.7,0,0]),vector([0,0,1],[0,-0.7,0])];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+text:label(["North",0,1,1],["East",1,0,1],["South",0,-1,1],["West",-1,0,1]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: hide output   ] */
+/* [wxMaxima: input   start ] */
+draw3d(color=red,pts,color=orange,v1,v2,v3,v4,color=blue,text)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+;
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

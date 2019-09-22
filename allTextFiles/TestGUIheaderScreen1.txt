@@ -1,0 +1,48 @@
+<html>
+<head>
+<HTA:APPLICATION
+APPLICATIONNAME="Vals"
+BORDER="THIN"
+BORDERSTYLE="NORMAL"
+ICON="Explorer.exe"
+INNERBORDER="NO"
+MAXIMIZEBUTTON="NO"
+MINIMIZEBUTTON="NO"
+SCROLL="NO"
+SELECTION="NO"
+SINGLEINSTANCE="NO"/>
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="YES">
+<title>Vals or Random</title>
+<SCRIPT LANGUAGE="VBScript">
+Sub Window_Onload
+      CenterWindow 560,600
+      
+End Sub
+Sub sbExitHTA
+      Self.Close()
+End Sub
+Sub CenterWindow(x,y)
+    Dim iLeft,itop
+    window.resizeTo x,y
+    iLeft = window.screen.availWidth/3 - x/3
+    itop = window.screen.availHeight/2 - y/2
+    window.moveTo ileft,itop
+End Sub
+'************************************************************************************
+Function DblQuote(Str)
+    DblQuote = Chr(34) & Str & Chr(34)
+End Function
+'************************************************************************************
+Sub Run(MyFile)
+    Dim ws,return
+    Set ws = CreateObject("wscript.Shell")
+    On Error Resume Next
+    return = ws.run(DblQuote(MyFile),False)
+    If Err <> 0 Then
+        MsgBox "An unknown error occurred",VbCritical,"An unknown error occurred"
+    End If
+End Sub
+
+</script>
+<body text=black bgcolor="LightBlue" TOPMARGIN="1" LEFTMARGIN="1">
+        <span id="dataarea"></span>

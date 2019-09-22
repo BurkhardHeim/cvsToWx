@@ -1,0 +1,57 @@
+<html>
+<head>
+<HTA:APPLICATION
+APPLICATIONNAME="DISPLAY"
+BORDER="THIN"
+BORDERSTYLE="NORMAL"
+ICON="Explorer.exe"
+INNERBORDER="NO"
+MAXIMIZEBUTTON="NO"
+MINIMIZEBUTTON="NO"
+SCROLL="NO"
+SELECTION="NO"
+SINGLEINSTANCE="NO"/>
+<META HTTP-EQUIV="MSThemeCompatible" CONTENT="YES">
+<title>ScreenI</title>
+<SCRIPT LANGUAGE="VBScript">
+'************************************************************************************
+Option Explicit
+Sub window_onload()
+    CenterWindow 510,620
+End Sub
+'************************************************************************************
+Sub CenterWindow(x,y)
+    Dim iLeft,itop
+    window.resizeTo x,y
+    iLeft = window.screen.availWidth/1.2 - x/2
+    itop = window.screen.availHeight/1.5 - y/1
+    window.moveTo ileft,itop
+End Sub
+'************************************************************************************
+Function DblQuote(Str)
+    DblQuote = Chr(34) & Str & Chr(34)
+End Function
+'************************************************************************************
+Sub Run(MyFile)
+    Dim ws,return
+    Set ws = CreateObject("wscript.Shell")
+    On Error Resume Next
+    return = ws.run(DblQuote(MyFile),False)
+    If Err <> 0 Then
+        MsgBox "An unknown error occurred",VbCritical,"An unknown error occurred"
+    End If
+End Sub
+'************************************************************************************
+</script>
+</head>
+<BODY text=white bgcolor="Lightgreen" TOPMARGIN="1" LEFTMARGIN="1">
+
+<center><p>Maximum Spektrum <br>
+           Liste :[1,6,14,2,3 ....</p>
+
+
+
+
+
+
+
