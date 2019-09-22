@@ -19,10 +19,53 @@ simpeLength k = do
          let soviel = length (lines foLaen)
          print soviel
          
+--- Extraordinary function chooses which AND howmany functions of the list above will be put in output AND connect to WX-maxima
+-- l: [Int] ~ oder auch welche kombination von funktionen
+-- xX: ?? for WX
+-- outputMaxima3:[source data]  aList of outputFunctions source of selection
+accesFuncWX l outputMaxima3 foCompleteWX xX = let aw1 n = (takerleiN n outputMaxima3)
+                 in let wielanGg  = [1..l]
+                 in let aw2 = map aw1 wielanGg
+                 in let enExp a b sqale1 sqale2 = (foCompleteWX a b xX sqale1 sqale2) -- diese display nach compiliren  vs aCompleteWX2 schreibt display in file     
+                     --  in let aw3 =  ceiling (l/2)	
+                 in let aw4 = ([wielanGg ,[(l+1)..(l*2) ]])
+                 in let aw5 = "0.0" 
+                -- in let aw6 = maximum              
+                 in enExp aw2 aw4 aw5 max --enExp    
 
+accesFWX l nlist = let aw1 n = (takerleiN n nlist)
+                 in let wielanGg  = [1..l]
+                 in  ([wielanGg ,[(l+1)..(l*2) ]])
 
 
 replaceColon = map (\c -> if c==',' then ' '; else c)
+
+
+-- will turn on number digit of a Sring +1
+--  e.g "aname1.txt" -> "aname2.txt"
+--      "aname.txt" -> "aname1.txt"
+--       "aname7.txt" -> "aname1.txt"
+--  used in time depending random file writing in 'dit' 
+--aString:Sting ; the sourceFile
+evalToWrite astrinG = if (read tzExp)<6 && tzBool>0 then prsRoot++(head tz3)++(show tzInt)++"."++(last tz3)
+                      else if (read tzExp)>=6 && tzBool>0 
+                      then do prsRoot++(head tz3)++("1.")++(last tz3)
+                      else  prsRoot++(head tz3)++("1.")++(last tz3)
+  
+     where
+    poc1 fOsnd = reverse( fOsnd(break (=='/') (reverse(astrinG))));--prevent '/' cause trouble
+    prsInput = poc1 fst;
+    prsRoot = poc1 snd;  
+    tz0 = (map ord prsInput);
+    tz = (filter (>47) (filter (<57)  tz0)); --filter numbers
+    tzExp = (map chr tz)
+    tzBool = length tzExp;
+    tzRootSource  = filter (==47) 
+    tz1 = tz0 \\ tz;
+    tz2 = map (\c -> if c=='.' then ' '; else c);
+    tz3 = words (tz2 (map chr tz1));
+    tzInt = head (zipWith (+) [1] [(read tzExp)] );
+
 
 
 -- source for rndlist 

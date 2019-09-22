@@ -48,8 +48,8 @@ view [fileName] = do
 -- BELOW a collection of: many [String] -> [ [string]] -> Patternfile
 --  -> aOsZilloskop1 -> writes various WX-maxima or txt files
 -- used as DISPLAYS and TEXTS
-guiReturnFunctiontext =  avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+guiReturnFunctiontext =  avanti [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " GO BACK: STATISTICAL ANALYSIS \n"++
            "----------------------------\n"++ 
@@ -58,45 +58,59 @@ guiReturnFunctiontext =  avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0.
            "                    3. MAIN MENU\n\n"++
            "ENTER a NUMBER: 1 or 2 .. or 3"++a2)]
 
-statisticalWarschtext1 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisticalWarschtext0 =  [("      MAIN MENU +++++  Stream-Crypt 1.1. ++++++                 \n"++ --- ************************ MAIN MENU
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
-           " WAHRSCHEINLICHKEITEN \n"++
+           " 1. read Csv ; 2./3. generates Wx-Maxima  \n"++
+           "----------------------------\n"++ 
+           "  Options:          1. WRITE PATERNFILE -- upload your own csv file must be \n"++
+           "                                --Date,-,-,-,Close,Volume-10-Apr-16,-,-,-,0.56,-10-Ar-16...\n"++
+           "                    2a. APPLY YOUR FUNCTIONS -- will write list of own functions to maxima\n"++
+           "                    2. POINTCLOUD -- get simple statical Overview and plot 3d \n"++
+           "                    3. aOSZILLOSKOP1 --plot2d csv data in WX and apply function to it\n"++
+           "                    4. aCRUNCHLIST1-- most basic HTA/HTML plotter \n"++
+           "                    5. CLOSE\n\n"++
+           "                    6. HELP\n\n"++
+           "ENTER a NUMBER: 1 or 2 .. or 5\n\n"++a2)]
+
+
+statisticalWarschtext1 = [("      STATISTICS/PLOT 2D +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+           (minesweepi 0 )++"_______________________\n"++
+           " 1./2. statistics 3. write to WX and 'plot2d' \n"++
            "----------------------------\n"++ 
            "  Options:          1. SIMPLE SIMULATION  -- goghist WAY OUT FO NOw\n"++
-           "                    2. WAHRSCH. (all functions)\n"++
+           "                    2. ALL FUNCTIONS-- the used statistical library\n"++
            "                       more SIMULATION  -- manipulate via addIA\n"++
            "                    3. DISPLAY  writes 'anMaximaFile2.wxm'--\n"++
            "                    4. HELP \n"++
-          -- "                    5. NEXT STEP      \n "++
-         --  "                    6. BACK\n"++
            "                    5. CLOSE\n\n"++
            "ENTER a NUMBER: 1 or 2 .. or 5\n\n"++a2)]
 
-statisticalWarschtext2 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisticalWarschtext2 = avanti [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
-           " WAHRSCH. Tag  \n"++
+           " Propabilities. Day  \n"++
            "----------------------------\n"++ 
-           "  Options:          1. GOGOS -- % Liste mit Formel 1 wahrscheinlichkeiten  \n"++
-           "                    2. HEET  % gesamt  wahrscheinlichkeiten \n"++
-           "                    2. ZURWAHR zurWahrListe Picker fuer % \n"++
-           "                    3. GORCH  AEhnlichkeits wahrscheinlichkeit \n"++
+           "  Options:          1. GOGOS -- % List the Formula-1 propabilities  \n"++
+           "                    2. HEET  % of all propabilities \n"++
+           "                    2. ZURWAHR 'zurWahrListe' picks of % \n"++
+           "                    3. GORCH  similarity propabilities \n"++
            "                    4. GORCHH  ?????\n"++
-           "                    5. HUMFREY BSp bereinigtes Format string aus monade \n"++
-           "                    6. PREGO e.g (prego 1)  BSP Prozentrechener als Int leider nur fuer ganze zahlen \n"++
-           "                    7. BRO e.g ( bro 1) vergleich von Zaehler und Zufallsgenerator\n"++
-           "                    8. EINDELIJKGO  vergleich fuer Zufallsgenerator liste gogos\n"++
-           "                    9. ADDIA e.g (addIA 1729 prego ) fuegt prozent der additiven liste zu\n"++
-           "                   10. GHIJST e.g (ghijst 1) test fuer map additive Liste mit zufall \n"++
-           "                   11. GOGHIJST              (s.o als Liste)\n"++
+           "                    5. HUMFREY example of cleaned string of monade \n"++
+           "                    6. PREGO e.g (prego 1) Exampe caculates % as Int, alas only N-Num whole numbers\n"++
+           "                    7. BRO e.g ( bro 1) connect a counter and a randomnumber generator\n"++
+           "                    8. EINDELIJKGO compares rnd number gen with list gogos\n"++
+           "                    9. ADDIA e.g (addIA 1729 prego ) adds %  of the additive list to\n"++
+           "                   10. GHIJST e.g (ghijst 1) test map additive List with random  \n"++
+           "                   11. GOGHIJST              (s. as Liste)\n"++
            "                   12. NEXT STEP      \n "++
            "                   13. BACK\n\n\n"++
            "                   14. MAINMENU\n"++
-           "ENTER a NUMBER: 1 or 2 .. or 7\n\n"++a2)]
+           "ENTER a NUMBER: 1 or 2 .. or 7\n\n")]
 
-statisticalWarschtext3 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisticalWarschtext3 = avanti [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " DISPLAY  \n"++
            "----------------------------\n"++ 
@@ -113,11 +127,11 @@ statisticalWarschtext3 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0.
            "                   12. MQ6 MQ5 MQ3      \n "++
            "                   13. Simulated Vals\n\n\n"++
            "                   14. Real Vals\n"++
-           "ENTER a NUMBER: 1 or 2 .. or 7\n\n"++a2)]
+           "ENTER a NUMBER: 1 or 2 .. or 7\n\n")]
 
 
-statisticalWarschtext4 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisticalWarschtext4 = avanti [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " DISPLAY  \n"++
            "----------------------------\n"++ 
@@ -134,11 +148,11 @@ statisticalWarschtext4 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0.
            "                   12. NEXT STEP      \n "++
            "                   13. BACK\n\n\n"++
            "                   14. MAINMENU\n"++
-           "ENTER a NUMBER: 1 or 2 .. or 7\n\n"++a2)]
+           "ENTER a NUMBER: 1 or 2 .. or 7\n\n")]
 
 
-simulateStreamtext11  = avanti [("      SIMULATE   +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+simulateStreamtext11  = avanti [("      SIMULATE   +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " SIMULATE: DATA STREAM \n"++
            "----------------------------\n"++ 
@@ -151,8 +165,8 @@ simulateStreamtext11  = avanti [("      SIMULATE   +++++  Logini 1.0. ++++++    
            "                  8. BACK\n\n\n"++
            "ENTER a NUMBER: 1 or 2 .. or 7\n\n"++a2)]
 
-statisticalAnalysistext1 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisticalAnalysistext1 = avanti [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " MAIN: STATISTICAL ANALYSIS \n"++
            "----------------------------\n"++ 
@@ -166,8 +180,8 @@ statisticalAnalysistext1 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.
            "ENTER a NUMBER: 1 or 2 .. or 7"++a2)]
 
 -- Jahresauswahl 
-statisicalAnalysistext2 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisicalAnalysistext2 = avanti [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.0. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " JAHRESAUSWAHL \n"++
            "----------------------------\n"++ 
@@ -179,25 +193,25 @@ statisicalAnalysistext2 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0
            "                    e. plug -- Not sure ???\n")]
 
 
-statisicalAnalysistext21 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisicalAnalysistext21 = avanti [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
-           " ZEILENAUSWAHL "++a2++"\n"++
+           " LINE CHOOSER "++a2++"\n"++
            "----------------------------\n"++
-           "  Enter: Zeile \n")]
+           "  Enter: Line \n")]
            
-statisicalAnalysistext22 = avanti [("  Enter: Jahr (e.g. 1)\n")]
+statisicalAnalysistext22 = avanti [("  Enter: Year (e.g. 1)\n")]
           
-statisicalAnalysistext23 h f = avanti [("  Options:          a. LINEOVERVIEW -- alle Lines des Jahres : 1578 "++f++"\n"++
-           "                    b. MAPCRITI   -- DreiBandDATA :1506 alle Daten einer Zeile       \n"++
+statisicalAnalysistext23 h f = avanti [("  Options:          a. LINEOVERVIEW -- all lines of year: 1578 "++f++"\n"++
+           "                    b. MAPCRITI   -- DreiBandDATA :1506 all Data of one line       \n"++
            "                    c. FILTERYEARS :1525 \n"++
-           "                    d. MACHWAHR3  --  LAENGE VAL LINE: "++h++" ALLE JAHRE \n"++
-           "                    e. SETEIN -- einzelne Zeile MONTH X s.o.\n")]
+           "                    d. MACHWAHR3  --  LENGTH VAL LINE: "++h++" ALL YEARS \n"++
+           "                    e. SETEIN -- single line MONTH X s.a.\n")]
 
 statisicalAnalysistext23N h f = avanti [("  Options:          a. IntfoPlug -- which year "++f++"\n"++
-           "                    b. staerKA   -- Staerke des Sets       \n"++
-           "                    c. fofoA -- Wachstum in % \n"++
-           "                    d. snd polishDiamonds  -- (Gaussfaktor,Val d. monats) \n"++
+           "                    b. staerKA   -- Strength of Sets       \n"++
+           "                    c. fofoA -- increase/rate of growth in % \n"++
+           "                    d. snd polishDiamonds  -- (Gaussfaktor,Val o. month) \n"++
            "                    e. SETEIN -- einzelne Zeile MONTH X s.o.\n"++
            "                    f. relGroesse -- = sum spektrum /eines monats\n"++
            "                    g. singleLine4monthselector -- (lineX;month Y;breaker1;breaker2)\n"++
@@ -212,17 +226,17 @@ statisicalAnalysistext24 h f = avanti [("  Options:          a.  -- alle Lines d
            "                    e. SETEIN -- einzelne Zeile MONTH X s.o.\n")]
 
 
-statisticalAnalysisMonatAuswahl1 = avanti [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisticalAnalysisMonatAuswahl1 = avanti [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " MONATSAUSWAHL \n"++
            "----------------------------\n"++ 
            "  Options:          a. STEVEAPPROACH -- ALL LINES MONTH X IN ORDER  :2069  \n"++
            "                                     --IOinput: whichFu intfoplug month\n"++
-           "                    b. setein -- einzelne Zeile MONTH X s.o.\n"++
+           "                    b. setein -- single line MONTH X s.o.\n"++
            "                    c. VERGLMONATE :1526  \n"++
-           "                    d. MONATLLIST -- Uebersicht alle lines monat X\n :2035"++ 	    
-           "                    e. PLUGINVAL -- jahr breaker1 breaker2  haeufigste \n"++
+           "                    d. MONATLLIST -- Overview all lines month X\n :2035"++ 	    
+           "                    e. PLUGINVAL -- year breaker1 breaker2  haeufigste \n"++
            "                                    vals Monat Y jahr X \n"++
            "                                       -- EINES Jahres n aus wostehenWerte  \n"++
            "                    f. FOMONAT -- die 12 haeufigstne monat X \n"++
@@ -232,15 +246,15 @@ statisticalAnalysisMonatAuswahl1 = avanti [("      STATISTICAL ANALYSIS +++++  L
            "ENTER a NUMBER: 1 or 2 .. or 9\n\n")]
 
 --preselect IO for Monatauswahl
-statisticalAnalysisMonatAuswahl2 = avanti  [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisticalAnalysisMonatAuswahl2 = avanti  [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " PRE SELECT IO: MONATS AUSWAHL\n"++
            "----------------------------\n"++ 
            "  Enter: Jahr\n"++a2)]
 
-statisticalAnalysisWriteWxMaxima1 = avanti  [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisticalAnalysisWriteWxMaxima1 = avanti  [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " WRITE WXMAXIMA FILE: MONATS AUSWAHL\n"++
            "----------------------------\n"++ 
@@ -249,8 +263,8 @@ statisticalAnalysisWriteWxMaxima1 = avanti  [("      STATISTICAL ANALYSIS +++++ 
 
 statisticalAnalysisWriteWxMaxima2 = avanti  [ ("  Enter: Monat\n"++a2)]
 
-statisticalAnalysisWriteWxMaxima3 = avanti  [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisticalAnalysisWriteWxMaxima3 = avanti  [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " WRITE WXMAXIMA FILE: MONATS AUSWAHL\n"++
            "----------------------------\n"++ 
@@ -266,8 +280,8 @@ statisticalAnalysisWriteWxMaxima3 = avanti  [("      STATISTICAL ANALYSIS +++++ 
            "                   7. BACK\n\n"++
            "ENTER a NUMBER: 1 or 2 .. or 7\n\n")]
 
-statisticalAnalysisWriteWxMaxima4 = avanti  [("      STATISTICAL ANALYSIS +++++  Logini 1.0. ++++++                 \n"++
-           "*******************   AN DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+statisticalAnalysisWriteWxMaxima4 = avanti  [("      STATISTICAL ANALYSIS +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
            (minesweepi 0 )++"_______________________\n"++
            " WRITE WXMAXIMA FILE: SET UP WX\n"++
            "----------------------------\n"++ 
@@ -280,11 +294,32 @@ statisticalAnalysisWriteWxMaxima4 = avanti  [("      STATISTICAL ANALYSIS +++++ 
            "                   6. BACK\n\n"++
            "ENTER a NUMBER: 1 or 2 .. or 6\n\n")]
 
+
+
+pointCloudtext0 = [("    3D PLOT +++++  Stream-Crypt 1.1. ++++++                 \n"++
+           "*******************   A DATA ANALYSING/WRITING PROGRAM ****************\n\n" ++
+           (minesweepi 0 )++"_______________________\n"++
+           "  3dplot in WX-Maxima write wxm \n"++
+           "----------------------------\n"++ 
+           "  Options:          1. PointcloudII  -- two sources in 1 random cloud\n"++
+           "                    2. PointcloudIII  -- three sources in 1 random cloud\n"++
+           "                    3. PointcloudIV  -- four sources in 1 random cloud\n"++
+           "                    4. PointcloudV  -- five sources in 1 random cloud\n"++
+           "                    6. 3D MQ6  -- a unique setup )\n"++
+           "                       more SIMULATION  -- manipulate via addIA\n"++
+        --   "                    3. DISPLAY  writes 'anMaximaFile2.wxm'--\n"++
+           "                    4. HELP \n"++
+          -- "                    5. NEXT STEP      \n "++
+         --  "                    6. BACK\n"++
+           "                    5. CLOSE\n\n"++
+           "ENTER a NUMBER: 1 or 2 .. or 5\n\n"++a2)]
+
+
 --- AN DATA LIST CRUNCHER 
 ----------------------------------------------
 --
 --
---a = string name bzu bearbeitende file
+--a = string name file to write file name
 --b = string Name der Quell datei
 --b2 = string IO input, wieviele zeilen eingelesen 
 --c = string name
@@ -294,9 +329,10 @@ statisticalAnalysisWriteWxMaxima4 = avanti  [("      STATISTICAL ANALYSIS +++++ 
 -- f = string crit stellen
 -- "*This Tool is to b eused to determine how to proceed when reading \n"++
                       --       " DATA. The next step is indicated by the type command that will fire\n"++
-                        --     " wxMAxima programm to plot and opening MAxima sessions." 
-listCruncher a b b2 c d e e2 f =
-                    avanti [("\n\nANALYSE PATTERFILE     +++++  Logini 1.0. ++++++                 \n"++
+               
+         --     " wxMAxima programm to plot and opening MAxima sessions." 
+listCruncher a b b2 c d e e2 f = 
+                    avanti [("\n\nANALYSE PATTERFILE     +++++  Stream-Crypt 1.1.19 ++++++                 \n"++
                              "____________ AN DATA ANALYSING/WRITING PROGRAM ___________\n" ++
                              "WRITING FILE:    \""++a++"\"                              |\n"++
                              "|CRUNCHLIST ,      Content: \""++b++ "\" Lines: "++b2++" \n"++
@@ -305,13 +341,42 @@ listCruncher a b b2 c d e e2 f =
                              "|         |_CRITERIUM VAL_______|______1 Val____|_aus zui_|\n"++
                              "|             "++(show e)++"\n"++
                              "|                                               00001\n"++
-                             "|         | VORKOMMEN CRITERIUM |               |         |\n"++
+                             "|         | OCCURANCE CRITERIUM |               |         |\n"++
                              "|         |  "++ (show f) ++" \n"++
                              "|         |                     |               |         |\n"++
                              "|         | SPEKTRUM   |        |               |         |\n"++
                              "|         |  "++ (show e2)  ++"\n"++
                              "|         |            |________|_______________|_________|\n"++
                              "|         |  type:     | aOsZilloskop1 x nF crit          |      \n")]
+
+listCruncherRaw a b b2 c d e e2 f =
+                           [( "|.........|.SPEKTRUM...|........|...............|.........|\n<br>"++
+                              "|.........|  "++ (show e2)  ++"\n<br>"++
+
+
+                                                          "|CRUNCHLIST ,      Content: \""++b++ "\" Lines: "++b2++" \n<br>"++
+                             "|...MAX Val:\""++( c)++",\" \" \n<br>"++
+                             "|...Min Val:   \""++( d)++"\"\n<br>"++
+                             "|_________|_CRITERIUM VAL_______|______1 Val____|_aus zui_|\n<br>"++
+                             "|.........|...."++(show e)++"\n<br>"++
+                             "|_______________________________________________| 00001   |\n<br>"++
+                             "|.........|.OCCURANCE CRITERIUM |               |         |\n<br>"++
+                             "|.........|  "++ (show f) ++" \n"++
+                             "|_________|_____________________|_______________|.........|\n<br>"++
+                              "WROTE FILE:    \""++a++"\"                              |\n<br>")]
+
+buttonNew = "<button onclick=\"Call Run('C:/Users/Watson/Documents/DynamicSystems/Experimente/FractionalLearning/Logini17/Neuer Ordner/BackBoneOldFiles/HaskellSVG_XHTML2017/aaKA/KAnsatzLOGINI2.0/BatFiles/JustRunexampleWARSCH.bat')\">Data</button>"
+
+buttonView = "<button onclick=\"all Run('C:/Usersc/Watson/Documents/DynamicSystems/Experimente/FractionalLearning/stream-crypt/src/Bats/showHubbort.bat')\">View</button>"
+
+buttonEdit ="<button onclick=\"Call Run('C:/Users/Watson/Documents/DynamicSystems/Experimente/FractionalLearning/Logini17/Neuer Ordner/BackBoneOldFiles/HaskellSVG_XHTML2017/aaKA/KAnsatzLOGINI2.0/BatFiles/JustRunexampleWARSCH.bat')\">Edit</button>"
+
+buttonWx = "<button onclick=\"Call Run('C:/Users/Watson/Documents/DynamicSystems/Experimente/FractionalLearning/Logini17/Neuer Ordner/BackBoneOldFiles/HaskellSVG_XHTML2017/aaKA/KAnsatzLOGINI2.0/BatFiles/JustRunexampleWARSCH.bat')\">WxMaxima</button>"
+
+buttonMQ6= "<button onclick=\"Call Run('C:/Users/Watson/Documents/DynamicSystems/Experimente/FractionalLearning/Logini17/Neuer Ordner/BackBoneOldFiles/HaskellSVG_XHTML2017/aaKA/KAnsatzLOGINI2.0/BatFiles/JustRunexampleWARSCH.bat')\">MQ6</button>"
+
+buttonHelp = "<button onclick=\"Call Run('C:/Users/Watson/Documents/DynamicSystems/Experimente/FractionalLearning/Logini17/Neuer Ordner/BackBoneOldFiles/HaskellSVG_XHTML2017/aaKA/KAnsatzLOGINI2.0/BatFiles/JustRunexampleWARSCH.bat')\">Help</button>"
+
 
 --c2= Anzahl Aktive Spuren
 oszilloskop a b b2 c c2 d e e2 f = 
