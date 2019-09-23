@@ -8,13 +8,13 @@ i. will open a simpe Graphical User Interface (GUI) in the GLasgow Haskell Compl
    the aim is to automated reading of csv data and of long number streams 
    comverting them and changing them via predefined functions. The whole program
    is derived from four main functions
-   ##### 'writePatternfile' 
+   #### 'writePatternfile' 
    via 'Patternfile.hs' read a csv file from disc and exporting it as aPatternfile.txt
    e.g type: 'writePatternfile x nF'
    ###### x="fileTorRead.csv" ; nF = "fileToWrite.txt"
        in writePatternfile x nF => format [val,year,month,day]
        
-  #### aMemory  
+  #### 'aMemoryRAW'  
   writes screen1.txt statistical data about the data set
           autoInputII:String; e.g "1" if ==1 -> hide output ?!
         => opens menu: Options : POINTCLOUD 1..4,6: Pointcloud
@@ -26,7 +26,11 @@ i. will open a simpe Graphical User Interface (GUI) in the GLasgow Haskell Compl
                           else do P.aMemoryRAW "2" file22writ file33writ
                           
         => writes: "screenI.txt" --a crude statistical overview of the set 
-  ### aOsZilloskop1 writes exportDatat1,exportData2,HTML                          
+  #### 'aOsZilloskop1RAW'
+  writes exportDatat1,exportData2,HTML
+  #### 'aCrunchlist1'
+  writes senio, writes Html 
+  
 ii. Will run all functions as i. but avoiding the GUI...(realisation under construction 23-09-19)
     of 4 main functions some can be completly controlled just via Global-Variables*.
     which are ...aMemoryRAW  !! so far 
