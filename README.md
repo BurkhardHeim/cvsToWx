@@ -8,13 +8,15 @@ i. will open a simpe Graphical User Interface (GUI) in the GLasgow Haskell Compl
    the aim is to automated reading of csv data and of long number streams 
    comverting them and changing them via predefined functions. The whole program
    is derived from four main functions
-   #### 1.'writePatternfile' 
+   ######      1.'writePatternfile_____2.'aMemoryRAW'________3.'aMemoryRAW'_______4.'aOsZilloskop1RAW'
+   
+   #### 1. 'writePatternfile' 
    via 'Patternfile.hs' read a csv file from disc and export it as aPatternfile.txt
    e.g enter: 'writePatternfile x nF'
    ###### x="fileTorRead.csv" ; nF = "fileToWrite.txt"
        writePatternfile x nF => format [val,year,month,day]
        
-  #### 2.'aMemoryRAW'  
+  #### 2. 'aMemoryRAW'  
   writes screen1.txt statistical data about the data set
           autoInputII:String; e.g "1" if ==1 -> hide output ?!
         => opens menu: Options : POINTCLOUD 1..4,6: Pointcloud
@@ -26,7 +28,7 @@ i. will open a simpe Graphical User Interface (GUI) in the GLasgow Haskell Compl
                           else do P.aMemoryRAW "2" file22writ file33writ
                           
         => writes: "screenI.txt" --a crude statistical overview of the set 
-  #### 3.'aOsZilloskop1RAW'
+  #### 3. 'aOsZilloskop1RAW'
         => writes: exportDatat1,exportData2,HTML
   
   #### 4.'aCrunchlist1RAW'
