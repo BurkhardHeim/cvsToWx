@@ -23,5 +23,9 @@ e.g: let thisList x = [x,x+x,x^2]
  aCompleteWX writes the WX-Maximafile
  
  aCompleteWX 
+ 
+#### Step 1: Read csv, write patternfile.txt;
+![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual2.png)
+
 
 
