@@ -1,6 +1,6 @@
 # csvToWx
 ![alt text](https://raw.githubusercontent.com/CBroemse/cvsToWx/branch/master/Manual1.png)
-
+https://github.com/CBroemse/cvsToWx/blob/master/Manual1.png
 Patternfile.hs
 'writePatternFile "fileToRead.csv" "fileToWrite.txt"'
  Reads a CSV file e.g: "durble.csv"
