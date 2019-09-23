@@ -12,13 +12,15 @@ i. will open a simpe Graphical User Interface (GUI) in the GLasgow Haskell Compl
        in format [val,year,month,day]
        
    -b. aMemory  writes screen1.txt statistical data about the data set
+          autoInputII:String; e.g "1" if ==1 -> hide output ?!
         => opens menu: Options : POINTCLOUD 1..4,6: Pointcloud
                              CLOSE 5
                               
         => maybe writes: "lala.wxm" filled with  1 or 2 ..or 4 or 6
                  content: if 1 or 2 or 3 or 4 or 6 == True -> do P.aMemoryRAW autoInputII file22writ file33writ
                  with: autoInputII = "1"; file22writ; file33writ;
-                          else do 
+                          else do P.aMemoryRAW "2" file22writ file33writ
+                             
 ii. Will run all functions as i. but avoiding the GUI...(realisation under construction 23-09-19)
     of 4 main functions some can be completly controlled just via Global-Variables*.
     which are ...aMemoryRAW  !! so far 
