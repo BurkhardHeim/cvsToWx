@@ -1,7 +1,8 @@
 # csvToWx
 
 
-![alt tag](http://url/to/img.png)
+![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual1.png)
+
 Patternfile.hs
 'writePatternFile "fileToRead.csv" "fileToWrite.txt"'
  Reads a CSV file e.g: "durble.csv"
