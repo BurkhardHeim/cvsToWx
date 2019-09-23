@@ -13,9 +13,12 @@ i. will open a simpe Graphical User Interface (GUI) in the GLasgow Haskell Compl
    #### 1. 'writePatternfile' 
    via 'Patternfile.hs' read a csv file from disc and export it as aPatternfile.txt
    e.g enter: 'writePatternfile x nF'
+   
    ###### x="fileTorRead.csv" ; nF = "fileToWrite.txt"
        writePatternfile x nF => format [val,year,month,day]
-       
+  
+   ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual2.png)
+
   #### 2. 'aMemoryRAW'  
   writes screen1.txt statistical data about the data set
           autoInputII:String; e.g "1" if ==1 -> hide output ?!
@@ -28,6 +31,7 @@ i. will open a simpe Graphical User Interface (GUI) in the GLasgow Haskell Compl
                           else do P.aMemoryRAW "2" file22writ file33writ
                           
         => writes: "screenI.txt" --a crude statistical overview of the set 
+  ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual3.png)      
   #### 3. 'aOsZilloskop1RAW'
         => writes: exportDatat1,exportData2,HTML
   
@@ -68,9 +72,8 @@ e.g: let thisList x = [x,x+x,x^2]#
  
  aCompleteWX 
  
-#### Step 1: Read csv, write patternfile.txt;
-![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual2.png)
 
-![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual3.png)
+
+
 
 
