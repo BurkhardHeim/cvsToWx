@@ -7,11 +7,15 @@ Setup: Three modi
 i. will open a simpe Graphical User Interface (GUI) in the GLasgow Haskell Complier (GHC)
    the aim is to automated reading of csv data and of long number streams 
    comverting them and changing them via predefined functions. The whole program
-   is derived from four main functions:
-   -a. writePatternfile reading a csv file from disc and exporting it as aPatternfile.txt
-       in format [val,year,month,day]
+   is derived from four main functions
+   ##### 'writePatternfile' 
+   via 'Patternfile.hs' read a csv file from disc and exporting it as aPatternfile.txt
+   e.g type: 'writePatternfile x nF'
+   ###### x="fileTorRead.csv" ; nF = "fileToWrite.txt"
+       in writePatternfile x nF => format [val,year,month,day]
        
-   -b. aMemory  writes screen1.txt statistical data about the data set
+  #### aMemory  
+  writes screen1.txt statistical data about the data set
           autoInputII:String; e.g "1" if ==1 -> hide output ?!
         => opens menu: Options : POINTCLOUD 1..4,6: Pointcloud
                              CLOSE 5
@@ -20,7 +24,9 @@ i. will open a simpe Graphical User Interface (GUI) in the GLasgow Haskell Compl
                  content: if 1 or 2 or 3 or 4 or 6 == True -> do P.aMemoryRAW autoInputII file22writ file33writ
                  with: autoInputII = "1"; file22writ; file33writ;
                           else do P.aMemoryRAW "2" file22writ file33writ
-                             
+                          
+        => writes: "screenI.txt" --a crude statistical overview of the set 
+  ### aOsZilloskop1 writes exportDatat1,exportData2,HTML                          
 ii. Will run all functions as i. but avoiding the GUI...(realisation under construction 23-09-19)
     of 4 main functions some can be completly controlled just via Global-Variables*.
     which are ...aMemoryRAW  !! so far 
@@ -47,7 +53,7 @@ Turns it into a String will plot some statistic about the given DATA Set.
 Write a WX.Maxima file
 
 make a List of the Functions that shall be plotted in WX-Maxima
-e.g: let thisList x = [x,x+x,x^2]
+e.g: let thisList x = [x,x+x,x^2]#
      ->               [1,2,3]
  
  aCompleteWX writes the WX-Maximafile
