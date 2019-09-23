@@ -1,7 +1,7 @@
 # csvToWx
-Setup: Three modi 1. A GHC GUI
-                  2. Automatic (the same as above avoiding GUI's)
-                  3. Easy Acces (quickly read a csv file and process...)
+Setup: Three modi -1. A GHC GUI
+                  -2. Automatic (the same as above avoiding GUI's)
+                  -3. Easy Acces (quickly read a csv file and process...)
 
 ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual1.png)
 
