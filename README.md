@@ -27,5 +27,6 @@ e.g: let thisList x = [x,x+x,x^2]
 #### Step 1: Read csv, write patternfile.txt;
 ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual2.png)
 
+![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual3.png)
 
 
