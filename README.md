@@ -27,10 +27,11 @@ i. will open a simpe Graphical User Interface (GUI) in the GLasgow Haskell Compl
                           
         => writes: "screenI.txt" --a crude statistical overview of the set 
   #### 3.'aOsZilloskop1RAW'
-  writes exportDatat1,exportData2,HTML
+        => writes: exportDatat1,exportData2,HTML
+  
   #### 4.'aCrunchlist1RAW'
   writes senio, writes Html, using global variables   
-        => writes 'TESTGuiVal.hta' 
+       => writes: TESTGuiVal.hta 
   
 ii. Will run all functions as i. but avoiding the GUI...(realisation under construction 23-09-19)
     of 4 main functions some can be completly controlled just via Global-Variables*.
