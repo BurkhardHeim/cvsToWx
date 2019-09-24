@@ -210,8 +210,6 @@ aMemoryRAW output xRaw nF  = do
  
           let spuren = (einTyp2 (getRid (val))) 
           let dataTyp = (show spuren) --)++"\n"-- (show apunkt)++ "(Just "++(show tag)++ (show monat) ++ ")\n"
-
-
           let procIntern = head spuren 
           return (dataTyp) ) --a also nur zahlen
      let collOut1 = foOutputBat output (unlines[" the data (without empty spaces) : "])
@@ -343,21 +341,10 @@ aMemoryRAW output xRaw nF  = do
           
           let auswahl      = let an = drop (a-1) (take a (wos))
                              in   ( an)
- 
-       --   let bosi = let a = map ord ((show auswahl))
-         --            in let b = break (==44) a 
-           --          in map chr (fst b )
-
-
           let rosi =  ( take 1 (map length (concat auswahl)))
-
-         -- putStrLn (show bosi)
-         -- putStrLn (show rosi) 
-
 
           let dataTyp3 =  (auswahl)
           return (dataTyp3) ) 
-         -- return (spuren) ) 
     
      let zui = map length (group (concat (sort (concat dipfade4))))
      let zui11 = (map head (concat dipfade4))
@@ -387,13 +374,11 @@ aMemoryRAW output xRaw nF  = do
                                       in [c,lister2,c] 
 
                        in extra
-
   
      let normWahrsch1 = let dieZeut = sum zui1
                         in let dieAkteure = zui
                         in let rechner = let a z t = z/t
                                          in a 1 2
-
                         in [[dieZeut], zui]
 
      let form t c z = (100/(t+(2*c)))* z   
@@ -457,8 +442,6 @@ aMemoryRAW output xRaw nF  = do
 --determines the length of list of  which the random generator is fed
           let makene = (length dipfade2)
           let einsatz =  mitZufall  makene (read rnd) (signatur) 
-
-            
           let dataTyp = (show einsatz)
 
  --greatSpectrum with formula : form2
@@ -498,7 +481,6 @@ aMemoryRAW output xRaw nF  = do
      let gorch =  similaritYvalue fogorch [11,12,34,44]
   
      let gorchH = zui 
-
 
 ------------------------------------------------------------------------------------
 -- BSP fuer String Spektrum umwandlung string -> Int 
@@ -542,23 +524,11 @@ aMemoryRAW output xRaw nF  = do
                                   else let zuuu = b33 --a2a--(a4/10)
                                        in (take 1 b22)  --zuuu --a2aa
                                   
-                --   in let picker = let a111 = drop (3) (take 4 foPick)
-                  --                 in let b = if (a111 == [True]) then [b33]
-                    --                          else  [b3] --(take 1 a1)
-                      --             in b 
-                                            
-                  -- in let bchoose = if x == 1 then 
                    in a5 -- (take 7 a2) --picker --(a2,b11,b22,b3,picker)
 
 ----------------------------------------------------------------------------
---  ALTERNATIVER Approach Formulas: prego,
+--  ALTERNATIVE Approach Formulas: prego,
 -- th attempt is to change form random gen in simulateed values 
---
--- ALTERNATIVER ANSATZ ZU PREGO s.o.
--- Function um Formel1Wahrscheinlichkeitsliste zu
--- vervielfaeltigen um Genauigkeit zu erhoehen
--- z.B. prego: ["65.3454...3","24,6775..4"]
--- IO: Line 3566
      let chgeWahr2Prego   = let --a1 d = prego d                              
                               --  recurse2Str x y = (\x y -> [x,y])x y
                               --  recurse1Str x = (\x -> [x]) x
@@ -617,9 +587,8 @@ aMemoryRAW output xRaw nF  = do
                                  in let bnf = filter (<91) bns
                                  in  ( map chr bnf) -- map digitToInt ( map chr bnf)
                              --  in map 
-                             --
-                  --WWWWWWWWWWWWWIIIIICCCHHHTIIIIIIIIGGGGG   
-                   in let b22 = let am = map digitToInt b11 -- schafft Int fuer prozess
+                  ------------------------------------------------------------------  ****************** art of Main aMemory Pipe   
+                   in let b22 = let am = map digitToInt b11 -- get Ints for process
                                 in let am2 =  am --prozentrechnung
                                 in  am2
                    
@@ -653,48 +622,17 @@ aMemoryRAW output xRaw nF  = do
                      in let gthe2  = length (fst gthe)
                      in let gthe3 = art3 gthe2
                      in ((art n , gthe), (gthe2, gthe3))
-{-             
-                     in if ((art n) >= (art2 n) && (art n) <= (art (n+1))) then (art3 (2))
-                        vorkommnis 
-                        else if ((art n) >= (art2 n) && (art n) <= (art2 (n+2)))  then (art3 (3))
-                        else if ((art n) <= (art2 n) && (art n) <= (art (n+1))) then (art3 (1)) 
-                        else (art3 3)
- -}
+
      let goghijst = let wer k = (snd(snd (ghijst k)))
                     in (map wer bobbo)
      --let gerri =  (map ghijst bobbo)
      let addIA d gz = let theOther = d : (fert gz)
                       in theOther
-
---How to make an Interval
--- Der erste durchschnittliche Wert vor einem Hochpunkt 
---  "   "         "              " nach   "     "      
---  Wir brauchen einen Gruppen-Paarungs Durchschnitt
---  d.h. jedes Jahr hat einen individuellen zeitliche Gruppen
---  vorkommensliste die Anhand von Zeitintervallpunkten
---                 ___
---      /\     ___/   \
---     /  \___/        \___/
---     _____________________________
---      | |   |   |   ||   |  time-interval-points
---
---      die ueber n Jahre miteinander verglichen werden
---      daraus ergibt sich zu welcher zeit bestimmte Punkte
---      in einer wahrscheinlichkeit vorkommen koennten
--- wir brauchen einen mehrjaehrigen Ueberblick. D.H die einzugebende Liste muss 
--- am besten so viele jahre wie moeglich beinhalten. Diese werden statistisch
--- mit den zeitintervallpunkten  berechnet. 
-    -- let yearAnlys = let zu3 = concat goghijst
-      --                 in let zu32 = length zu3
-        --               in let zu33 = take 20 zu3
-          --             in let zu34 = zu3 \\ zu33 
-            --           in  (reverse (sort zu33))
-  -- 
      -- putStrLn (show normWahrsch)
     -- putStrLn (show normWahrsch1)
-     let collOut6 = foOutputBat output (unlines [((show zui)++ "  Ist das Vorkommen der Zahlen im Spektrum von min nach Max\n\n")++
-                              ((show zuu2)++"  Die Zahlen die Vorkmmen in Verbindung mit s.o.\n\n")++ 
-                              (( formelNormWahr (read hans))++"% Es gibt auch eine Chance auf nicht verwirklichte Werte\n\n")++
+     let collOut6 = foOutputBat output (unlines [((show zui)++ "  occurance of val-GROUPS sorted Min to Max\n\n")++
+                              ((show zuu2)++" Apearing number in relation to see above (s.a)\n\n")++ 
+                              (( formelNormWahr (read hans))++"% Of non realized vals of a set \n\n")++
                               (show ( gogos)++"% Dies ist die Liste mit Formel 1 wahrscheinlichkeiten ; function: gogos\n\n")++
     -- putStrLn (show ( heet)++"% gesamt  wahrscheinlichkeiten ")
    --  putStrLn (show ( zurWahr gogos )++"zurwahrliste schafft PICKER fuer % ; function: zurWahr gogos ")
