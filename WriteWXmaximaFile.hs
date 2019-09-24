@@ -12,7 +12,6 @@ module WriteWXmaximaFile
     , pointCloudEasy
     , aCloudPoint
     , writeWXCloud
-    , testo
     , writeMQ6ScreenI
     , writeMQ6ScreenII
      ) where

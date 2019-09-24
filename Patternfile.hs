@@ -1001,7 +1001,7 @@ einTyp3 f g = [(plugit2 f g)]
 
 --------------------------------------------------------------
 --------------------------------------------------------------
---Colored Circles/FARBGEBER KUGELN
+--Colored Circles/Colored Spheres
 --------------------------------------------------------------
 
 bougaer x= let gaga =(read x)
@@ -1012,14 +1012,7 @@ bougaer x= let gaga =(read x)
            in let step2 = if (boui) == 1 then show "green"
                           else if (boui) == 2 then show "red"
                           else  "blue" --if (boui) == 3 then show "blue"
-                         -- else if (boui) == 4 then show"green"
-                       --   else if (boui) == 5 then show "red"
-                         -- else show "green"
---in let step3 = if step2 == 1 then  show "green"
-  --                        else if step2 == 2 then show "red"
-                  --        else show "blue" 
            in step2
-
 
 bougaer2 x= let gaga =(read x)
            --in let step1 = counterDreierKugel x
@@ -1039,8 +1032,6 @@ bougaer2 x= let gaga =(read x)
 --  is inserted into color giver 'baugaer'
 --  y = choose mode 2,3,5
 --  x = input
-arc t f = (t/f)
-
 datenTypZahlen y x =( take y (concatMap (replicate x) [1..y]))
 
 
@@ -1065,9 +1056,6 @@ plugit2 input chosemodus =   let a x = map bougaer2 (map show x)
                              in last bbeide
 --------------------------------------------------------------
 
-
-
-
 --------------------------------------------------------------
 --------------------------------------------------------------
 --------------------------------------------------------------
@@ -1082,11 +1070,6 @@ stelle3er f = let a = concat (take f (repeat [1,2,3]))
               in let listel  = last (take f a)
               in listel 
 
-----------------------------------------------------
-----------------------------------------------------
-
-
-
 stelle5er f = let a = concat (take f (repeat [1,2,3,4,5])) 
               in let listel  = last (take f a)
               in listel 
@@ -1094,13 +1077,11 @@ stelle5er f = let a = concat (take f (repeat [1,2,3,4,5]))
 
 ----------------------------------------------------------------------------------
 -- this function rates the similarity of two
--- Lists vergleicht Aehnlichkeit und gibt 
--- die Prozentzahl der einer stelle 
--- der beiden listen aus
---
+-- Lists compares it print the percentage of the first digit
+-- of 1.11 -> fst.sndthrd -> fst --
 foaehnli1 a b = (a-b)
 foaehnli2 a b = (b-a)
---umrechnen in % mit a < b und b > a  
+-- calculate in % with a < b and b > a  
 aehnlichF a b = let a1 = if a > b then ((foaehnli1 a b)/ (a/100) )
                          else if a<b then  ((foaehnli2 a b)/ (b/100) )
                          else 0
@@ -1201,10 +1182,12 @@ zweierDiagram  = let twos = Punkt "Gorden" Nothing Nothing Nothing Nothing Nothi
                    -- enter List with your own functions
 ----------------                   
 --  yourfunctions:String "Int" ->"1"   ;set enter Global Oszil
-aOsZilloskop1 x nF crit rnd = do
+--  output:String e.g:"1" = show gui
+--  set to global vars
+aOsZilloskop1 output x nF crit rnd = do
                checks <- readFile x
                let slong = show(length (lines checks)) 
-               aOsZilloskop1RAW "1" x nF crit rnd slong "1" "1" 1 1
+               aOsZilloskop1RAW output x nF crit rnd slong "1" "1" 1 1
 ----------------
 --  yourfunctions:String "Int" ->"2"   ;set enter your functions
 aOsZilloskop1KEY output = do
@@ -1226,8 +1209,12 @@ aOsZilloskop1KEY output = do
                aOsZilloskop1RAW output theIn fOnF foCrit foRnD foslong "1" "2" (thisfu 1) (thisfu 2)--       ;set enter your functions
 
 ------------------
+--CALLED VIA 'fomain' in Main.hs -----------------------------****************************************** used in 'Main.hs' fomain **** MAIN
+--                                                                                    OSZILLOSKOP WITH GLOBAL VARIABLES 
 -- connect prior written senio7.txt 
 --  yourfunctions:String "Int" ->"1"   ;set enter Global Oszil
+--  z:String ; any number for the random generator
+--  inOut:String ; e.g: "1" ; if =="1" then 
 aOsZilBat z = do
           checks <- readFile "senio1.txt"
           let seeCrit = head (words checks)                                                                     
@@ -1456,46 +1443,40 @@ aOsZilloskop1RAW output x nF crit rnd xXRaw fohans yourFunctions fu1 fu2 = do
 -- vs ::
 -- in order to select values(numbers) that are in 'normWahrsch' interval 
 -- but did not occure in the given set,the missing values
--- laesst Raum fuer offene Proznte, d,h, die liste der 
--- Normwahrscheinlichkeit wird immer unter 100% bleiben 
--- problem kleine Wahrscheinlichkeiten unter 1% werden 
--- nichtmehr erfasst; 
--- -> begrenzt den Zufalls generator , schraenkt die bandbreite
--- d.h das Spektrum der simulierten vals ein 
--- eine loesung: der io string wird  multipliziert
+-- leaves space for unused percentages or occurance, in other words the list of
+-- Normwahrscheinlichkeit will always stay below a 100%,  just using function addIA
+-- will let us interfere. 
+-- In prior issues there was a problem with percentages below 1%  
+-- -> will set a limit to the propability list , that will narrow the bandwidth
  --             t:  laenge Set; c : die Nuller setS doppelte laenge des Spektrums 
  --             z:
      let form t c z = (100/(t+(2*c)))* z
 
--- Formel fuer NORMALE Wahrscheinlichkeit
--- wird getested um Verhalten im Memory2 in hinblick auf 
--- bessere simulierte vals
--- -> gibt volles Spektrum der simul val an volle Bandbreite
+-- Formelu for (REGULAR Propability) NORMALE Wahrscheinlichkeit
+-- tested to see change in bandwidth ( variance in the y-axis   im 'Memory2' with regard 
+-- to more accurate simulated vals
+-- -> full spectrum the full bandwidtth
 
      let form2 t c z = 100/(t* (c/c)*(1/z))
--- t :laengeset; c: 1 wird nur eingesetz um form s.o zu ersetzen
---           z: vorkommen des Wertes   
+-- t :lengthset; c: 1 just substitute for above is 1 
+--           z: occurance of the value   
      let formN t c z = 100/(t* (c/c)*(1/z))
 
--- momentan form2 : grossesSPektrum   
+-- SET THE BANDWIDTH ***************************************************************************************** SET to form2 : GRAND SPectrum   
      let formelNormWahr dr = let a1 = let mitSpielraum = (length lister2)
                                       in let dieZeut =  ( sum zui)
                                       in show dieZeut 
                              in let a2 = show (length lister2)
                              in let b1 i ii iii = show (form2 i ii iii)
-                        --  in let b2 = b1 (a1 a2 (head a3)) 
-                          
                              in b1 (read a1) (read a2) dr --[[a1],[a2],a3] 
-   
-
      -- related to ? , does not play mayor role
      let hans = fohans -- hans <- getLine-----------------------------******************* VARIABLE HANS
  
 -------------------------------------------------------------- 
--- LINK ZWISCHEN Input UND SIMULIERTEN VALS
-   -- formel entscheidet WELCHE Lister weite prozessiert wird
-   -- monetan: zui
-    -- mappt die Vorkommens liste im Spektrum mit Prozentformel
+-- LINK BETWEEN Input AND SIMULATED VALS --*********************!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!********MAIN OSZILLOSKOP SIMU PIPE
+   -- formela decides WHICH list will be further processed 
+   -- monentarilly: zui
+    -- mappt the occurance list in the spectrum with % 
      let gogos = let a =  map show zui 
                  in let b =  map formelNormWahr (map read a)
                  in  b 
@@ -1561,32 +1542,10 @@ aOsZilloskop1RAW output x nF crit rnd xXRaw fohans yourFunctions fu1 fu2 = do
 
                                       in let bnf = filter (<91) bns
                                       in map chr bnf
-                       -- in if  b11<=c1 then b1
-                         --  else (b11)  -- ansatz zum berechnen von TAKER fuer % auswahlfu
+                      -- ansatz zum berechnen von TAKER fuer % auswahlfu
                         in (b11)
 
           let chooser2 = let nutzeAlle = filter (/= a) [1..makene]  -- zeige alle Randoms die chooser nicht brauchte
-                        --  in let meinA z =  head (drop (z-1) (take z nutzeAlle)) -- mein neues a 
-                       --   in let a1 z ert= drop (a-1)(take (z) ert) -- z=Int gibt (makene-1) viele Randoms von einer Val Zeile
-                      --    in let takeNeu z = a1 z bert -- zum mappen
-                      --    in let ungenutzte = map takeNeu [1..(makene -1)]  -- liste mit allen bisher ungenutzten
-                       --   in let exportTake = drop (a-1) (take a ungenutzte) --  nimm eins davon 
-                         -- in let b1 = ( (exportTake)) 
-                       --   in let hohlRando r = (a1 r einsatz) -- get Randomfunction
-                        --  in let meinReturn r = (map meinA (hohlRando r))
-                        --  in let endlich n = a1 n (meinReturn n)
-                        --  in let mehr = map endlich (nutzeAlle) 
-                        --  in let hohlVal v = (a1 v bert)
- 
-                    --    in let c1 z =   (a1 z bert)
-                       --   in let b11 v =  let ans v =  (map ord (hohlVal v))
-                         --             -- filtert "
-                           --             in let bns v = filter (>35) $ ans v
-  
-                             --           in let bnf v = filter (<91) (bns v)
-                               --         in map chr (bnf v)
-                         -- in if  b11<=c1 then b1
-                           --  else (b11)  -- ansatz zum berechnen von TAKER fuer % auswahlfu 
                          in (nutzeAlle ) --mehr) --(nutzeAlle) --(hohlRando 1) ---b11 a)-- (meinA 2) --ungenutzte -- nutzeAlle --(meinA (4)) --nutzeAlle --( ungenutzte)
 
           return (chooser) ) --a also nur zahlen
@@ -1760,42 +1719,50 @@ aOsZilloskop1RAW output x nF crit rnd xXRaw fohans yourFunctions fu1 fu2 = do
      let addIA d gz = let theOther = d : (fert gz)
                       in theOther
 
+     foOutput output (( avanti [(show (lister2)++" the 'spectrum' including max und min in 0.1 steps\n\n")++
+                             ((show dipfade4)++ "    Data of computation (run) 'dipfade4' needed for propability calculation\n\n")++
+                             --((show zui1)++ "  the occouring groups of numbers ordered in TIME\n\n ")++
+                             ((show zui11)++"  The values of the groups of numbers (see above)\n\n")++ 
+                             ((show zui)++ "  The ocourance of values in spectrum min to Max\n\n")++
+                             ((show zuu2)++"  Occuring values connected with th line above(s.a)\n\n")++ 
+                             ((show zuu3)++"  Not occuring values of the Set  x 100\n"   ) ]  ))
+
     -- putStrLn (show normWahrsch)
     -- putStrLn (show normWahrsch1)
-     foOutput output (avanti [(( formelNormWahr (read hans))++"% Es gibt auch eine Chance auf nicht verwirklichte Werte\n")++
-                              (show ( gogos)++"% Dies ist die Liste mit Formel 1 wahrscheinlichkeiten ; function: gogos")++
+     foOutput output (avanti [(( formelNormWahr (read hans))++"% the chance of non-realized values\n")++
+                              (show ( gogos)++"% The list with the formula-1 propabilities ; function: gogos\n")++
     -- putStrLn (show ( heet)++"% gesamt  wahrscheinlichkeiten ")++
-                              (show ( zurWahr gogos )++"zurwahrliste schafft PICKER fuer % ; function: zurWahr gogos ")++
+                              (show ( zurWahr gogos )++"zurwahrliste schafft PICKER fuer % ; function: zurWahr gogos\n")++
     -- putStrLn (show (gorch )++"Ahenlichkeit wahrscheinlichkeit ")++
      --putStrLn (show (gorchH )++" ")
-                              (show ( humfrey )++"BSp bereinigtes Format string aus monade; function: humfrey ")++
-                              (show (prego  1)++ " BSP Prozentrechener als Int leider nur fuer ganze zahlen; function: prego 1 " )++
-                              (show (fert prego  )++ " Die Additive Liste zum Abzaehlen und einfuegen von Wahrscheinlichkeitsaenderung\n"++ "; function: fert prego"  )++
-    -- putStrLn (show (bro 1 ) ++ " vergleich von Zaehler und Zufallsgenerator")
-    -- putStrLn (show (preAI 2 2 ) ++ " vergleich fuer Zufallsgenerator einzelne zahl")
-    -- putStrLn (show (eindelijkGo ) ++ " vergleich fuer Zufallsgenerator liste gogos")
-                              (show (addIA 1729 prego ) ++ " fuegt prozent der additiven liste zu; function: addIA 1729 prego")++
-                              (show (ghijst 1 ) ++ " test fuer map additive Liste mit zufall ")])
+                              (show ( humfrey )++"example cleaned format string of monade; function: humfrey\n")++
+                              (show (prego  1)++ "exp Percentage-Calculator as an Int alaas only for the 'whole' numbers N; function: prego 1\n" )++
+                              (show (fert prego  )++ " The Additive List count and paste changes of propability\n"++ "; function: fert prego\n"  )++
+    -- putStrLn (show (bro 1 ) ++ " compare Counter and Random generator")
+    -- putStrLn (show (preAI 2 2 ) ++ " compare random generator with single val")
+    -- putStrLn (show (eindelijkGo ) ++ " compare for random generator list gogos")
+                              (show (addIA 1729 prego ) ++ "TEST ADDS percentage to list with NO-remorse for additiven list; function: addIA 1729 prego\n")++
+                              (show (ghijst 1 ) ++ " test map additive Liste propability\n")])
     -- putStrLn (show (goghijst  ) ++ " s.o. Liste " )
-    -----------------------------------------------------------------------------------------------------------------------------------------------SCHNITTSTELLE: WX AND MQ 3  6
-       ----------------------------------------------------------------------------------------------------------------------------------------
-    ----------------------------------------------------------------------------------------------------------------------------------------------
-    ----------------------------------------------------------------------------------------------------------------------------------------------------MQ_Section 
-    
-     let mixWithMQ3 --x nF crit --openB file to open ; -openA file to write ; forD criterium
-                                               ------------------------------------------------------------------------------------OSZILLOSKOP SHOS INPUT AND RANDOM
-                                              =  let ay1= aOsZilloskop1 x nF criterium (read rnd) -- nF crit
+    --------------------------------------------------------------------------------------------------------------------------------------VIRTUALINTERFACE:
+    ---------------------------------------------------------------------------------------------------------------------------------SCHNITTSTELLE: WX AND MQ 3  6
+    ----------------------------------------------------------------------------------------------------------------------------------------------------MQ Section 
+                         
+                     ------------------------------------------------------------------------------------OSZILLOSKOP SHOS INPUT AND RANDOM
+                     -- x nF crit openB file to open ; -openA file to write ; forD criterium
+
+     let mixWithMQ3                         =    let ay1= aOsZilloskop1 output x nF criterium (read rnd) -- nF crit
                                                  in let ay2 p = fourier1 p + fourier2 p + fourier3 p
-                                                 in let ay3 =  (6.28319901) -- NullStelle Des Intervals
+                                                 in let ay3 =  (6.28319901) -- zero points of NullStelle  Interval
                                                  in let ay4 = (ay3/ (read xX)) -- takes forC howmany lines  
-                                            	     in let soMany2take fak = ay4 * fak -- determines which value of fourier123 2 select
+                                            	 in let soMany2take fak = ay4 * fak -- determines which value of fourier123 2 select
                                                  in let forThis fak = fourier123 (soMany2take fak)
                                                  in let fofoThis = map forThis [1..(read xX)]
                                                  in fofoThis --intoConsider
 
      let mixWithMQ4 --x nF crit --openB file to open ; -openA file to write ; forD criterium
-                                               ------------------------------------------------------------------------------------OSZILLOSKOP SHOS INPUT AND RANDOM
-                                              =  let ay1= aOsZilloskop1 x nF criterium (read rnd) -- nF crit
+                                               ------------------------------------------------------------------------------------OSZILLOSKOP SHOWS INPUT AND RANDOM
+                                              =  let ay1= aOsZilloskop1 output x nF criterium (read rnd) -- nF crit
                                                  in let ay2 p = fourier1MQ4 p + fourier2MQ4 p + fourier3MQ4 p + fourier4MQ4 p 
                                                  in let ay3 =  (6.28319901) -- NullStelle Des Intervals
                                                  in let ay4 = (ay3/ (read xX)) -- takes forC howmany lines  
@@ -1804,10 +1771,9 @@ aOsZilloskop1RAW output x nF crit rnd xXRaw fohans yourFunctions fu1 fu2 = do
                                                  in let fofoThis = map forThis [1..(read xX)]
                                                  in fofoThis --intoConsider
 
-
      let mixWithMQ5 --x nF crit --openB file to open ; -openA file to write ; forD criterium
                                                ------------------------------------------------------------------------------------OSZILLOSKOP SHOS INPUT AND RANDOM
-                                              =  let ay1= aOsZilloskop1 x nF criterium (read rnd) -- nF crit
+                                              =  let ay1= aOsZilloskop1 output x nF criterium (read rnd) -- nF crit
                                                  in let ay2 p = fourier1MQ5 p + fourier2MQ5 p + fourier3MQ5 p + fourier4MQ5 p + fourier5MQ5 p
                                                  in let ay3 =  (2.35011) -- NullStelle Des Intervals
                                                  in let ay4 = (ay3/ (read xX)) -- takes forC howmany lines  
@@ -1818,7 +1784,7 @@ aOsZilloskop1RAW output x nF crit rnd xXRaw fohans yourFunctions fu1 fu2 = do
 
      let mixWithMQ6 --x nF crit --openB file to open ; -openA file to write ; forD criterium
                                                ------------------------------------------------------------------------------------OSZILLOSKOP SHOS INPUT AND RANDOM
-                                              =  let ay1= aOsZilloskop1 x nF criterium (read rnd) -- nF crit
+                                              =  let ay1= aOsZilloskop1 output x nF criterium (read rnd) -- nF crit
                                                  in let ay2 p = fourier1MQ6 p + fourier2MQ6 p + fourier3MQ6 p + fourier4MQ6 p + fourier5MQ6 p + fourier6MQ6 p 
                                                  in let ay3 =  (6.28319901) -- NullStelle Des Intervals
                                                  in let ay4 = (ay3/ (read xX)) -- takes forC howmany lines  
@@ -1832,9 +1798,6 @@ aOsZilloskop1RAW output x nF crit rnd xXRaw fohans yourFunctions fu1 fu2 = do
        --                                       =  let aFunkt fu x = (fu(x))                                                
          --                                        in let fofoThis fu = map (aFunkt fu) [1..(read "50")]
            --                                      in fofoThis fu --intoConsider
-                      
-
-
 
      foOutput output (putStrLn$ ("updated 22 .09 .19"++ (show mixWithMQ3)))
      let intoConsider =   let inpU1 = (show mixWithMQ3)
@@ -1861,20 +1824,20 @@ aOsZilloskop1RAW output x nF crit rnd xXRaw fohans yourFunctions fu1 fu2 = do
   ------------------------------------------------------------------------------------------------------------------
   -- The Connection  between goghijst and WxMAxime via intoConsider
      --Enter Spuren
-     foOutput output (putStrLn$ ("Enter Wieviele Spurensollen angezeigt werden?"))
+     foOutput output (putStrLn$ ("Enter How many TRACK to plot?"))
 -- Output for #Maxima
 -- function changes simulated numbers !!!!
 -- of goghijst to string in pair form for maxima 
 --
-     let outPutMaxima1 = let a =  (concat goghijst) -- quelle simulierte vals
-                             b = (map show bobbo) -- laenge val liste 
+     let outPutMaxima1 = let a =  (concat goghijst) -- source simulated vals
+                             b = (map show bobbo) -- length val liste 
                              c = concat (concat dipfade4)
                              kerry x y = zipWith (\x y -> [x,y]) x y -- a-- (zip a b)
                              fofiltern x y= show (kerry x y)
                              filtern  x y = let tussenstap  = map ord (fofiltern x y)
                                                 tss2 = filter (/=34) tussenstap
                                             in map chr (tss2)
-                         -- ( simuliiert , Quelle)
+                         -- ( simuliiert , source)
                           in  (filtern b a)
 
      let outPutMaxima2 = let a =  (concat goghijst) -- quelle simulierte vals
@@ -1983,10 +1946,7 @@ aOsZilloskop1RAW output x nF crit rnd xXRaw fohans yourFunctions fu1 fu2 = do
                               ("end")] ) --(show (fst outPutMaxima ) ++ "simulated InputVal ")
     -- putStrLn (show (snd outPutMaxima  ) ++ " Real InputVal wrote file : fomaximA.txt ")
 
------------grosse Klammer ende
 --------------------------------------------------------------------------
---
---
 ---------------------------------------------------------------------------------------------------------------------------
 --- YEMODA LINK !!!!!!!!!!!!!!!!!!!!!!!!!
 -- linke for exporting simu val into patternfile from YeMoDa
@@ -1996,11 +1956,10 @@ aOsZilloskop1RAW output x nF crit rnd xXRaw fohans yourFunctions fu1 fu2 = do
      let eYeMoDa2 s ghijsta = yeMoDa s bobbo anyWalk ghijsta nF 
 
 
-     -- funktion verbindet : die monaliche Preisentwicklung: 
+-- function connects : the monthly price index: 
 -- snbs "2" monat 
 -- triggerHappy moant  , mappt moonat moant n many years 
 -- with : real values Dipfade2 annd.. 
-   --  let makeWEAVEkaAnsatz1 =  
      let inputgui1 = "1"
   --   let statiswa1 = fostatiswa  --"3" -- course of action set to 'plot 2d , val files , patternfiles' see below
 ---------------------------------------------------------
@@ -2046,7 +2005,7 @@ aOsZilloskop1RAW output x nF crit rnd xXRaw fohans yourFunctions fu1 fu2 = do
 
                                    let writeOrAdd0 = if wriAdd0== "1" 
                                                      then do
-                                                     putStrLn " Wrote exportDATA.txt the simulated Vals preset to have a 10% Abweichung Vals:" 
+                                                     putStrLn " Wrote exportDATA.txt the simulated Vals preset to have a 10% variance in Vals:" 
                                                      putStrLn          "Three mQ functions and the the real vals "
                                                      (deCid "1") -- decide which and write em 
                                                    
@@ -2096,7 +2055,6 @@ aOsZilloskop1RAW output x nF crit rnd xXRaw fohans yourFunctions fu1 fu2 = do
                                                  putStrLn $ ("Enter month for snbs function!")
                                                  foSnbs <- getLine
 
- -- ------------------------------------occurrance7
                                                  let aWriterOne  = lines ( funcChooser )-- foSnbs  ------------------------------------------Snd Function List of MONATSAUSWAHL
                                                         where
                                                           selcts = selLECTOR;
@@ -2123,19 +2081,16 @@ aOsZilloskop1RAW output x nF crit rnd xXRaw fohans yourFunctions fu1 fu2 = do
                                                         --  a18a g = makeInfoPairs2  (read input91)(read input92) (foawe2Min g) (foawe2Max g)
                                                           funcChooser   = (selecFUNC3 selcts a3a a6a (a4a ) a5a (a7a  ) a8a (a9a ) (a10a)(a11a  ) a12a a13a a14a a15a a16a)
                                                  let writeOrAdd = if writeAdd=="1"
-                                                                                                                                    
                                                                   then do 
                                                                     (writeFile openA (concat( aWriterOne)))
                                                                   else do 
                                                                     let metA = let ab12 = aWriterOne
                                                                                in let ab23 = (show ab12)
                                                                                in ab23 
-
                                                                     add ([openA, (( metA))]) -- (writeFile openA (myAdder aWriterOne))
 -- add [(openA, aWriterOne)]
                                                  let writeAddIndi = if writeAdd=="1" then putStrLn$ ("WRITE MODE")--indicates if write or add mode
                                                                     else putStrLn$ ("ADD MODE")
-
                                                  let chart10Mo = if selLECTOR=="1"------------------- WRITE STATISCAL aNALYSIS NEW FILE OR ADD 
                                                                then do
                                                                   putStrLn$ ("Dies is die Lsite mit dn Formel 1 Wahrscheinlichkeiten :gogos "++ input92)
@@ -2325,8 +2280,8 @@ aOsZilloskop1RAW output x nF crit rnd xXRaw fohans yourFunctions fu1 fu2 = do
                                                 let fospur = ( lines ala)
                                                 let spurn = show (length fospur)     
 
-                                         -- foIn:Int (welche liste aus intoConsider) 
-                                         -- n: Int (waehle eine variable der liste ) 
+                                         -- foIn:Int (choose list of intoConsider) 
+                                         -- n: Int (choose a variable of the list ) 
                                                 let foConsider foInn n = let ste1 foInn = takenN foInn intoConsider 
                                                                  in let ste2 n = takenN n (map show (ste1 foInn))
                                                                 -- in ste2 
@@ -2401,9 +2356,6 @@ aOsZilloskop1RAW output x nF crit rnd xXRaw fohans yourFunctions fu1 fu2 = do
  
                                                 foOutput output writeOrAddd
                                                 foOutput output (putStrLn ( "Wrote :  \""++nF++"\"  AND  \"exportDATA.txt\""))
-                                           --   else do
-                                            --    let custom = (accesFuncWX  (read spurn) )
-                                              --  (avanti (lines custom))
  
                                                   
                                  --  let soViFunk =   [1..(read spurn)] 
@@ -2421,7 +2373,7 @@ aOsZilloskop1RAW output x nF crit rnd xXRaw fohans yourFunctions fu1 fu2 = do
                                    (statisticalWahrsch ) 
                   chartWa1
      let foBat = do   ----------------------------------------- +*****************************++ foBAT SORTED simulated vals 
-            let dr = do;sd <- readFile "exportDATA.txt"; avanti  (sort(words sd));writeFile "exportDATA2.txt" (unlines(sort(words sd)))
+            let dr = do;sd <- readFile "exportDATA.txt"; writeFile "exportDATA2.txt" (unlines(sort(words sd)))
             let und1 = putStrLn "wrote: writeDATA2.txt with SORTED Random vals that will be fed to senio3.txt"  
             let pt = do;writePatternFileRAW "exportDATA2.txt" "senio3.txt"  
             let und2 = putStrLn "wrote senio3.txt"
@@ -2777,11 +2729,9 @@ aCrunchList1RAW output x nF howMany crit= do
                                                              in  (concat (aw2  (take (length neZui) (concat (concat (aw1 p))))))++ abreak 
  
                                           in let farliste5  = map farliste4 [0..(maximum zui)] -- (maximum zui)]
-                                          in concat farliste5 -- show (map foOH [0..30])--(concat farliste5) -- (show (lineStep 2))++(show miMonivd) ++(show (foOH 1)++show (foOH 0)) -- (concat farliste5) -- concat (concat(concat farliste3 )) -- (concat(concat (farliste2 1))) --farliste4
-           --             let fohta2 g = if g<= g  then (mapZ g)
-             --                          else (mapZ g)
-                      --  let manyLines t g = take t (repeat (fohta2 g))
+                                          in concat farliste5 --                         theScreenI <- readFile "allTextFiles/TestGUIheaderScreen1.txt"
                         theScreenI <- readFile "allTextFiles/TestGUIheaderScreen1.txt"
+
                         tailer <- readFile (root++"allTextFiles/TestGUItail.txt")
   
                         let screen1 = (theScreenI)++(unlines (listCruncherRaw nF x xX max min crit zui wostehenMx ) )++(tailer)
@@ -2794,7 +2744,7 @@ aCrunchList1RAW output x nF howMany crit= do
      --     e2 = zui;
        --   f1 = wostehenMx
 
-                   --     writeFile (Us.evalToWrite (root++"TestGUIVal.hta")) ((screen1 ))
+                        writeFile (Us.evalToWrite (root++"TestGUIVal.hta")) ((screen1 ))
 
                         let hta2 = [(theScreenI++"ANALYSE PATTERFILE+++++ \n<br>"++((foexP "green" ))++(((fobreak)))++
                                     "\n"++(unlines (listCruncherRaw nF x xX max min crit zui wostehenMx ) )++buttonNew++buttonEdit++buttonWx++buttonMQ6++ tailer)] 

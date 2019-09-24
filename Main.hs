@@ -128,7 +128,7 @@ fomain autoInputI autoInputII foRnd goBack autoInputIII = do
   dit  -- write random.txt for main
   foautInp2 autoInputI "1" entersCSV "Enter csv file to read" -- set read one line
   foautInp2 autoInputI "1" file22writ "Enter file to write e.g senio.txt"
-  foOutputBat autoInputII (avanti (GUI.statisticalWarschtext0))
+  foOutputRAW autoInputII (avanti [""]) (avanti (GUI.statisticalWarschtext0)) -- show GUI or not <= autoInputII
   input <- getLine     
   let chart0 = if input == "1"
                then do
