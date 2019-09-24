@@ -64,6 +64,9 @@ the function plus variabes.
         => do Wx.WriteMQScreenI && Wx.WriteMQ6ScreenII
         => load: if  then 'WriteWXmaximafile.hs* -> do writeMQ6SCREENI
                  else 'WriteWXmaximafile.hs* -> do writeMQ6SCREENII
+  select a the Strings you would import into Wx-Maxima , now set to pointcloud
+  myriad other fillings are possible.
+  
   ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual3.png)      
   #### 3. 'aOsZilloskop1RAW'
   will prepare real vals and simu vals, apply a set of fourier6-set-functions* to
