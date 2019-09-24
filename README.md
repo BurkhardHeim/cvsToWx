@@ -60,8 +60,10 @@ the function plus variabes.
         => proceed: start a second Computation from the same source
         => reads: fileToread.txt (same as step above)
         => order: applies predefiend function to the value 
-        =>    
-          ###### [MQ3,MQ4,MQ5,MQ6] 
+        =>        [MQ3,MQ4,MQ5,MQ6] -- group of sin functions (periodic)
+        => do Wx.WriteMQScreenI && Wx.WriteMQ6ScreenII
+        => load: if  then 'WriteWXmaximafile.hs* -> do writeMQ6SCREENI
+                 else 'WriteWXmaximafile.hs* -> do writeMQ6SCREENII
   ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual3.png)      
   #### 3. 'aOsZilloskop1RAW'
   will prepare real vals and simu vals, apply a set of fourier6-set-functions* to
@@ -70,6 +72,7 @@ the function plus variabes.
         => writes: exportDatat1,exportData2,HTML
   
   #### 4.'aCrunchlist1RAW'
+  UNDERDEVELOPMENT
   most basic HTA/HTML plotter can be easily changed from hta to html by 
   just typing differet format afile.hta <=> afile.html, 
   u,
