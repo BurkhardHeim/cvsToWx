@@ -64,16 +64,23 @@ the function plus variabes.
         => do Wx.WriteMQScreenI && Wx.WriteMQ6ScreenII
         => load: if  then 'WriteWXmaximafile.hs* -> do writeMQ6SCREENI
                  else 'WriteWXmaximafile.hs* -> do writeMQ6SCREENII
-  select a the Strings you would import into Wx-Maxima , now set to pointcloud
-  myriad other fillings are possible.
+  select any String you to import as as line into Wx-Maxima, 'aMemory' will convert it
+  to WX.maxima format. Set to a random pointcloud while a myriad other settings are out there.
   
-  ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual3.png)      
+  ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual3.png)  
+  
+   => function: aMemoryRAW outputOrnot fileToread fileTowrite 
+                             String       String    String
+                => *Patternfile>aMemoryRAW "1" "seniot.txt" "seniot7.txt"             
+   
   #### 3. 'aOsZilloskop1RAW'
   will prepare real vals and simu vals, apply a set of fourier6-set-functions* to
   it. will exportDATA.txt in first run (simu vals for reimport)
   exportDATA2.txt cleaned just vals [String]
-        => writes: exportDatat1,exportData2,HTML
-  
+   => writes: exportDatat1,exportData2,HTML
+   => function: aOsZilosko1 outputOrnot fileToread   fileTowrite   howMAny   crit   foHans   fun1 fun2
+   => types:  String     String         String  String  String   Int  Int
+   => *Patternfile>aMemoryRAW "1" "seniot.txt" "seniot7.txt"
   #### 4.'aCrunchlist1RAW'
   UNDERDEVELOPMENT
   most basic HTA/HTML plotter can be easily changed from hta to html by 
