@@ -69,18 +69,19 @@ the function plus variabes.
   
   ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual3.png)  
   
-   => function: aMemoryRAW outputOrnot fileToread fileTowrite 
+        => function: aMemoryRAW outputOrnot fileToread fileTowrite 
                              String       String    String
-                => *Patternfile>aMemoryRAW "1" "seniot.txt" "seniot7.txt"             
+        => :*Patternfile>aMemoryRAW "1" "seniot.txt" "seniot7.txt"             
    
   #### 3. 'aOsZilloskop1RAW'
   will prepare real vals and simu vals, apply a set of fourier6-set-functions* to
   it. will exportDATA.txt in first run (simu vals for reimport)
   exportDATA2.txt cleaned just vals [String]
-   => writes: exportDatat1,exportData2,HTML
-   => function: aOsZilosko1 outputOrnot fileToread   fileTowrite   howMAny   crit   foHans   fun1 fun2
-   => types:  String     String         String  String  String   Int  Int
-   => *Patternfile>aMemoryRAW "1" "seniot.txt" "seniot7.txt"
+  
+    => writes: exportDatat1,exportData2,HTML
+    => function: aOsZilosko1 outputOrnot fileToread   fileTowrite   howMAny   crit   foHans   fun1 fun2
+    => types:  String     String         String  String  String   Int  Int
+    => *Patternfile>aMemoryRAW "1" "seniot.txt" "seniot7.txt"
   #### 4.'aCrunchlist1RAW'
   UNDERDEVELOPMENT
   most basic HTA/HTML plotter can be easily changed from hta to html by 
