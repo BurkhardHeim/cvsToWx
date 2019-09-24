@@ -56,9 +56,9 @@ bild1 = "c:/stack/forGlade/src/Many3.html" -- a storage file conected to 'Colore
 writeHTAorHTML = 1 -- if == 1 then write HTA
 fostartLine = "1" -- startline pattermfile-reader in 'aMemory'
 foendline = "3000"-- endline patternfile-reader in 'aMemory'
-rnd = "\"100\"" -- for random number generator
+rnd = "100" -- for random number generator
 fomuster = "1" -- set to val
-fohans = "77" -- Enter a value that does not occure and see its propability , set to fixed value  
+fohans = "7" -- Enter a value that does not occure and see its propability , set to fixed value  
 
 autoInp = "1"
 entersCSV = "durble.csv"
@@ -2437,14 +2437,10 @@ yeMoDa s bobo anyWa ghij nFF = do
 --------------------------------------------------------------------------------------------------------
 -- aCrunchList a Tool to find read-Strategies to find extrema of the data set-- generates : max, min 
 -- the 'CrunchList1' give a neat overview -> 
--- the function: ((show zui)++ "  Ist das Vorkommen der Zahlen im Spektrum von min nach Max")
---                ((show zuu2)++"  Die Zahlen die Vorkmmen in Verbindung mit s.o.") 
+--  status: which vals, howmany, where, in which order, gouped ? 
 --  gibt auskunft Welche Zahlen, Wieoft, Wo (in welcher Reihenfolge) stehen
---  so laesst sich eine Strategie festlegen um Sets , also Val listen
---  einzulesen  , schreibt keine Files und kann vollstaendig integriert werden              
-    
---howMany String , wieviele Zeilen einlesen
---
+--  get an overview to develop a strategy how to work through the sets the val lists
+--howMany String , lines to read
 exCrunch faden = aCrunchList1 "seto.txt" "aaKA/hubbort.txt" faden "0.56"
 exCrunchBat z = do
           checks <- readFile "senio.txt"
@@ -2460,8 +2456,8 @@ exCrunchBat z = do
                       inner z
                    else do 
                       inner z
-          la z    
-aCrunchList1KEY output = do
+          la z    --3000 
+aCrunchList1KEY t = do
                putStrLn "which file to read?"
                theIn <- getLine
                checks <- readFile theIn
@@ -2472,10 +2468,11 @@ aCrunchList1KEY output = do
                foCrit <- getLine
                putStrLn "how many lines to read"
                foslong <- getLine
-               aCrunchList1RAW output theIn fOnF foslong foCrit
+               aCrunchList1RAW theIn fOnF foslong foCrit
 
-aCrunchList1 x nF howMany crit = aCrunchList1RAW "1" x nF howMany crit            
-aCrunchList1RAW output x nF howMany crit= do
+aCrunchList1 x nF howMany crit = aCrunchList1RAW  x nF howMany crit            
+aCrunchList1RAW x nF howMany crit= do
+     let output = "1"
   --   putStrLn$ "Enter starting Line:"
      let anfang = ("1")
      let xX = howMany
@@ -2656,7 +2653,7 @@ aCrunchList1RAW output x nF howMany crit= do
           d1 = min;
           e1 = crit;
           e2 = zui;
-          f1 = wostehenMx
+          f1 = wostehenMx;
 
      let buildDisplay  t = do
                         header <- readFile (root++"allTextFiles/TestGUIheader.txt")
@@ -2730,7 +2727,7 @@ aCrunchList1RAW output x nF howMany crit= do
  
                                           in let farliste5  = map farliste4 [0..(maximum zui)] -- (maximum zui)]
                                           in concat farliste5 --                         theScreenI <- readFile "allTextFiles/TestGUIheaderScreen1.txt"
-                        theScreenI <- readFile "allTextFiles/TestGUIheaderScreen1.txt"
+                        theScreenI <- readFile (root++"allTextFiles/TestGUIheaderScreen1.txt")
 
                         tailer <- readFile (root++"allTextFiles/TestGUItail.txt")
   

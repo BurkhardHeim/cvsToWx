@@ -18,9 +18,8 @@ import qualified Data.Time as T
 --import WriteInput
 ---------------------------------------
 --Global Variables
-howMany = "100" -- lines to read
+howMany = "400" -- lines to read
 valL = "0.56"   -- searcj criteria must be in set ?!
-xX = "3" -- howMany lines to process
 
 -- read CSV from this global variable
 entersCSV = "durble.csv"
@@ -32,7 +31,7 @@ xRaw = "seniot.txt"
 nF = "seniot2.txt"
 crit = valL
 --rnd = "110"
-file22writ = root++"senio1.txt"
+file22writ = root++"seniot.txt"
 file33writ = root++"senio2.txt"
 
 arun = "1" 
@@ -128,7 +127,7 @@ fomain autoInputI autoInputII foRnd goBack autoInputIII = do
   dit  -- write random.txt for main
   foautInp2 autoInputI "1" entersCSV "Enter csv file to read" -- set read one line
   foautInp2 autoInputI "1" file22writ "Enter file to write e.g senio.txt"
-  foOutputRAW autoInputII (avanti [""]) (avanti (GUI.statisticalWarschtext0)) -- show GUI or not <= autoInputII
+  foOutputRAW autoInputI (avanti [""]) (avanti (GUI.statisticalWarschtext0)) -- show GUI or not <= autoInputII
   input <- getLine     
   let chart0 = if input == "1"
                then do
@@ -176,12 +175,12 @@ fomain autoInputI autoInputII foRnd goBack autoInputIII = do
                else if input=="4" && autoInputII=="1"  && autoInputIII=="2" --show-output ; global var
                then do
                  --   read write howmany crit
-                   P.aCrunchList1  file22writ file33writ howMany crit
+                   P.aCrunchList1RAW file22writ file33writ howMany crit
                    goBack 
                else if input=="4" && autoInputII=="2"  && autoInputIII=="2"  -- hide-output ; global var
                then do
                  --   read write howmany crit
-                   P.aCrunchList1  file22writ file33writ howMany crit
+                   P.aCrunchList1RAW  file22writ file33writ howMany crit
                    goBack 
                else if input=="4" && autoInputII=="1"  && autoInputIII=="1"  -- show-output ; keyboard-io
                then do
