@@ -1,19 +1,34 @@
 # csvToWx
+###### Content: 
+######      1.'writePatternfile_____2.'aMemoryRAW'________3.'aMemoryRAW'_______4.'aOsZilloskop1RAW'
+   ######      modes of Files: 1- WX 2- TXT
 Setup: Three modi  
 - 1. A GHC GUI
 - 2. Automatic (the same as above avoiding GUI's UNDERCONSTRUCTION )
 - 3. Easy Acces (quickly read a csv file and process...)
   ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual1.png)
-i. will open a simple Graphical User Interface (GUI) in the Glasgow Haskell Compiler (GHC)
+i. will open a simpel Graphical User Interface (GUI) in the Glasgow Haskell Compiler (GHC)
    the aim is to automate reading of csv data and of long number streams 
    converting them and changing them via predefined functions. The whole program
    is derived from four main functions.
+   
+ii. Will run all functions as i. but avoiding the GUI...(realisation under construction 23-09-19)
+    of 4 main functions some can be completly controlled just via Global-Variables*.
+    which are ...aMemoryRAW  !! so far
+    
+    The advantage of using Global Variables, the stream-crypt program can be fully automated which helps
+    overseing bigger longer files and keeping an eye on the real aim of the Wx-Maxima application.
+    
+    The disadvantage of using Global Variables is that we can lose track of which functions we just
+    applied to our data, getting no visiual feedback, both sides can be avoided be directly calling
+    the "PatternfileRAW' functions that need more variables but can be easily be called via your own batch/bat
+    files or any other program. 
+
   
 
 
   
-   ######      1.'writePatternfile_____2.'aMemoryRAW'________3.'aMemoryRAW'_______4.'aOsZilloskop1RAW'
-   ######      modes of Files: 1- WX 2- TXT
+   
    #### 1. 'writePatternfile' 
    via 'Patternfile.hs' read a csv file from disc and export it as aPatternfile.txt
    e.g enter: 'writePatternfile x nF'
@@ -51,17 +66,7 @@ i. will open a simple Graphical User Interface (GUI) in the Glasgow Haskell Comp
   writes senio, writes Html, using global variables   
        => writes: TESTGuiVal.hta 
   
-ii. Will run all functions as i. but avoiding the GUI...(realisation under construction 23-09-19)
-    of 4 main functions some can be completly controlled just via Global-Variables*.
-    which are ...aMemoryRAW  !! so far
-    
-    The advantage of using Global Variables, the stream-crypt program can be fully automated which helps
-    overseing bigger longer files and keeping an eye on the real aim of the Wx-Maxima application.
-    
-    The disadvantage of using Global Variables is that we can lose track of which functions we just
-    applied to our data, getting no visiual feedback, both sides can be avoided be directly calling
-    the "PatternfileRAW' functions that need more variables but can be easily be called via your own batch/bat
-    files or any other program. 
+
 
 
 Patternfile.hs
