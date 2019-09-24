@@ -3,13 +3,17 @@ Setup: Three modi
 - 1. A GHC GUI
 - 2. Automatic (the same as above avoiding GUI's UNDERCONSTRUCTION )
 - 3. Easy Acces (quickly read a csv file and process...)
-
+  ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual1.png)
 i. will open a simpe Graphical User Interface (GUI) in the GLasgow Haskell Complier (GHC)
    the aim is to automated reading of csv data and of long number streams 
    comverting them and changing them via predefined functions. The whole program
    is derived from four main functions
+  
+
+
+  
    ######      1.'writePatternfile_____2.'aMemoryRAW'________3.'aMemoryRAW'_______4.'aOsZilloskop1RAW'
-   
+   ######      modes of Files: 1- WX 2- TXT
    #### 1. 'writePatternfile' 
    via 'Patternfile.hs' read a csv file from disc and export it as aPatternfile.txt
    e.g enter: 'writePatternfile x nF'
@@ -52,7 +56,6 @@ ii. Will run all functions as i. but avoiding the GUI...(realisation under const
     files. 
     any other program 
 
-![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual1.png)
 
 Patternfile.hs
 'writePatternFile "fileToRead.csv" "fileToWrite.txt"'
