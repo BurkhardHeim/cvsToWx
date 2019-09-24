@@ -18,7 +18,8 @@ ii. Runs all functions as i. but avoiding the GUI...(realisation under construct
 
 iii. Quick and easy access to read csv -> write patternfile.txt
 
-i.
+- 1. A GHC GUI
+enter> main
   ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual1.png)
 
    
@@ -32,10 +33,6 @@ i.
     the "PatternfileRAW' functions that need more variables but can be easily be called via your own batch/bat
     files or any other program. 
 
-  
-
-
-  
    
    #### 1. 'writePatternfile' 
    via 'Patternfile.hs' read a csv file from disc and export it as aPatternfile.txt
