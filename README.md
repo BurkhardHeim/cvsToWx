@@ -57,6 +57,11 @@ the function plus variabes.
                           else do P.aMemoryRAW "2" file22writ file33writ
                           
         => writes: "screenI.txt" --a crude statistical overview of the set 
+        => proceed: start a second Computation from the same source
+        => reads: fileToread.txt (same as step above)
+        => order: applies predefiend function to the value 
+        =>    
+          ###### [MQ3,MQ4,MQ5,MQ6] 
   ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual3.png)      
   #### 3. 'aOsZilloskop1RAW'
   will prepare real vals and simu vals, apply a set of fourier6-set-functions* to
@@ -66,7 +71,10 @@ the function plus variabes.
   
   #### 4.'aCrunchlist1RAW'
   most basic HTA/HTML plotter can be easily changed from hta to html by 
-  just typing differet format afile.hta <=> afile.html
+  just typing differet format afile.hta <=> afile.html, 
+  u,
+  Hello Microsoft ;), the hta runs 
+  Haskell generated VB.script that cannot be displayed in (firefox,..)
   
   writes senio, writes Html, using global variables   
        => writes: TESTGuiVal.hta 
