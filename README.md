@@ -17,14 +17,11 @@ ii. Runs all functions as i. but avoiding the GUI...(realisation under construct
     which are ...aMemoryRAW  !! so far
 
 iii. Quick and easy access to read csv -> write patternfile.txt
-
+##### Main
 - 1. A GHC GUI
 enter> main
   ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual1.png)
-
-   
-
-    
+  
     The advantage of using Global Variables, the stream-crypt program can be fully automated which helps
     overseing bigger longer files and keeping an eye on the real aim of the Wx-Maxima application.
     
@@ -33,7 +30,10 @@ enter> main
     the "PatternfileRAW' functions that need more variables but can be easily be called via your own batch/bat
     files or any other program. 
 
-   
+##### Four functions to use   
+The whole stream-crypt revolves around four functions that do the 'dirty' work. 
+The easiest and almost laziest way is by utiliesing commandline and directly typ in
+the function plus variabes.
    #### 1. 'writePatternfile' 
    via 'Patternfile.hs' read a csv file from disc and export it as aPatternfile.txt
    e.g enter: 'writePatternfile x nF'
