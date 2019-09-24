@@ -114,7 +114,6 @@ evalToWrite astrinG = if tzBool>0 then prsRoot++(head tz3)++(show tzInt)++"."++(
             else 1 ;
 
 ---------------------------------------------------------------------
-
 ---------------------------------------
 -- Level 0                     | GUI-Mode vs RAW-Mode  |
 -- Level 1                     | print outpt yes or no | 
@@ -234,20 +233,6 @@ foautInp2 autoInput solong globalVar aTxT = do
                       putStrLn globalVar
                    return ())
            return()
-
------------------------------------------------------
-
-
-guiReturnfunction back1step backAllsteps u = 
-                     let ans x1 = if x1=="1" 
-                                  then do 
-                                    back1step
-                                  else
-                                    backAllsteps
-                     in do  -- with do ghi sees line1 ...guiReturn, line2 ..input1... 
-                        (P.foOutput u GUI.guiReturnFunctiontext)
-                        inputgui1 <- getLine
-                        ans inputgui1
 
 -----------------------------------------------------
 

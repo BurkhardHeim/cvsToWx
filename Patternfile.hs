@@ -846,15 +846,15 @@ cvsZeilenBrea4  s = let a = map ord (s)  --ord '-'=45
 
 
 
---schreibt neue Patternfile
+--writes new Patternfile
 --fills it with Data: val,year,month,day
---aus input CSV x 
+--from input CSV x 
 --x: CSV-RAW (string) ;
---nF: name der zu bearbeitenden File (string)
---started 2. Zeile siehe bobbo d.h. PAtternfile ohne 
---Ueberschrift
---Bobbo wird nur der Laenge nach bearbeitet
---startet [2.... endet 50]
+--nF: name file open file as string
+--starts 2. Line see bobbo, PAtternfile  
+--
+--Bobbo will be further processed
+--starts [2.... ends 50]
 writePatternFile nF = writePatternFileRAW entersCSV nF  -- 
 writePatternFileIOBat = do -- ******************************************************************************************************** A Full Bat pipe
          putStrLn "Enter cvs file"

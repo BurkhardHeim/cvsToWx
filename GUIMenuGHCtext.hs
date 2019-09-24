@@ -64,7 +64,7 @@ statisticalWarschtext0 =  [("      MAIN MENU +++++  Stream-Crypt 1.1. ++++++    
            " 1. read Csv ; 2./3. generates Wx-Maxima  \n"++
            "----------------------------\n"++ 
            "  Options:          1. WRITE PATERNFILE -- upload your own csv file must be \n"++
-           "                                --Date,-,-,-,Close,Volume-10-Apr-16,-,-,-,0.56,-10-Ar-16...\n"++
+           "                                --Date,-,-,-,Close,Volume-10-Apr-16,-,-,-,0.56,-10-Apr-16...\n"++
            "                    2a. APPLY YOUR FUNCTIONS -- will write list of own functions to maxima\n"++
            "                    2. POINTCLOUD -- get simple statical Overview and plot 3d \n"++
            "                    3. aOSZILLOSKOP1 --plot2d csv data in WX and apply function to it\n"++
