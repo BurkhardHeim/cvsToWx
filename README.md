@@ -6,6 +6,7 @@ Setup: Three modi
 - 1. A GHC GUI
 - 2. Automatic (the same as above avoiding GUI's UNDERCONSTRUCTION )
 - 3. Easy Acces (quickly read a csv file and process...)
+
 i. will open a simpel Graphical User Interface (GUI) in the Glasgow Haskell Compiler (GHC)
    the aim is to automate reading of csv data and of long number streams 
    converting them and changing them via predefined functions. The whole program
