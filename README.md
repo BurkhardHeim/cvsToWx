@@ -6,15 +6,22 @@ Setup: Three modi
 - 1. A GHC GUI
 - 2. Automatic (the same as above avoiding GUI's UNDERCONSTRUCTION )
 - 3. Easy Acces (quickly read a csv file and process...)
-  ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual1.png)
 i. will open a simpel Graphical User Interface (GUI) in the Glasgow Haskell Compiler (GHC)
    the aim is to automate reading of csv data and of long number streams 
    converting them and changing them via predefined functions. The whole program
    is derived from four main functions.
    
-ii. Will run all functions as i. but avoiding the GUI...(realisation under construction 23-09-19)
+ii. Runs all functions as i. but avoiding the GUI...(realisation under construction 23-09-19)
     of 4 main functions some can be completly controlled just via Global-Variables*.
     which are ...aMemoryRAW  !! so far
+
+iii. Quick and easy access to read csv -> write patternfile.txt
+
+i.
+  ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual1.png)
+
+   
+
     
     The advantage of using Global Variables, the stream-crypt program can be fully automated which helps
     overseing bigger longer files and keeping an eye on the real aim of the Wx-Maxima application.
