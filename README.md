@@ -107,11 +107,19 @@ Turns it into a String will plot some statistic about the given DATA Set.
 
 Write a WX.Maxima file
 
-## Nexus: Armchair-hillosohy ,what ia good about the code
-   ### The stuff is without any blows ad witshles, like 'sohisticated Hasekell'
+## Nexus: Armchair-phillosohy ,
+   ###what ia good about the code
+   ### The stuff is without any blows ad witshles, like 'sophisticated Hasekell'
    One of the most remarkable sentences abt. Haskell ,to me, that I heard is that to keep it 
    rather simple more functional with less fancy code that will blow number theorisists minds
-   but not be easy for simple prgram tasks, such as the aim without much prior knowledge.
+   but not be easy for simple prgram tasks. The main Menu helps to automate many tasks
+   ### The drawback
+   Especially Patternfile.txt has lengthy repetitive code that could  be easily shortend up 
+   and simplified. The first aim of this programming venue was to setup a working program
+   from 'older' code. The main menu was exclisivly developed for Git,
+       #### What is good about the drawback
+       repetitive and very similar code is begging for parrallel computing which is a task for the 
+       future. https://github.com/simonmar/par-tutorial .
 
 
 
