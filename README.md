@@ -107,7 +107,11 @@ Turns it into a String will plot some statistic about the given DATA Set.
 
 Write a WX.Maxima file
 
-
+## Nexus: Armchair-hillosohy ,what ia good about the code
+   ### The stuff is without any blows ad witshles, like 'sohisticated Hasekell'
+   One of the most remarkable sentences abt. Haskell ,to me, that I heard is that to keep it 
+   rather simple more functional with less fancy code that will blow number theorisists minds
+   but not be easy for simple prgram tasks, such as the aim without much prior knowledge.
 
 
 
