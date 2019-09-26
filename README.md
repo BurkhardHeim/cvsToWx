@@ -1,6 +1,6 @@
 # csvToWx
 ###### Content: 
-######      1.'writePatternfile_____2.'aMemoryRAW'________3.'aMemoryRAW'_______4.'aOsZilloskop1RAW'
+######      1.'writePatternfile_____2.'aMemoryRAW'________3.'aOsZilloskop1RAW'_____4.'UNDERDEVELOPMENT'
    ######      modes of Files: 1- WX 2- TXT
 Setup: Three modi  
 - 1. A GHC GUI
@@ -40,7 +40,7 @@ the function plus variabes.
    
    ###### x="fileTorRead.csv" ; nF = "fileToWrite.txt"
        writePatternfile x nF => format [val,year,month,day]
-   fire up your Editor and jump to line :858
+   fire up your editor and jump to line :858
    below the mentioned code and the GHC GUI are pictured to compare
    Enable 'writePatternfile' to read other csv formats!
    ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual2.png)
@@ -82,6 +82,8 @@ the function plus variabes.
     => function: aOsZilosko1 outputOrnot fileToread   fileTowrite   howMAny   crit   foHans   fun1 fun2
     => types:  String     String         String  String  String   Int  Int
     => *Patternfile>aMemoryRAW "1" "seniot.txt" "seniot7.txt"
+  Is set to use MQ functions, which are simple sin functions. The name stems from 'Magisches Quadrat'
+  magic square in English. e.g MQ3: 
   #### 4.'aCrunchlist1RAW'
   UNDERDEVELOPMENT
   most basic HTA/HTML plotter can be easily changed from hta to html by 
