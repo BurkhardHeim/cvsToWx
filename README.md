@@ -82,12 +82,13 @@ the function plus variabes.
     => function: aOsZilosko1 outputOrnot fileToread   fileTowrite   howMAny   crit   foHans   fun1 fun2
     => types:                  String     String        String      String   String   String   Int  Int
     => *Patternfile>aMemoryRAW "1" "seniot.txt" "seniot7.txt"
-  Is set to use MQ functions, which are simple sin functions. 
-  is a nice periodic function. The intention was to 'bend' Data sets improving upon my first crude statitical
-  analysis- I could say let the whole Set end lower than the input set depending on
+  Is set to use MQ functions, which are simple sin functions, nice periodic functions. The intention was to 'bend' Data sets improving upon my first crude statitical analysis- I could say let the whole Set end lower than the input set depending on
   the highest/lowest points and where I will prope the data, e.g
    ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/MQ3.png)
-  A simple sin would have done it as well :) but just for curiosity reasons I kept that one.
+  A simple sin would have done it as well :) but just for curiosity reasons I kept that one, Or did it ???.
+  Depending on how an 'interval' is defined it may bring some differences.
+  I wanted to be able to visiualize one MQ3 , one of the four pandiagonal 4x4 and  .... 5x5 , ..6x6
+  mixed with a given set of vals, source and simulated  and just gaze into the abyss :) of data science.
   Hence if I take one interval of the MQ3 function and a let it loose on the data, naturally the data Set will
   end up lower than the original one. 
   In 'aOsZilloskop1' the vals are 'befriended' with a MQ function.
