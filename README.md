@@ -84,6 +84,7 @@ the function plus variabes.
     => *Patternfile>aMemoryRAW "1" "seniot.txt" "seniot7.txt"
   Is set to use MQ functions, which are simple sin functions, nice periodic functions. The intention was to 'bend' Data sets improving upon my first crude statitical analysis- I could say let the whole Set end lower than the input set depending on
   the highest/lowest points and where I will prope the data, e.g
+  #### picMQ3:
    ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/MQ3.png)
   A simple sin would have done it as well :) but just for curiosity reasons I kept that one, Or did it ???.
   Depending on how an 'interval' is defined it may bring some differences.
@@ -95,8 +96,15 @@ the function plus variabes.
   changing the vals of a given data set: 
   I can say: length (ofSet) = someNumber `= Ls1
   with: ls1 = (one Interval of MQ3)
+   ![alt tag](https://github.com/CBroemse/csvToWx/blob/master/MQ3mixVal_Val_SimuVals.png)
+   I as it turns out the input vals in MQ3 do resemble the original function picMQ3, here ploted with
+   the original input data. but is not 'atuned' to the original vals by 'atuned' i mean
+   that the y1 and y2       |y1. . . . . . .y2
+                            |___________________  values of one of the functions 
+                             x1            x2  
+  Should be really close to the y1..y2 of another of these functions. 
+  Such as the simuVals y1 y2  relate to the realVals y1 y2 as plotted.
   
-  I as it turns out the input vals in MQ3 
   #### 4.'aCrunchlist1RAW'
   UNDERDEVELOPMENT
   most basic HTA/HTML plotter can be easily changed from hta to html by 
