@@ -148,7 +148,7 @@ magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to expl
   Such as the simuVals y1 y2  relate to the realVals y1 y2 as plotted.
   #### picMQ3:
   
-   ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/allMQsRealVals.png)
+   ![alt tag](https://github.com/CBroemse/csvToWx/blob/master/allMQsRealVals_Simus.png)
    
   Aright MQ3 did not work but all the other and now the red simuVa problem reveals itself.
   So by fiddeling around at the input dat in OsZilloskop1 we must 'tune' into the data and do 
