@@ -87,6 +87,7 @@ the function plus variabes.
   analysis- I could say let the whole Set end lower than the input set depending on
   the highest/lowest points and where I will prope the data, e.g
    ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/MQ3.png)
+  A simple sin would have done it as well :) but just for curiosity reasons I kept that one.
   Hence if I take one interval of the MQ3 function and a let it loose on the data, naturally the data Set will
   end up lower than the original one. 
   In 'aOsZilloskop1' the vals are 'befriended' with a MQ function.
