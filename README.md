@@ -82,8 +82,15 @@ the function plus variabes.
     => function: aOsZilosko1 outputOrnot fileToread   fileTowrite   howMAny   crit   foHans   fun1 fun2
     => types:  String     String         String  String  String   Int  Int
     => *Patternfile>aMemoryRAW "1" "seniot.txt" "seniot7.txt"
-  Is set to use MQ functions, which are simple sin functions. The name stems from 'Magisches Quadrat'
-  magic square in English. e.g MQ3: 
+  Is set to use MQ functions, which are simple sin functions. 
+fofourier1 = [4,1,2]
+fofourier2 = [3,5,7]
+fofourier3 = [8,1,6]
+fourier1 (x) = (sin((head fofourier1)*x)+ sin ((last (take 2 fofourier1))*x) + sin ((last fofourier1)*x))
+fourier2 (x) = (sin((head fofourier2)*x)+ sin ((last (take 2 fofourier2))*x) + sin ((last fofourier2)*x))
+fourier3 (x) = (sin((head fofourier2)*x)+ sin ((last (take 2 fofourier3))*x) + sin ((last fofourier3)*x))
+
+fourier123 (x) = (fourier1 x + fourier2 x + fourier3 x)*(1/90)
   #### 4.'aCrunchlist1RAW'
   UNDERDEVELOPMENT
   most basic HTA/HTML plotter can be easily changed from hta to html by 
@@ -108,6 +115,20 @@ Reads 'Patternfile.txt'
 Turns it into a String will plot some statistic about the given DATA Set.
 
 Write a WX.Maxima file
+
+#### MQ-Functions
+The name stems from 'Magisches Quadrat'
+  magic square in English. The Oszilloskop uses [MQ3,MQ4,MQ5,MQ6]: 
+  The 3x3.
+"There is just one 3x3 magic square although rotations and reflections produce eight variations. The 3x3 square cannot be pan-magic..."
+fofourier1 = [4,9,2]
+fofourier2 = [3,5,7]
+fofourier3 = [8,1,6]
+fourier1 (x) = (sin((head fofourier1)*x)+ sin ((last (take 2 fofourier1))*x) + sin ((last fofourier1)*x))
+fourier2 (x) = (sin((head fofourier2)*x)+ sin ((last (take 2 fofourier2))*x) + sin ((last fofourier2)*x))
+fourier3 (x) = (sin((head fofourier2)*x)+ sin ((last (take 2 fofourier3))*x) + sin ((last fofourier3)*x))
+
+fourier123 (x) = (fourier1 x + fourier2 x + fourier3 x)*(1/90)
 
 ## Nexus: Armchair-phillosohy ,
    ###what ia good about the code
