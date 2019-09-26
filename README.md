@@ -86,6 +86,13 @@ the function plus variabes.
   is a nice periodic function. The intention was to 'bend' Data sets improving upon my first crude statitical
   analysis- I could say let the whole Set end lower than the input set depending on
   the highest/lowest points and where I will prope the data, e.g
+   ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/MQ3.png)
+  Hence if I take one interval of the MQ3 function and a let it loose on the data, naturally the data Set will
+  end up lower than the original one. 
+  In 'aOsZilloskop1' the vals are 'befriended' with a MQ function.
+  changing the vals of a given data set: 
+  I can say: length (ofSet) = someNumber `= Ls1
+  with: ls1 = (one Interval of MQ3)
   
   #### 4.'aCrunchlist1RAW'
   UNDERDEVELOPMENT
