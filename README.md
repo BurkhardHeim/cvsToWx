@@ -96,6 +96,7 @@ the function plus variabes.
   I can say: length (ofSet) = someNumber `= Ls1
   with: ls1 = (one Interval of MQ3)
   
+  I as it turns out the input vals in MQ3 
   #### 4.'aCrunchlist1RAW'
   UNDERDEVELOPMENT
   most basic HTA/HTML plotter can be easily changed from hta to html by 
