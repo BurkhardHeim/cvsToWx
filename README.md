@@ -84,10 +84,10 @@ the function plus variabes.
     => *Patternfile>aMemoryRAW "1" "seniot.txt" "seniot7.txt"
   ###### First and formost yields a Clean.txt file:[String]
   that by now has been sorted. This file can be reimported as aPatternfile again but thus the 
-  ###### 1.snd Computation in aOsZilloskop1
-  ###### 2.choose Simulation (not fully functional yet) will simulate but to much noise
-  ###### 3. call every single statistical function used in Patternfile and write to file.txt
-  ###### 4. calls aOszilloskop again and applies our Gobal Var selectFunction (Patternfile.hs)
+  ###### Overview: snd Computation in aOsZilloskop1
+  ###### 1.choose Simulation (not fully functional yet) will simulate but to much noise
+  ###### 2. call every single statistical function used in Patternfile and write to file.txt
+  ###### 3. calls aOszilloskop again and applies our Gobal Var selectFunction (Patternfile.hs)
   ###### 5.CLOSES
   ###### 6. Help UNDERCONSTRCTION
   
