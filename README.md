@@ -141,18 +141,30 @@ magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to expl
   ![alt tag](https://github.com/CBroemse/csvToWx/blob/master/MQ3mixVal_Val_SimuVals.png)
    I as it turns out the input vals in MQ3 do resemble the original function picMQ3, here ploted with
    the original input data. but is not 'atuned' to the original vals by 'atuned' i mean
-   that the y1 and y2       |y1. . . . . . .y2
-                            |___________________  values of one of the functions 
-                             x1            x2  
-  Should be really close to the y1..y2 of another of these functions. 
+   that the y1 and y2 values of one of the functions 
+   slected for plotting, should be really close to the y1..y2 of another of these functions. 
   Such as the simuVals y1 y2  relate to the realVals y1 y2 as plotted.
   #### picMQ3:
   
    ![alt tag](https://github.com/CBroemse/csvToWx/blob/master/allMQsRealVals_Simus.png)
    
-  Aright MQ3 did not work but all the other and now the red simuVa problem reveals itself.
+  Aright MQ3(8will soon) did not work but at all but the others and now the red simuVa problem reveals itself.
   So by fiddeling around at the input dat in OsZilloskop1 we must 'tune' into the data and do 
   the right one if we like the y values to be rlativly close.
+  ##### e.g Patternfile.hs :1723 in OsZilloskop1
+  One value of the function close tp zero is estimated :
+       
+        => let mixWithMQ6 --x nF crit --openB file to open ; -openA file to write ; forD criterium
+              ----------------OSZILLOSKOP SHOWS INPUT AND RANDOM
+              =  let ay1= aOsZilloskop1 output x nF criterium (read rnd) -- nF crit
+                 in let ay2 p = fourier1MQ6 p + fourier2MQ6 p + fourier3MQ6 p + fourier4MQ6 p + fourier5MQ6 p + fourier6MQ6 p 
+                 in let ay3 =  (6.28319901) -- NullStelle Des Intervals
+                 in let ay4 = (ay3/ (read xX)) -- takes forC howmany lines  
+                 in let soMany2take fak = ay4 * fak -- determines which value of fourier123 2 select
+                 in let forThis fak = fourierMQ6NOPAN123 (soMany2take fak)
+                 in let fofoThis = map forThis [1..(read xX)]
+
+  
   ##### What is good about this
   The functions now tuned in can be used in simulations about the data set
   if using the various MQ functions.
