@@ -97,19 +97,22 @@ the function plus variabes.
 
 #### MQ-Functions
 The name stems from 'Magisches Quadrat'
-  magic square in English. The Oszilloskop uses [MQ3,MQ4,MQ5,MQ6]: 
-  The 3x3.
+  magic square in English. The Oszilloskop uses [MQ3,MQ4,MQ5,MQ6]
+###### The 3x3.
 ["There is just one 3x3 magic square although rotations and reflections produce eight variations. The 3x3 square cannot be pan-magic..."](https://www.grogono.com/magic/3x3.php).
-fofourier1 = [4,9,2]
-fofourier2 = [3,5,7]
-fofourier3 = [8,1,6]
-fourier1 (x) = (sin((head fofourier1)*x)+ sin ((last (take 2 fofourier1))*x) + sin ((last fofourier1)*x))
-fourier2 (x) = (sin((head fofourier2)*x)+ sin ((last (take 2 fofourier2))*x) + sin ((last fofourier2)*x))
-fourier3 (x) = (sin((head fofourier2)*x)+ sin ((last (take 2 fofourier3))*x) + sin ((last fofourier3)*x))
 
-fourier123 (x) = (fourier1 x + fourier2 x + fourier3 x)*(1/90)
-Remarkably fourier123 (x) = (fourier1 x + fourier2 x + fourier3 x)*(1/90)
-is a nice periodic function which 
+        => in WriteWXmaximaFile.hs
+           fofourier1 = [4,9,2]
+           fofourier2 = [3,5,7]
+           fofourier3 = [8,1,6]
+           
+           fourier1 (x) = (sin((head fofourier1)*x)+ sin ((last (take 2 fofourier1))*x) + sin ((last fofourier1)*x)) 
+           fourier2 (x) = (sin((head fofourier2)*x)+ sin ((last (take 2 fofourier2))*x) + sin ((last fofourier2)*x))
+           fourier3 (x) = (sin((head fofourier2)*x)+ sin ((last (take 2 fofourier3))*x) + sin ((last fofourier3)*x))
+
+           fourier123 (x) = (fourier1 x + fourier2 x + fourier3 x)*(1/90)
+Remarkably fourier123 (x) Reihen und spalten are the same fucntion that proves the thing behaves a little bit like a 
+magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to explore.
 
  #### picMQ3:
    ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/MQ3.png)
