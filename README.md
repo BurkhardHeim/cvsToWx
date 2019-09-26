@@ -82,21 +82,16 @@ the function plus variabes.
     => function: aOsZilosko1 outputOrnot fileToread   fileTowrite   howMAny   crit   foHans   fun1 fun2
     => types:                  String     String        String      String   String   String   Int  Int
     => *Patternfile>aMemoryRAW "1" "seniot.txt" "seniot7.txt"
-  ### First and formost yields a Clean.txt file:[String]
+  ###### First and formost yields a Clean.txt file:[String]
   that by now has been sorted. This file can be reimported as aPatternfile again but thus the 
-  ### snd Computation in aOsZilloskop1
-  #### choose Simulation (not fully functional yet) will simulate but to much noise
-  #### or call every single statistical function used in Patternfile and write to file.txt
-  #### calls aOszilloskop again and applies our Gobal Var selectFunction (Patternfile.hs)
-  #### CLOSES
-  #### UNDERCONSTRCTION
+  ###### 1.snd Computation in aOsZilloskop1
+  ###### 2.choose Simulation (not fully functional yet) will simulate but to much noise
+  ###### 3. call every single statistical function used in Patternfile and write to file.txt
+  ###### 4. calls aOszilloskop again and applies our Gobal Var selectFunction (Patternfile.hs)
+  ###### 5.CLOSES
+  ###### 6. Help UNDERCONSTRCTION
   
-  Is set to use MQ functions, which are simple sin functions, nice periodic functions. The intention was to 'bend' Data sets improving upon my first crude statitical analysis- I could say let the whole Set end lower than the input set depending on
-  the highest/lowest points and where I will prope the data, e.g
-  ##### picMQ3:
-   ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/MQ3.png)
-  A simple sin would have done it as well :) but just for curiosity reasons I kept that one, Or did it ???.
-  Depending on how an 'interval' is defined it may bring some differences.
+  Is set to use MQ functions, which are simple sin functions, nice periodic functions. 
   
            => in 'Patternfile.hs' see global variables 
            : set function: selectFuncL = ( show [1,2,3,4,5]) 
@@ -126,7 +121,12 @@ magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to expl
 
   
  ##### Example: Stream-Crypt at work
-  
+  The intention was to 'bend' Data sets improving upon my first crude statitical analysis- I could say let the whole Set end lower than the input set depending on
+  the highest/lowest points and where I will prope the data, e.g
+  ##### picMQ3:
+   ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/MQ3.png)
+  A simple sin would have done it as well :) but just for curiosity reasons I kept that one, Or did it ???.
+  Depending on how an 'interval' is defined it may bring some differences.
   I wanted to be able to visiualize one MQ3 , one of the four pandiagonal 4x4 and  .... 5x5 , ..6x6
   mixed with a given set of vals, source and simulated  and just gaze into the abyss :) of data science.
   Hence if I take one interval of the MQ3 function and a let it loose on the data, naturally the data Set will
