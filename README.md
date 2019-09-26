@@ -89,32 +89,11 @@ the function plus variabes.
   A simple sin would have done it as well :) but just for curiosity reasons I kept that one, Or did it ???.
   Depending on how an 'interval' is defined it may bring some differences.
   
-           => function: 
-  
-  #### 4.'aCrunchlist1RAW'
-  UNDERDEVELOPMENT
-  most basic HTA/HTML plotter can be easily changed from hta to html by 
-  just typing differet format afile.hta <=> afile.html, 
-  u,
-  Hello Microsoft ;), the hta runs 
-  Haskell generated VB.script that cannot be displayed in (firefox,..)
-  
-  writes senio, writes Html, using global variables   
-       => writes: TESTGuiVal.hta 
+           => in 'Patternfile.hs' see global variables 
+           : set function: selectFuncL = ( show [1,2,3,4,5]) 
+           : control which functions to seect of 
   
 
-
-
-Patternfile.hs
-'writePatternFile "fileToRead.csv" "fileToWrite.txt"'
- Reads a CSV file e.g: "durble.csv"
- Writes a a file with line format (val,year,month,day) a file called 'Patternfile.txt'
-
-'aMemory '
-Reads 'Patternfile.txt'
-Turns it into a String will plot some statistic about the given DATA Set.
-
-Write a WX.Maxima file
 
 #### MQ-Functions
 The name stems from 'Magisches Quadrat'
@@ -159,6 +138,27 @@ is a nice periodic function which
   Should be really close to the y1..y2 of another of these functions. 
   Such as the simuVals y1 y2  relate to the realVals y1 y2 as plotted.
   
+   #### 4.'aCrunchlist1RAW'
+  UNDERDEVELOPMENT
+  most basic HTA/HTML plotter can be easily changed from hta to html by 
+  just typing differet format afile.hta <=> afile.html, 
+  u,
+  Hello Microsoft ;), the hta runs 
+  Haskell generated VB.script that cannot be displayed in (firefox,..)
+  
+  writes senio, writes Html, using global variables   
+       => writes: TESTGuiVal.hta
+       
+Patternfile.hs
+'writePatternFile "fileToRead.csv" "fileToWrite.txt"'
+ Reads a CSV file e.g: "durble.csv"
+ Writes a a file with line format (val,year,month,day) a file called 'Patternfile.txt'
+
+'aMemory '
+Reads 'Patternfile.txt'
+Turns it into a String will plot some statistic about the given DATA Set.
+
+Write a WX.Maxima file
 ## Nexus: Armchair-phillosohy ,
    ### What is good about the code?
    ##### The stuff is without any blows and whistles, like 'sophisticated Haskell'
