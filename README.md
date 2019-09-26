@@ -114,10 +114,7 @@ The name stems from 'Magisches Quadrat'
 Remarkably fourier123 (x) Reihen und spalten are the same fucntion that proves the thing behaves a little bit like a 
 magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to explore.
 
- #### picMQ3:
-   ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/MQ3.png)
-  A simple sin would have done it as well :) but just for curiosity reasons I kept that one, Or did it ???.
-  Depending on how an 'interval' is defined it may bring some differences.
+
   
  ##### Example: Stream-Crypt at work
   
@@ -140,7 +137,19 @@ magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to expl
                              x1            x2  
   Should be really close to the y1..y2 of another of these functions. 
   Such as the simuVals y1 y2  relate to the realVals y1 y2 as plotted.
-  
+  #### picMQ3:
+   ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/allMQsRealVals.png)
+  So by fiddeling around at the input dat in OsZilloskop1 we must 'tune' into the data and do 
+  the right one if we like the y values to be rlativly close.
+  ##### What is good about this
+  The functions now tuned in can be used in simulations about the data set
+  if using the various MQ functions.
+  ##### The drawback
+  This is all but viziualisation there is no problem solved by making this a plot.
+  If the generated data may contain any information what sort ever it must be carried
+  out by another domain that is capable to 'weigh' or 'rate' each newly generated function
+  ###### good about the drawback Using the dit rnd function we can make each generated
+         function 'unique' and that possibly could help that other 'weigh' rate' domain.
    #### 4.'aCrunchlist1RAW'
   UNDERDEVELOPMENT
   most basic HTA/HTML plotter can be easily changed from hta to html by 
