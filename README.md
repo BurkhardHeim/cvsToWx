@@ -74,14 +74,23 @@ the function plus variabes.
         => :*Patternfile>aMemoryRAW "1" "seniot.txt" "seniot7.txt"             
    
   #### 3. 'aOsZilloskop1RAW'
-  will prepare real vals and simu vals, apply a set of fourier6-set-functions* to
-  it. will exportDATA.txt in first run (simu vals for reimport)
+  will prepare real vals and simu vals, 
+  it. will exportDATA.txt in first run (simu vals for re-import)
   exportDATA2.txt cleaned just vals [String]
   
     => writes: exportDatat1,exportData2,HTML
     => function: aOsZilosko1 outputOrnot fileToread   fileTowrite   howMAny   crit   foHans   fun1 fun2
     => types:                  String     String        String      String   String   String   Int  Int
     => *Patternfile>aMemoryRAW "1" "seniot.txt" "seniot7.txt"
+  ### First and formost yields a Clean.txt file:[String]
+  that by now has been sorted. This file can be reimported as aPatternfile again but thus the 
+  ### snd Computation in aOsZilloskop1
+  #### choose Simulation (not fully functional yet) will simulate but to much noise
+  #### or call every single statistical function used in Patternfile and write to file.txt
+  #### calls aOszilloskop again and applies our Gobal Var selectFunction (Patternfile.hs)
+  #### CLOSES
+  #### UNDERCONSTRCTION
+  
   Is set to use MQ functions, which are simple sin functions, nice periodic functions. The intention was to 'bend' Data sets improving upon my first crude statitical analysis- I could say let the whole Set end lower than the input set depending on
   the highest/lowest points and where I will prope the data, e.g
   ##### picMQ3:
