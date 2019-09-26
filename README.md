@@ -149,6 +149,7 @@ magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to expl
   #### picMQ3:
   
    ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/allMQsRealVals.png)
+   
   Aright MQ3 did not work but all the other and now the red simuVa problem reveals itself.
   So by fiddeling around at the input dat in OsZilloskop1 we must 'tune' into the data and do 
   the right one if we like the y values to be rlativly close.
