@@ -83,8 +83,10 @@ the function plus variabes.
     => types:                  String     String        String      String   String   String   Int  Int
     => *Patternfile>aMemoryRAW "1" "seniot.txt" "seniot7.txt"
   Is set to use MQ functions, which are simple sin functions. 
-Remarkable to any Hobby-Mathematican is that fourier123 (x) = (fourier1 x + fourier2 x + fourier3 x)*(1/90)
-is a nice periodic function which 
+  is a nice periodic function. The intention was to 'bend' Data sets improving upon my first crude statitical
+  analysis- I could say let the whole Set end lower than the input set depending on
+  the highest/lowest points and where I will prope the data, e.g
+  
   #### 4.'aCrunchlist1RAW'
   UNDERDEVELOPMENT
   most basic HTA/HTML plotter can be easily changed from hta to html by 
@@ -114,7 +116,7 @@ Write a WX.Maxima file
 The name stems from 'Magisches Quadrat'
   magic square in English. The Oszilloskop uses [MQ3,MQ4,MQ5,MQ6]: 
   The 3x3.
-"There is just one 3x3 magic square although rotations and reflections produce eight variations. The 3x3 square cannot be pan-magic..."[GitHub Pages](https://www.grogono.com/magic/3x3.php).
+["There is just one 3x3 magic square although rotations and reflections produce eight variations. The 3x3 square cannot be pan-magic..."](https://www.grogono.com/magic/3x3.php).
 fofourier1 = [4,9,2]
 fofourier2 = [3,5,7]
 fofourier3 = [8,1,6]
@@ -123,7 +125,8 @@ fourier2 (x) = (sin((head fofourier2)*x)+ sin ((last (take 2 fofourier2))*x) + s
 fourier3 (x) = (sin((head fofourier2)*x)+ sin ((last (take 2 fofourier3))*x) + sin ((last fofourier3)*x))
 
 fourier123 (x) = (fourier1 x + fourier2 x + fourier3 x)*(1/90)
-
+Remarkably fourier123 (x) = (fourier1 x + fourier2 x + fourier3 x)*(1/90)
+is a nice periodic function which 
 ## Nexus: Armchair-phillosohy ,
    ### What is good about the code?
    ##### The stuff is without any blows and whistles, like 'sophisticated Haskell'
