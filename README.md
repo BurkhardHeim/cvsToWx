@@ -70,7 +70,7 @@ the function plus variabes.
   ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual3.png)  
   
         => function: aMemoryRAW outputOrnot fileToread fileTowrite 
-                             String       String    String
+                                  String     String    String
         => :*Patternfile>aMemoryRAW "1" "seniot.txt" "seniot7.txt"             
    
   #### 3. 'aOsZilloskop1RAW'
@@ -80,17 +80,11 @@ the function plus variabes.
   
     => writes: exportDatat1,exportData2,HTML
     => function: aOsZilosko1 outputOrnot fileToread   fileTowrite   howMAny   crit   foHans   fun1 fun2
-    => types:  String     String         String  String  String   Int  Int
+    => types:                  String     String        String      String   String   String   Int  Int
     => *Patternfile>aMemoryRAW "1" "seniot.txt" "seniot7.txt"
   Is set to use MQ functions, which are simple sin functions. 
-fofourier1 = [4,1,2]
-fofourier2 = [3,5,7]
-fofourier3 = [8,1,6]
-fourier1 (x) = (sin((head fofourier1)*x)+ sin ((last (take 2 fofourier1))*x) + sin ((last fofourier1)*x))
-fourier2 (x) = (sin((head fofourier2)*x)+ sin ((last (take 2 fofourier2))*x) + sin ((last fofourier2)*x))
-fourier3 (x) = (sin((head fofourier2)*x)+ sin ((last (take 2 fofourier3))*x) + sin ((last fofourier3)*x))
-
-fourier123 (x) = (fourier1 x + fourier2 x + fourier3 x)*(1/90)
+Remarkable to any Hobby-Mathematican is that fourier123 (x) = (fourier1 x + fourier2 x + fourier3 x)*(1/90)
+is a nice periodic function which 
   #### 4.'aCrunchlist1RAW'
   UNDERDEVELOPMENT
   most basic HTA/HTML plotter can be easily changed from hta to html by 
@@ -120,7 +114,7 @@ Write a WX.Maxima file
 The name stems from 'Magisches Quadrat'
   magic square in English. The Oszilloskop uses [MQ3,MQ4,MQ5,MQ6]: 
   The 3x3.
-"There is just one 3x3 magic square although rotations and reflections produce eight variations. The 3x3 square cannot be pan-magic..."
+"There is just one 3x3 magic square although rotations and reflections produce eight variations. The 3x3 square cannot be pan-magic..."[GitHub Pages](https://www.grogono.com/magic/3x3.php).
 fofourier1 = [4,9,2]
 fofourier2 = [3,5,7]
 fofourier3 = [8,1,6]
@@ -131,18 +125,20 @@ fourier3 (x) = (sin((head fofourier2)*x)+ sin ((last (take 2 fofourier3))*x) + s
 fourier123 (x) = (fourier1 x + fourier2 x + fourier3 x)*(1/90)
 
 ## Nexus: Armchair-phillosohy ,
-   ###what ia good about the code
-   ### The stuff is without any blows ad whistles, like 'sophisticated Haskell'
+   ### What is good about the code?
+   ##### The stuff is without any blows and whistles, like 'sophisticated Haskell'
    One of the most remarkable sentences abt. Haskell ,to me, is to keep it 
    rather simple more functional with less fancy code that will blow number theorisists minds
    but not be easy or handy for simple programming tasks. The main Menu helps to automate many tasks
    ### The drawback
-   Especially Patternfile.txt has lengthy repetitive code that could  be easily shortend up 
-   and simplified. The first aim of this programming venue was to setup a working program
-   from 'older' (three years) code. The main menu is exclusivly developed for GitHub,
-       #### What is good about the drawback
-       repetitive and very similar code is begging for parrallel computing which is a task for the 
-       future. https://github.com/simonmar/par-tutorial .
+   Especially Patternfile.txt has lengthy repetitive code passages that could  be easily shortend up 
+   and compacted with purer code. The first aim of this programming venue was to setup a working program
+   that can handle longer files with a new Main module and many adjustments from 'older' (three years) code.
+   By just focusing on the overall program structure and less on the brliance of just one function. The code 
+   even though the main part of aMemory, aOsZillosko1 and The main menu is       exclusivly developed for GitHub,
+   #### What is good about the drawback
+   repetitive and very similar code is begging for parrallel computing which is a task for the 
+   future. https://github.com/simonmar/par-tutorial .
 
 
 
