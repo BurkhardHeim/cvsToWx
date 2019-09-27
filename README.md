@@ -163,7 +163,7 @@ magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to expl
   
    ![alt tag](https://github.com/CBroemse/csvToWx/blob/master/allMQsRealVals_Simus.png)
    
-  Alright MQ3 did not work(yet) but at all but the others did and now the red simuVal problem reveals itself,
+  Alright MQ3 did not work(yet) the others did :) and now the red simuVal problem reveals itself,
   while green being the real vals
   So by building a thieve that sums up all real and simulated val within OsZilloskop1 and around 
   we probe  to 'tune' into the data to find variables and the right ones 
@@ -209,8 +209,8 @@ Write a WX.Maxima file
    Especially Patternfile.txt has lengthy repetitive code passages that could  be easily shortend up 
    and compacted with purer code. The first aim of this programming venue was to setup a working program
    that can handle longer files with a new Main module and many adjustments from 'older' (three years) code.
-   By just focusing on the overall program structure and less on the brliance of just one function. The code 
-   even though the main part of aMemory, aOsZillosko1 and The main menu is       exclusivly developed for GitHub,
+   By just focusing on the overall program content and how to automate wxm file writing 
+   less on the brilliance of just one function. The main menu was exclusivly developed for GitHub.
    #### What is good about the drawback
    repetitive and very similar code is begging for parrallel computing which is a task for the 
    future. https://github.com/simonmar/par-tutorial .
