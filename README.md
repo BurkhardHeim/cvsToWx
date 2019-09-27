@@ -120,7 +120,7 @@ magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to expl
 
 
   
- ##### Example: Stream-Crypt at work
+ ### Example: Stream-Crypt at work
   The intention was to 'bend' Data sets improving upon my first crude statitical analysis- I could say let the whole Set end lower than the input set depending on
   the highest/lowest points and where I will prope the data, e.g
   ##### picMQ3:
@@ -145,12 +145,6 @@ magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to expl
   selected for plotting, should be really close to the y1..y2 of another of these functions. 
   Such as the simuVals y1 y2  relate to the realVals y1 y2 as above.
  
-   
-  Aright MQ3 (8will soon) did not work but at all but the others and now the red simuVal problem reveals itself.
-  green being the real vals
-  So by building a thieve that sums up all real and simulated val within OsZilloskop1 and around 
-  we probe  to 'tune' into the data to find variables and the right ones 
-  if we like the ys values to be relativly close to each other.
   ##### e.g Patternfile.hs :1723 in OsZilloskop1
   One value of the function close to zero is estimated :
        
@@ -165,9 +159,15 @@ magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to expl
                  in let fofoThis = map forThis [1..(read xX)]
                  in fofoThis --intoConsider
 
-  #### picAbyss:
+  ##### picAbyss:
   
    ![alt tag](https://github.com/CBroemse/csvToWx/blob/master/allMQsRealVals_Simus.png)
+   
+  Alright MQ3 did not work(yet) but at all but the others did and now the red simuVal problem reveals itself,
+  while green being the real vals
+  So by building a thieve that sums up all real and simulated val within OsZilloskop1 and around 
+  we probe  to 'tune' into the data to find variables and the right ones 
+  if we like the ys values to be relativly close to each other. 
   
   ##### What is good about this
   The functions now tuned in can be used in simulations about the data set
