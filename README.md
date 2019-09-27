@@ -37,8 +37,10 @@ the function plus variables.
    via 'Patternfile.hs' read a csv file from disc and export it as aPatternfile.txt
    e.g enter: 'writePatternfile x nF'
    
-###### x="fileTorRead.csv" ; nF = "fileToWrite.txt"
-       writePatternfile x nF => format [val,year,month,day]
+###### x="fileTorRead.csv" ; nF = "fileToWrite.txt" 
+writePatternfile x nF 
+
+      => format [val,year,month,day]
    fire up your editor and jump to line :858
    below the mentioned code and the GHC GUI are pictured to compare
    Enable 'writePatternfile' to read other csv formats!
@@ -64,6 +66,7 @@ the function plus variables.
         => do Wx.WriteMQScreenI && Wx.WriteMQ6ScreenII
         => load: if  then 'WriteWXmaximafile.hs* -> do writeMQ6SCREENI
                  else 'WriteWXmaximafile.hs* -> do writeMQ6SCREENII
+                 
   select any String you to import as a line into Wx-Maxima, 'aMemory' will convert it to
 WX.maxima format. Set to a random 'point cloud' while a myriad other settings are out there.
   
