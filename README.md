@@ -85,7 +85,7 @@ the function plus variabes.
   ###### First and formost yields a Clean.txt file:[String]
   that by now has been sorted. This file can be reimported as aPatternfile again but thus the 
   ###### Overview: snd Computation in aOsZilloskop1
-  ###### 1.choose Simulation (not fully functional yet) will simulate but to much noise
+  ###### 1.choose Simulation (not fully functional yet) will simulate but too much noise
   ###### 2. call every single statistical function used in Patternfile and write to file.txt
   ###### 3. calls aOszilloskop again and applies our Gobal Var selectFunction (Patternfile.hs)
   ###### 5.CLOSES
@@ -103,7 +103,7 @@ the function plus variabes.
 The name stems from 'Magisches Quadrat'
   magic square in English. The Oszilloskop uses [MQ3,MQ4,MQ5,MQ6]
 ###### The 3x3.
-["There is just one 3x3 magic square although rotations and reflections produce eight variations. The 3x3 square cannot be pan-magic..."](https://www.grogono.com/magic/3x3.php).
+["There is just one 3x3 magic square..."](https://www.grogono.com/magic/3x3.php).
 
         => in WriteWXmaximaFile.hs
            fofourier1 = [4,9,2]
@@ -115,7 +115,7 @@ The name stems from 'Magisches Quadrat'
            fourier3 (x) = (sin((head fofourier2)*x)+ sin ((last (take 2 fofourier3))*x) + sin ((last fofourier3)*x))
 
            fourier123 (x) = (fourier1 x + fourier2 x + fourier3 x)*(1/90)
-Remarkably fourier123 (x) Reihen und spalten are the same fucntion that proves the thing behaves a little bit like a 
+Remarkably fourier123 (x) Reihen und spalten are the same function which as a argument the thing behaves a little bit like a 
 magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to explore.
 
 
@@ -143,10 +143,8 @@ magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to expl
   the original input data. but is not 'atuned' to the original vals by 'atuned' i mean
   that the y1 and y2 values of one of the functions 
   selected for plotting, should be really close to the y1..y2 of another of these functions. 
-  Such as the simuVals y1 y2  relate to the realVals y1 y2 as plotted.
-  #### picMQ3:
-  
-   ![alt tag](https://github.com/CBroemse/csvToWx/blob/master/allMQsRealVals_Simus.png)
+  Such as the simuVals y1 y2  relate to the realVals y1 y2 as above.
+ 
    
   Aright MQ3 (8will soon) did not work but at all but the others and now the red simuVal problem reveals itself.
   green being the real vals
@@ -154,7 +152,7 @@ magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to expl
   we probe  to 'tune' into the data to find variables and the right ones 
   if we like the ys values to be relativly close to each other.
   ##### e.g Patternfile.hs :1723 in OsZilloskop1
-  One value of the function close tp zero is estimated :
+  One value of the function close to zero is estimated :
        
         => let mixWithMQ6 --x nF crit --openB file to open ; -openA file to write ; forD criterium
               ----------------OSZILLOSKOP SHOWS INPUT AND RANDOM
@@ -165,13 +163,17 @@ magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to expl
                  in let soMany2take fak = ay4 * fak -- determines which value of fourier123 2 select
                  in let forThis fak = fourierMQ6NOPAN123 (soMany2take fak)
                  in let fofoThis = map forThis [1..(read xX)]
+                 in fofoThis --intoConsider
 
+  #### picAbyss:
+  
+   ![alt tag](https://github.com/CBroemse/csvToWx/blob/master/allMQsRealVals_Simus.png)
   
   ##### What is good about this
   The functions now tuned in can be used in simulations about the data set
   if using the various MQ functions.
   ##### The drawback
-  This is all but viziualisation there is no problem solved by making this a plot.
+  This is all but visualisation there is no problem solved by making this a plot.
   If the generated data may contain any information what sort ever it must be carried
   out by another domain that is capable to 'weigh' or 'rate' each newly generated function
   ###### good about the drawback Using the dit rnd function we can make each generated
