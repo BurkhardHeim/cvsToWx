@@ -9,7 +9,7 @@ Setup: Three Modi  
 
 i. will open a simple Graphical User Interface (GUI) in the Glasgow Haskell Compiler (GHC)
    the aim is to automate the reading of CSV data and of long number streams converting
-them and changing them via predefined functions. The whole program
+   them and changing them via predefined functions. The whole program
    is derived from four main functions.
    
 ii. Runs all functions as i. but avoiding the GUI...(realization under construction 23-09-19)
