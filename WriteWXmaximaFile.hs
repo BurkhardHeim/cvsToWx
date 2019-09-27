@@ -116,19 +116,19 @@ aCloudPoint stream = let ste1 t = (pointCloudEasy t stream)
 -- randomVariance:Int  how many points in pointcloud?
  
 aCons above = (lineStart ++ above ++"\n"++ lineEnd);
-
+---------------- ********************************************************************************************************* MAIN aMemory EXPORT I
 writeMQ6ScreenI makeRawPoints randomVariance whichPoints = writeMQ6ScreenRAW drawCloudPoints makeRawPoints randomVariance 
            where
-     drawCloudPoints = if whichPoints==1 -- just two fields
+     drawCloudPoints = if whichPoints=="1" -- just two fields
                        then aCons ("draw3d(color=red,rndcloud,color=blue,bluestream,color=orange,v1,v2,v3,v4,color=blue,text)$")
-                       else if whichPoints==2 -- just three fields
+                       else if whichPoints=="2" -- just three fields	
                        then aCons ("draw3d(color=green,greencloud,color=blue,bluestream,color=orange,v1,v2,v3,v4,color=blue,text)$")
-                       else if whichPoints==3 -- just three fields
+                       else if whichPoints=="3" -- just three fields
                        then aCons ("draw3d(color=red,bluestream,color=magenta,torui,color=orange,v1,v2,v3,v4,color=blue,text)$")
                        else -- just three fields
                            aCons ("draw3d(color=red,rndcloud,color=green,greencloud,color=blue,bluestream,color=magenta,torui,color=orange,v1,v2,v3,v4,color=blue,text)$");
 
-
+--------------- ********************************************************************************************************** MAIN aMemory EXPORT II
 writeMQ6ScreenII makeRawPoints randomVariance = writeMQ6ScreenRAW drawMQ6Sphere makeRawPoints randomVariance 
            where
      drawMQ6Sphere = aCons ("draw3d(nticks=200,color=orange,torus,line_width=2,color=blue,spiral,color=purple,torui,color=blue,text)$");

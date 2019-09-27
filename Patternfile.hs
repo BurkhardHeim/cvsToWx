@@ -68,7 +68,7 @@ selectFuncL = ( show [1,2,3,4,5])
   --   asd <- getLine
     -- unwords (lines(ffostatiswa (read asd) ))
 -- dipfade2
-
+--  fourier3
 -----------------------------------------------------
 --SelectorFunctions
 ausw w fa = drop (w-1) (take w fa)
@@ -706,20 +706,21 @@ aMemoryRAW output xRaw nF  = do
      foCloudD <- getLine
      let sleCloud = if foCloudD=="1"
                     then do 
-                        writeFile "lala.wxm" (writeMQ6ScreenI 10 (read xX) 1)
+                        writeFile "lala.wxm" (writeMQ6ScreenI 10 (read xX) "1")
                     else  if foCloudD=="2"
                     then do 
-                        writeFile "lala.wxm" (writeMQ6ScreenI 10 (read xX) 2)
+                        writeFile "lala.wxm" (writeMQ6ScreenI 10 (read xX) "2")
                     else  if foCloudD=="3"
                     then do 
-                        writeFile "lala.wxm" (writeMQ6ScreenI 10 (read xX) 3)
+                        writeFile "lala.wxm" (writeMQ6ScreenI 10 (read xX) "3")
                     else  if foCloudD=="4"
                     then do 
-                        writeFile "lala.wxm" (writeMQ6ScreenI 10 (read xX) 4)
+                        writeFile "lala.wxm" (writeMQ6ScreenI 10 (read xX) "4")
 
-                    else if foCloudD=="5"
+                    else if foCloudD=="6"
                     then do
                         writeFile "lala2.wxm" (writeMQ6ScreenII 10 (read xX))
+                    else if foCloudD == "5" then do putStrLn "Going Back"
                     else putStrLn "Error: enter other command"
      sleCloud
 
