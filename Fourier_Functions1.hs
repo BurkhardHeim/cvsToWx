@@ -110,12 +110,12 @@ selectFUNC5 func = do
 --there will be two necessary steps, in order to ADD the DATA with  fourier123 and get an image of the 
 --"fitted"v function in relation to fourie123
 --
-fofourier1 = [4,1,2]
+fofourier1 = [4,9,2]
 fofourier2 = [3,5,7]
 fofourier3 = [8,1,6]
 fourier1 (x) = (sin((head fofourier1)*x)+ sin ((last (take 2 fofourier1))*x) + sin ((last fofourier1)*x))
 fourier2 (x) = (sin((head fofourier2)*x)+ sin ((last (take 2 fofourier2))*x) + sin ((last fofourier2)*x))
-fourier3 (x) = (sin((head fofourier2)*x)+ sin ((last (take 2 fofourier3))*x) + sin ((last fofourier3)*x))
+fourier3 (x) = (sin((head fofourier3)*x)+ sin ((last (take 2 fofourier3))*x) + sin ((last fofourier3)*x))
 
 fourier123 (x) = (fourier1 x + fourier2 x + fourier3 x)*(1/90)
 
