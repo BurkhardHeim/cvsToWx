@@ -37,7 +37,7 @@ the function plus variables.
    via 'Patternfile.hs' read a csv file from disc and export it as aPatternfile.txt
    e.g enter: 'writePatternfile x nF'
    
-   ###### x="fileTorRead.csv" ; nF = "fileToWrite.txt"
+###### x="fileTorRead.csv" ; nF = "fileToWrite.txt"
        writePatternfile x nF => format [val,year,month,day]
    fire up your editor and jump to line :858
    below the mentioned code and the GHC GUI are pictured to compare
@@ -47,6 +47,7 @@ the function plus variables.
 #### 2. 'aMemoryRAW'  
   writes screen1.txt statistical data about the data set
           autoInputII:String; e.g "1" if ==1 -> hide output ?!
+          
         => opens menu: Options : POINTCLOUD 1..4,6: Pointcloud
                              CLOSE 5
                               
