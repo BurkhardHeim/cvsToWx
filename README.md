@@ -1,7 +1,7 @@
 # csvToWx
 ###### Content: 
 ######      1.'writePatternfile_____2.'aMemoryRAW'________3.'aOsZilloskop1RAW'_____4.'UNDERDEVELOPMENT'
-   ######      modes of Files: 1- WX 2- TXT
+######      modes of Files: 1- WX 2- TXT
 Setup: Three Modi  
 - 1. A GHC GUI
 - 2. Automatic (the same as above avoiding GUI's UNDER CONSTRUCTION )
@@ -33,7 +33,7 @@ enter> main
 The whole stream-crypt revolves around four functions that do the 'dirty' work. 
 The easiest and almost laziest way is by utilizing Commandline and directly type in
 the function plus variables.
-   #### 1. 'writePatternfile' 
+#### 1. 'writePatternfile' 
    via 'Patternfile.hs' read a csv file from disc and export it as aPatternfile.txt
    e.g enter: 'writePatternfile x nF'
    
@@ -44,7 +44,7 @@ the function plus variables.
    Enable 'writePatternfile' to read other csv formats!
    ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/Manual2.png)
 
-  #### 2. 'aMemoryRAW'  
+#### 2. 'aMemoryRAW'  
   writes screen1.txt statistical data about the data set
           autoInputII:String; e.g "1" if ==1 -> hide output ?!
         => opens menu: Options : POINTCLOUD 1..4,6: Pointcloud
@@ -72,7 +72,7 @@ WX.maxima format. Set to a random 'point cloud' while a myriad other settings ar
                                   String     String    String
         => :*Patternfile>aMemoryRAW "1" "seniot.txt" "seniot7.txt"             
    
-  #### 3. 'aOsZilloskop1RAW'
+#### 3. 'aOsZilloskop1RAW'
   will prepare real vals and simu vals, 
   it. will exportDATA.txt in first run (simu vals for re-import)
   exportDATA2.txt cleaned just vals [String]
