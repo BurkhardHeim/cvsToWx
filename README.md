@@ -139,18 +139,20 @@ magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to expl
                 => with: ls1 = (one Interval of MQ3)
   
   ![alt tag](https://github.com/CBroemse/csvToWx/blob/master/MQ3mixVal_Val_SimuVals.png)
-   I as it turns out the input vals in MQ3 do resemble the original function picMQ3, here ploted with
+   I as it turns out the input vals in MQ3 do resemble the original function picMQ3, here plotted with
    the original input data. but is not 'atuned' to the original vals by 'atuned' i mean
    that the y1 and y2 values of one of the functions 
-   slected for plotting, should be really close to the y1..y2 of another of these functions. 
+   selected for plotting, should be really close to the y1..y2 of another of these functions. 
   Such as the simuVals y1 y2  relate to the realVals y1 y2 as plotted.
   #### picMQ3:
   
    ![alt tag](https://github.com/CBroemse/csvToWx/blob/master/allMQsRealVals_Simus.png)
    
-  Aright MQ3(8will soon) did not work but at all but the others and now the red simuVa problem reveals itself.
-  So by fiddeling around at the input dat in OsZilloskop1 we must 'tune' into the data and do 
-  the right one if we like the y values to be rlativly close.
+  Aright MQ3 (8will soon) did not work but at all but the others and now the red simuVal problem reveals itself.
+  green being the real vals
+  So by building a thieve that sums up all real and simulated val within OsZilloskop1  around 
+  we must 'tune' into the data to find alying variables to it and the right ones 
+  if we like the y values to be rlativly close.
   ##### e.g Patternfile.hs :1723 in OsZilloskop1
   One value of the function close tp zero is estimated :
        
