@@ -153,74 +153,41 @@ magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to expl
               =  let ay1= aOsZilloskop1 output x nF criterium (read rnd) -- nF crit
        
                  in let ay2 p = fourier1MQ6 p + fourier2MQ6 p + fourier3MQ6 p + fourier4MQ6 p + fourier5MQ6 p + fourier6MQ6 p 
-        => let mixWithMQ6 --x nF crit --openB file to open ; -openA file to write ; forD criterium
                  in let ay3 =  (6.28319901) -- NullStelle Des Intervals
-              ----------------OSZILLOSKOP SHOWS INPUT AND RANDOM
                  in let ay4 = (ay3/ (read xX)) -- takes forC howmany lines  
-              =  let ay1= aOsZilloskop1 output x nF criterium (read rnd) -- nF crit
-                 in let soMany2take fak = ay4 * fak -- determines which value of fourier123 2 select
-                 in let ay2 p = fourier1MQ6 p + fourier2MQ6 p + fourier3MQ6 p + fourier4MQ6 p + fourier5MQ6 p + fourier6MQ6 p 
-                 in let forThis fak = fourierMQ6NOPAN123 (soMany2take fak)
-                 in let ay3 =  (6.28319901) -- NullStelle Des Intervals
-                 in let fofoThis = map forThis [1..(read xX)]
-                 in let ay4 = (ay3/ (read xX)) -- takes forC howmany lines  
-                 in fofoThis --intoConsider
                  in let soMany2take fak = ay4 * fak -- determines which value of fourier123 2 select
                  in let forThis fak = fourierMQ6NOPAN123 (soMany2take fak)
-  ##### picAbyss:
                  in let fofoThis = map forThis [1..(read xX)]
-  
                  in fofoThis --intoConsider
    ![alt tag](https://github.com/CBroemse/csvToWx/blob/master/allMQsRealVals_Simus.png)
    
   ##### picAbyss:
   Alright MQ3 did not work(yet) the others did :) and now the red simuVal problem reveals itself,
-  
-  while green being the real vals
-   ![alt tag](https://github.com/CBroemse/csvToWx/blob/master/allMQsRealVals_Simus.png)
-  So by building a thieve that sums up all real and simulated val within OsZilloskop1 and around 
-   
-  we probe  to 'tune' into the data to find variables and the right ones 
+  while green being the real vals. So by building a thieve that sums up all real and simulated val
+  within OsZilloskop1 and around  we probe  to 'tune' into the data to find variables and the right ones 
   Alright MQ3 did not work(yet) the others did :) and now the red simuVal problem reveals itself,
   if we like the ys values to be relatively close to each other. 
   while green being the real vals
   
-  So by building a thieve that sums up all real and simulated val within OsZilloskop1 and around 
   ##### What is good about this
-  we probe  to 'tune' into the data to find variables and the right ones 
   The functions now tuned in can be used in simulations about the data set
-  if we like the ys values to be relativly close to each other. 
   if using the various MQ functions.
   
   ##### The drawback
-  ##### What is good about this
   This is all but visualization there is no problem solved by making this a plot.
   The functions now tuned in can be used in simulations about the data set
   If the generated data may contain any information what sort ever it must be carried
-  if using the various MQ functions.
   out by another domain that is capable to 'weigh' or 'rate' each newly generated function
-  ##### The drawback
-  ###### good about the drawback Using the dit 'rnd' function we can make each generated
-  This is all but visualisation there is no problem solved by making this a plot.
-         function 'unique' and that possibly could help that other 'weigh' rate' domain.
-  If the generated data may contain any information what sort ever it must be carried
-   #### 4.'aCrunchlist1RAW'
-  out by another domain that is capable to 'weigh' or 'rate' each newly generated function
-  UNDERDEVELOPMENT
+  
   ###### good about the drawback Using the dit rnd function we can make each generated
-  most basic HTA/HTML plotter can be easily changed from hta to html by 
-         function 'unique' and that possibly could help that other 'weigh' rate' domain.
-  just typing differet format afile.hta <=> afile.html, 
+  
+ 
    #### 4.'aCrunchlist1RAW'
-  u,
   UNDERDEVELOPMENT
-  Hello Microsoft ;), the hta runs 
   most basic HTA/HTML plotter can be easily changed from hta to html by 
   Haskell generated VB.script that cannot be displayed in (firefox,..)
   just typing differet format afile.hta <=> afile.html, 
   
-  u,
-  writes senio, writes Html, using global variables   
   Hello Microsoft ;), the hta runs 
        => writes: TESTGuiVal.hta
   Haskell generated VB.script that cannot be displayed in (firefox,..)
