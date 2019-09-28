@@ -24,7 +24,7 @@ enter> main
     The advantage of using Global Variables, the stream-crypt program can be fully automated which helps
     overseing bigger longer files and keeping an eye on the real aim of the Wx-Maxima application.
     
-    The disadvantage of using Global Variables is that we can lose track of which functions we just
+    The disadvantage of using Global Variables is that we can loose track of which functions we just
     applied to our data, getting no visiual feedback, both sides can be avoided be directly calling
     the "PatternfileRAW' functions that need more variables but can be easily be called via your own batch/bat
     files or any other program. 
@@ -75,8 +75,9 @@ the function plus variabes.
    
   #### 3. 'aOsZilloskop1RAW'
   will prepare real vals and simu vals, 
-  it. will exportDATA.txt in first run (simu vals for re-import)
-  exportDATA2.txt cleaned just vals [String]
+  will exportDATA.txt in first run (simu vals for re-import)
+  same function
+  will exportDATA2.txt cleaned just vals [String]
   
     => writes: exportDatat1,exportData2,HTML
     => function: aOsZilosko1 outputOrnot fileToread   fileTowrite   howMAny   crit   foHans   fun1 fun2
@@ -95,13 +96,14 @@ the function plus variabes.
   
            => in 'Patternfile.hs' see global variables 
            : set function: selectFuncL = ( show [1,2,3,4,5]) 
-           : control which functions to seect of 
+           : control which functions to select of 
   
 #### MQ-Functions
 The name stems from 'Magisches Quadrat'
   magic square in English. The Oszilloskop uses [MQ3,MQ4,MQ5,MQ6]
 ###### The 3x3.
 ["There is just one 3x3 magic square..."](https://www.grogono.com/magic/3x3.php).
+
         => in WriteWXmaximaFile.hs
            fofourier1 = [4,9,2]
            fofourier2 = [3,5,7]
@@ -111,19 +113,20 @@ The name stems from 'Magisches Quadrat'
            fourier2 (x) = (sin((head fofourier2)*x)+ sin ((last (take 2 fofourier2))*x) + sin ((last fofourier2)*x))
            fourier3 (x) = (sin((head fofourier2)*x)+ sin ((last (take 2 fofourier3))*x) + sin ((last fofourier3)*x))
            fourier123 (x) = (fourier1 x + fourier2 x + fourier3 x)*(1/90)
-Remarkably fourier123 (x) Reihen und spalten are the same function which as a argument the thing behaves a little bit like a 
+Remarkably fourier123 (x) Reihen und spalten are the same function!? which as a argument the thing behaves a little bit like a 
 magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to explore.
 
 
 
  ### Example: Stream-Crypt at work
-  The intention was to 'bend' Data sets improving upon my first crude statitical analysis- I could say let the whole Set end lower than the input set depending on
+  The intention was to 'bend' Data sets improving upon my first crude statitical analysis- I could say let the whole set end lower than the input set depending on
   the highest/lowest points and where I will prope the data, e.g
   ##### picMQ3:
    ![alt tag](https://github.com/CBroemse/cvsToWx/blob/master/MQ3.png)
-  A simple sin would have done it as well :) but just for curiosity reasons I kept that one, Or did it ???.
+   
+  A simple sin would have done it as well :) but just for curiosity reasons I kept that one, or did it ???.
   Depending on how an 'interval' is defined it may bring some differences.
-  I wanted to be able to visiualize one MQ3 , one of the four pandiagonal 4x4 and  .... 5x5 , ..6x6
+  I wanted to be able to visiualize one of the eigth ones ?! MQ3 's' , one of the four pandiagonal 4x4 and  .... 5x5 , ..6x6
   mixed with a given set of vals, source and simulated  and just gaze into the abyss :) of data science.
   Hence if I take one interval of the MQ3 function and a let it loose on the data, naturally the data Set will
   end up lower than the original one. 
@@ -135,13 +138,15 @@ magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to expl
                 => with: ls1 = (one Interval of MQ3)
   
   ![alt tag](https://github.com/CBroemse/csvToWx/blob/master/MQ3mixVal_Val_SimuVals.png)
+  
   As it turns out the input vals in MQ3 do resemble the original function picMQ3, here plotted with
   the original input data. but is not 'atuned' to the original vals by 'atuned' i mean
   that the y1 and y2 values of one of the functions 
   ##### e.g Patternfile.hs :1723 in OsZilloskop1
-  selected for plotting, should be really close to the y1..y2 of another of these functions. 
+  "selected for plotting, should be really close to the y1..y2..interval of another of these functions." 
+  
   One value of the function close to zero is estimated :
-  Such as the simuVals y1 y2  relate to the realVals y1 y2 as above.
+  Such as the simuVals y1 y2 interval relate to the realVals y1 y2 interval as above.
        
  
         => let mixWithMQ6 --x nF crit --openB file to open ; -openA file to write ; forD criterium
@@ -205,17 +210,16 @@ Write a WX.Maxima file
 ## Nexus: Armchair-phillosohy ,
    ### What is good about the code?
    ##### The stuff is without any blows and whistles, like 'sophisticated Haskell'
-   One of the most remarkable sentences abt. Haskell ,to me, is to keep it 
+   One of the most remarkable sentences about Haskell to me, is to keep it 
    rather simple more functional with less fancy code that will blow number theorisists minds
-simple more functional with less fancy code that will blow number theorists minds
-   but not be easy or handy for simple programming tasks. The main Menu helps to automate many tasks
+   but not be easy for simple programming tasks. The main Menu helps to automate tasks.
    ### The drawback
    Especially Patternfile.txt has lengthy repetitive code passages that could  be easily shortend up 
-   and compacted with purer code. The first aim of this programming venue was to setup a working program
+   and compacted with purer code. The first aim of the Stream-Crypt 1.1.19  was to setup a working program
    that can handle longer files with a new Main module and many adjustments from 'older' (three years) code.
-   By just focusing on the overall program content and how to automate wxm file writing 
-   less on the brilliance of just one function. The main menu was exclusivly developed for GitHub.
-on the brilliance of just one function. The main menu was exclusively developed for GitHub.
+   By just focusing on the overall program content and how to automate wxm file's intend and writing  
+   less on the brilliance of just a single function. 
+.
    #### What is good about the drawback
-   repetitive and very similar code is begging for parrallel computing which is a task for the 
+   repetitive and very similar code may point to use a temptiningly different approach of coding which is a task for the 
    future. https://github.com/simonmar/par-tutorial .
