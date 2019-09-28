@@ -139,12 +139,13 @@ magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to expl
   
   ![alt tag](https://github.com/CBroemse/csvToWx/blob/master/MQ3mixVal_Val_SimuVals.png)
   
-  As it turns out the input vals in MQ3 do resemble the original function picMQ3, here plotted with
-  the original input data. but is not 'atuned' to the original vals by 'atuned' i mean
-  that the y1 and y2 values of one of the functions 
+ As it turns out the input vals in MQ3 do resemble the original function picMQ3, 
+ here plotted with the original input data. but is not 'attuned' to the original vals
+ by 'attuned' i mean that the y1 and y2 values of the interval of one function selected 
+ for plotting, should be really close to the (y1..y2 ...interval) of another of these functions. 
+ 
   ##### e.g Patternfile.hs :1723 in OsZilloskop1
-  "selected for plotting, should be really close to the y1..y2..interval of another of these functions." 
-  
+   
   One value of the function close to zero is estimated :
   Such as the simuVals y1 y2 interval relate to the realVals y1 y2 interval as above.
        
@@ -168,9 +169,6 @@ magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to expl
   Alright MQ3 did not work(yet) the others did :) and now the red simuVal problem reveals itself,
   while green being the real vals. So by building a thieve that sums up all real and simulated val
   within OsZilloskop1 and around  we probe  to 'tune' into the data to find variables and the right ones 
-  Alright MQ3 did not work(yet) the others did :) and now the red simuVal problem reveals itself,
-  if we like the ys values to be relatively close to each other. 
-  while green being the real vals
   
   ##### What is good about this
   The functions now tuned in can be used in simulations about the data set
@@ -178,11 +176,12 @@ magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to expl
   
   ##### The drawback
   This is all but visualization there is no problem solved by making this a plot.
-  The functions now tuned in can be used in simulations about the data set
   If the generated data may contain any information what sort ever it must be carried
   out by another domain that is capable to 'weigh' or 'rate' each newly generated function
   
-  ###### good about the drawback Using the dit rnd function we can make each generated
+  ###### good about the drawback 
+  Using the dit rnd function we can make each generated function 'unique' and that possibly 
+  could help that other 'weigh' rate' domain. 
   
  
    #### 4.'aCrunchlist1RAW'
@@ -217,7 +216,7 @@ Write a WX.Maxima file
    Especially Patternfile.txt has lengthy repetitive code passages that could  be easily shortend up 
    and compacted with purer code. The first aim of the Stream-Crypt 1.1.19  was to setup a working program
    that can handle longer files with a new Main module and many adjustments from 'older' (three years) code.
-   By just focusing on the overall program content and how to automate wxm file's intend and writing  
+   By just focusing on the overall program content and how to automate wxm file's intention and writing  
    less on the brilliance of just a single function. 
 .
    #### What is good about the drawback
