@@ -111,7 +111,7 @@ The name stems from 'Magisches Quadrat'
            
            fourier1 (x) = (sin((head fofourier1)*x)+ sin ((last (take 2 fofourier1))*x) + sin ((last fofourier1)*x)) 
            fourier2 (x) = (sin((head fofourier2)*x)+ sin ((last (take 2 fofourier2))*x) + sin ((last fofourier2)*x))
-           fourier3 (x) = (sin((head fofourier2)*x)+ sin ((last (take 2 fofourier3))*x) + sin ((last fofourier3)*x))
+           fourier3 (x) = (sin((head fofourier3)*x)+ sin ((last (take 2 fofourier3))*x) + sin ((last fofourier3)*x))
            fourier123 (x) = (fourier1 x + fourier2 x + fourier3 x)*(1/90)
 Remarkably fourier123 (x) Reihen und spalten are the same function!? which as a argument the thing behaves a little bit like a 
 magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to explore.
@@ -126,7 +126,7 @@ magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to expl
    
   A simple sin would have done it as well :) but just for curiosity reasons I kept that one, or did it ???.
   Depending on how an 'interval' is defined it may bring some differences.
-  I wanted to be able to visiualize one of the eigth ones ?! MQ3 's' , one of the four pandiagonal 4x4 and  .... 5x5 , ..6x6
+  I wanted to be able to visiualize one of one MQ3, one of the four pandiagonal 4x4 and  .... 5x5 , ..6x6
   mixed with a given set of vals, source and simulated  and just gaze into the abyss :) of data science.
   Hence if I take one interval of the MQ3 function and a let it loose on the data, naturally the data Set will
   end up lower than the original one. 
@@ -159,13 +159,15 @@ magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to expl
                  in let ay2 p = fourier1MQ6 p + fourier2MQ6 p + fourier3MQ6 p + fourier4MQ6 p + fourier5MQ6 p + fourier6MQ6 p 
                  in let ay3 =  (6.28319901) -- NullStelle Des Intervals
                  in let ay4 = (ay3/ (read xX)) -- takes forC howmany lines  
-                 in let soMany2take fak = ay4 * fak -- determines which value of fourier123 2 select
-                 in let forThis fak = fourierMQ6NOPAN123 (soMany2take fak)
+                 in let soMany2take fk = ay4 * fk -- determines which value of fourier123 2 select
+                 in let forThis fk = fourierMQ6NOPAN123 (soMany2take fk)
                  in let fofoThis = map forThis [1..(read xX)]
                  in fofoThis --intoConsider
+                 
+   ##### picAbyss:              
+      
    ![alt tag](https://github.com/CBroemse/csvToWx/blob/master/allMQsRealVals_Simus.png)
    
-  ##### picAbyss:
   Alright MQ3 did not work(yet) the others did :) and now the red simuVal problem reveals itself,
   while green being the real vals. So by building a thieve that sums up all real and simulated val
   within OsZilloskop1 and around  we probe  to 'tune' into the data to find variables and the right ones 
@@ -175,7 +177,7 @@ magic square as plottedn below MQ3Rows = MQ3Collums ,a periodic function to expl
   if using the various MQ functions.
   
   ##### The drawback
-  This is all but visualization there is no problem solved by making this a plot.
+  This is all but visualisation there is no problem solved by making this a plot.
   If the generated data may contain any information what sort ever it must be carried
   out by another domain that is capable to 'weigh' or 'rate' each newly generated function
   
@@ -211,7 +213,7 @@ Write a WX.Maxima file
    ##### The stuff is without any blows and whistles, like 'sophisticated Haskell'
    One of the most remarkable sentences about Haskell to me, is to keep it 
    rather simple more functional with less fancy code that will blow number theorisists minds
-   but not be easy for simple programming tasks. The main Menu helps to automate tasks.
+   but not be easyly handled for simple programming tasks. The main Menu helps to automate tasks.
    ### The drawback
    Especially Patternfile.txt has lengthy repetitive code passages that could  be easily shortend up 
    and compacted with purer code. The first aim of the Stream-Crypt 1.1.19  was to setup a working program
