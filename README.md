@@ -10,11 +10,9 @@ Setup: Three modi
 i. will open a simpel Graphical User Interface (GUI) in the Glasgow Haskell Compiler (GHC)
    the aim is to automate reading of csv data and of long number streams 
    converting them and changing them via predefined functions. The whole program
-them and changing them via predefined functions. The whole program
    is derived from four main functions.
-   
-   
-ii. Runs all functions as i. but avoiding the GUI...(realisation under construction 23-09-19)
+      
+ii. Runs all functions as i. but avoiding the GUI...(realisation semi construction 28-09-19)
     of 4 main functions some can be completly controlled just via Global-Variables*.
 
 iii. Quick and easy access to read csv -> write patternfile.txt
