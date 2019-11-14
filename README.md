@@ -1,7 +1,7 @@
 # csvToWx
 ######      1.'writePatternfile_____2.'aMemoryRAW'________3.'aOsZilloskop1RAW'_____4.'UNDERDEVELOPMENT'
    ######      modes of Files: 1- WX 2- TXT
-Setup: Three modi  
+Setup: Three modes  
 - 1. A GHC GUI
 - 2. Automatic (the same as above avoiding GUI's UNDERCONSTRUCTION )
 - 3. Easy Acces (quickly read a csv file and process...)
